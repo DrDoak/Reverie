@@ -1,10 +1,10 @@
-local Drawable = Class.create("Drawable", Entity)
+local ModDrawable = Class.create("ModDrawable", Entity)
 
-function Drawable:init( advancedSprites )
+function ModDrawable:init( advancedSprites )
 	self.advancedSprites = advancedSprites
 end
 
-function Drawable:create()
+function ModDrawable:create()
 	self.animations = self.animations or {}
 	self.sprites = self.sprites or {}
 	self.idleCounter = 0
@@ -14,14 +14,13 @@ function Drawable:create()
 	self.initImgH = 64
 	self.initImgW = 64
 	self.animationsPending = {}
-
 end
 
-function Drawable:tick(dt)
+function ModDrawable:tick(dt)
 	self:updateSprites() 
 end
 
-function Drawable:destroy( ... )
+function ModDrawable:destroy( ... )
 	for key, value in pairs(self.sprites) do
 		self:delSpritePiece(key)
 	end
@@ -30,7 +29,7 @@ function Drawable:destroy( ... )
 	end 
 end
 
-function Drawable:changeAnimation(animation,speedMod,spritePieces)
+function ModDrawable:changeAnimation(animation,speedMod,spritePieces)
 	if not self.advancedSprites then
 		return 
 	end
@@ -118,7 +117,7 @@ function Drawable:changeAnimation(animation,speedMod,spritePieces)
 	return hasAnimation
 end
 
-function Drawable:updateSprites()
+function ModDrawable:updateSprites()
 	if not self.angle and not self.body:isFixedRotation() then
 		self:setSprAngle(self.body:getAngle())
 	end
@@ -131,14 +130,14 @@ function Drawable:updateSprites()
 	self:setSprPos(self.x,self.y + 16 + (self.charHeight or self.height)/2)
 end
 
-function Drawable:orientAllSprites()
+function ModDrawable:orientAllSprites()
 	for key,value in pairs(self.sprites) do
 		value:setScale(self.dir * value.mDir,1)
 		value.dir = self.dir
 		--self:setSprPos(self.x,self.y + 16 + self.charHeight/2)
 	end
 end
-function Drawable:orientSprite(row,range,delay,startFrame, sprite, onLoop)
+function ModDrawable:orientSprite(row,range,delay,startFrame, sprite, onLoop)
 	local spr = self.sprites[sprite] or self.sprite
 	if delay == 0 then delay = 0.1 end
 	local md = self.sprites[sprite].mDir
@@ -150,25 +149,25 @@ function Drawable:orientSprite(row,range,delay,startFrame, sprite, onLoop)
 	-- end
 end
 
-function Drawable:freezeAnimation(sprite, duration)
+function ModDrawable:freezeAnimation(sprite, duration)
 	if self.sprites[sprite] then
 		self.sprites[sprite]:pause(duration)
 	end
 end
 
-function Drawable:resetAnimation(spritePiece)
+function ModDrawable:resetAnimation(spritePiece)
 	if self.sprites[spritePiece] then
 		self.sprites[spritePiece]:resetAnimation()
 		self.sprites[spritePiece]:onUpdate()
 	end
 end
-function Drawable:overrideAnimation(spritePiece)
+function ModDrawable:overrideAnimation(spritePiece)
 	if self.sprites[spritePiece] then
 		self.sprites[spritePiece].priority = 0
 	end
 end
 
-function Drawable:normalizeSprSize( speed )
+function ModDrawable:normalizeSprSize( speed )
 	local s = speed or 8
 	self.imgX = math.min( self.imgX + s, self.initImgW )
 	self.imgY = math.min( self.imgY + s, self.initImgH)
@@ -176,7 +175,7 @@ function Drawable:normalizeSprSize( speed )
 end
 
 
-function Drawable:animate()
+function ModDrawable:animate()
 	local maxXSpeed, maxYSpeed = self.maxXSpeed, self.maxYSpeed
 	local walkanim = math.abs(4 / self.velX)
 	local newVelX = self.velX - self.referenceVel
@@ -234,13 +233,13 @@ function Drawable:animate()
 		self:changeAnimation({"holding","guard"})
 	end
 
-	if self.shieldDelay > 165 then
-		self:changeAnimation({"guard","stand"})
-	end
+	-- if self.shieldDelay > 165 then
+	-- 	self:changeAnimation({"guard","stand"})
+	-- end
 
 end
 
-function Drawable:addSpritePieces( newPieces )
+function ModDrawable:addSpritePieces( newPieces )
 	local depth = self.depth
 	for key, piece in pairs(newPieces) do
 		self:addSpritePiece(piece ,depth)
@@ -248,10 +247,10 @@ function Drawable:addSpritePieces( newPieces )
 	end
 end
 
-function Drawable:addSpritePiece( piece , d)
+function ModDrawable:addSpritePiece( piece , d)
 	local sprite
 	local SpritePiece = require "xl.SpritePiece"
-	d = d or self.depth
+	d = d or self.depth or 9000
 	self.advancedSprites = true
 	sprite = SpritePiece(piece.path, (piece.width or 128), (piece.height or 128),0,d)
 	sprite:setOrigin((piece.originX or piece.width/2), (piece.originY or piece.height/2))
@@ -293,18 +292,18 @@ function Drawable:addSpritePiece( piece , d)
 	end
 end
 
-function Drawable:delSpritePiece( pieceName )
+function ModDrawable:delSpritePiece( pieceName )
 	if self.sprites[pieceName] then
 		Game.scene:remove(self.sprites[pieceName])
 		self.sprites[pieceName] = nil
 	end
 end
 
-function Drawable:getAttachPos(attachPoint )
+function ModDrawable:getAttachPos(attachPoint )
 	return self.attachPositions[attachPoint]
 end
 
-function Drawable:setSprPos( x , y )
+function ModDrawable:setSprPos( x , y )
 	for key, piece in pairs(self.sprites) do
 		local piecesPos = piece:updatePos(x,y + 16)
 		for k,v in pairs(piecesPos) do
@@ -314,12 +313,12 @@ function Drawable:setSprPos( x , y )
 	if self.sprite then
 		self.sprite:setPosition(x,y - 8)
 	end
-	for key, piece in pairs( self.lights ) do
-		self.lights[key].light:setPosition(x + self.lights[key].offsetX,y + self.lights[key].offsetY)
-	end
+	-- for key, piece in pairs( self.lights ) do
+	-- 	self.lights[key].light:setPosition(x + self.lights[key].offsetX,y + self.lights[key].offsetY)
+	-- end
 end
 
-function Drawable:setSprAngle( angle )
+function ModDrawable:setSprAngle( angle )
 	for key, piece in pairs(self.sprites) do
 		piece:setAngle(angle)
 	end
@@ -328,8 +327,8 @@ function Drawable:setSprAngle( angle )
 	end
 end
 
-function Drawable:setDepth( depth )
+function ModDrawable:setDepth( depth )
 	self.depth = depth
 end
 
-return Drawable
+return ModDrawable

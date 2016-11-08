@@ -37,13 +37,10 @@ function ActiveObj:create()
 
 	self.referenceVel = 0
 
-	self.sprites = self.sprites or {}
-	self.lights = {}
-
 	self.created = true
 
-	self.wrapCheckGround = lume.fn(self.mCheckGround, self)
-	self.checkJumpThru = lume.fn(self.mCheckJumpThru, self)
+	self.wrapCheckGround = lume.fn(ActiveObj.mCheckGround, self)
+	self.checkJumpThru = lume.fn(ActiveObj.mCheckJumpThru, self)
 	self.attachPositions = {}
 end
 

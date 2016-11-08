@@ -1,36 +1,26 @@
 
 local BasicMenu = require "xl.BasicMenu"
-local SaveIO = require "SaveIO"
+-- local SaveIO = require "SaveIO"Sav
 
 local function goto_room( name )
 	Game:loadRoom( name )
 end
 
 local Items = {
+	-- {
+	-- 	text = "Load Game", 
+	-- 	action = SaveIO.load_game,
+	-- 	args = { 1 },
+	-- },
 	{
-		text = "Load Game",
-		action = SaveIO.load_game,
-		args = { 1 },
-	},
-	{
-		text = "New Game",
+		text = "Start Game",
 		action = goto_room,
 		args = { "assets/rooms/initial_room" },
 	},
 	{
 		text = "Debug Room",
 		action = goto_room,
-		args = { "assets/rooms/test_roomS" },
-	},
-	{
-		text = "Rotating Test Room",
-		action = goto_room,
-		args = { "assets/rooms/initial_room2" },
-	},
-	{
-		text = "Random Generation Test",
-		action = goto_room,
-		args = { "assets/rooms/RandGen_test" },
+		args = { "assets/rooms/testRoom" },
 	},
 }
 

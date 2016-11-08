@@ -87,7 +87,7 @@ function MGame:update( dt )
 
 	self:emitEvent( "pretick" )
 	xl.DScreen.print("Num Objs: ", "(%f)", util.tablelength(self.entities))
-
+	self.player:tick( dt, true ) -- The player object is ALWAYS updated first. Game logic.
 	xl.DScreen.print("Character DT: ", "(%f)", (love.timer.getTime() - baseTime))
 	baseTime = love.timer.getTime()
 
@@ -480,11 +480,6 @@ function MGame:i_loadRoom( name, loadData )
 				for k,v in pairs(object.properties) do
 					inst[k] = v
 				end			
-				-- Ugly way of auto-assigning permanentIDs to 
-				local t = inst.type
-				if t == "ObjContainer" or t == "ObjIntLight" then
-					inst.permanentid = Game.roomname .. inst.type .. inst.x .. inst.y
-				end
 				self:add( inst )
 			end
 		end
@@ -601,4 +596,7 @@ function MGame:setScissor( on )
 	end
 end
 
+function MGame:setPlayer( player, useFrame )
+	self.player = player
+end
 return MGame

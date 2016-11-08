@@ -1,0 +1,1300 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"for",
+				"fori\tfor i,v in ipairs()"
+			],
+			[
+				"proce",
+				"processJumpThru"
+			],
+			[
+				"count",
+				"count"
+			],
+			[
+				"up",
+				"up"
+			],
+			[
+				"checks",
+				"checkSide"
+			],
+			[
+				"Health",
+				"health"
+			],
+			[
+				"value",
+				"value"
+			],
+			[
+				"startX",
+				"startX"
+			],
+			[
+				"addPr",
+				"addPredefRoom"
+			],
+			[
+				"lig",
+				"light"
+			],
+			[
+				"fx",
+				"fx"
+			],
+			[
+				"fo",
+				"forp\tfor k,v in pairs()"
+			],
+			[
+				"b",
+				"boundMovie"
+			],
+			[
+				"p",
+				"properties"
+			],
+			[
+				"x",
+				"x"
+			],
+			[
+				"platf",
+				"platformWidth"
+			],
+			[
+				"or",
+				"orange_building"
+			],
+			[
+				"exit",
+				"exit"
+			],
+			[
+				"plat",
+				"platformWidth"
+			],
+			[
+				"pla",
+				"platformWidth"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "objects/ObjUnit.lua",
+			"settings":
+			{
+				"buffer_size": 42220,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "\nlocal BasicMenu = require \"xl.BasicMenu\"\nlocal SaveIO = require \"SaveIO\"\n\nlocal function goto_room( name )\n\tGame:loadRoom( name )\nend\n\nlocal Items = {\n\t-- {\n\t-- \ttext = \"Load Game\", \n\t-- \taction = SaveIO.load_game,\n\t-- \targs = { 1 },\n\t-- },\n\t{\n\t\ttext = \"Start Game\",\n\t\taction = goto_room,\n\t\targs = { \"assets/rooms/initial_room\" },\n\t},\n\t{\n\t\ttext = \"Debug Room\",\n\t\taction = goto_room,\n\t\targs = { \"assets/rooms/test_room\" },\n\t},\n}\n\nlocal MainMenu = BasicMenu.new( Items, BasicMenu.GREEN_PALLET )\n\nfunction MainMenu:exit(  )\n\tlove.event.quit()\n\treturn true\nend\n\n\nlocal function draw_text( text, align, x, y, offx, offy, font )\n\tlocal width,lines = font:getWrap( text, 9999 )\n\tlocal height = lines * font:getHeight()\n\tlocal ox = x + (width * offx)\n\tlocal oy = y + (height * offy)\n\tlove.graphics.setFont( font )\n\tlove.graphics.printf( text, ox, oy, width, align )\nend\n\nlocal function draw_text_centered( text, x, y, font )\n\tdraw_text( text, \"center\", x, y, -0.5, -0.5, font )\nend\n\nreturn MainMenu\n",
+			"file": "state/MainMenu.lua",
+			"file_size": 1039,
+			"file_write_time": 131230269067263628,
+			"settings":
+			{
+				"buffer_size": 992,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "objects/ObjChar.lua",
+			"settings":
+			{
+				"buffer_size": 62,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "assets/rooms/initial_room.lua",
+			"settings":
+			{
+				"buffer_size": 96075,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 180.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/LuoLei Zhao/leetlib"
+	],
+	"file_history":
+	[
+		"/C/Users/LuoLei Zhao/IrrelevantGame/state/MainMenu.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/MGame.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/hump/class.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjUnit.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceAneBodySm.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceLegsSm.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjIntLevelChanger.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjWorldManager.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/Room.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/WorldGen.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/conf.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/mixin/Jumper.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/SettingManager.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/startup.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/extra.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/npcs/Relationships.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/mixin/CSUtils.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/hump/gamestate.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/lvl/ObjChestCoin.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/lvl/ObjChest.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/util.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/npcs/test_npc.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/shots/SHHope.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjDialogSequence.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/mixin/DialogActive.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/mixin/ClickText.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/mixin/Shop.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/eqp/EqpBottle.lua",
+		"/C/Users/LuoLei Zhao/Documents/NU2016/Fall2016/IEMS/t-table.pdf",
+		"/C/Users/defaultuser0/omegalib/master/modules/firefly/firefly.py",
+		"/C/Users/defaultuser0/omegalib/master/modules/python/Lib/site-packages/numpy/core/__init__.py",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/npcs/test_npc2.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/state/Dialog2.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/RoomGen.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/StCornerHV.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/STCornerVH.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/StVert.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/structs/VtStairway.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/structs/VtDrops.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/structs/VtJumps.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/structs/VtPlatforms.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/structs/VtJumpsSolid.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/ExTop.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/StCross.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/StStop.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/StHoriz.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/worlds/WRHetairoi.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/enLists/fadeCombinations.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/lvl/ObjAnchor.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/substructs/SSGroundLight.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/Structure.lua",
+		"/C/Users/LuoLei Zhao/AppData/Local/Temp/scp00871/fastdata/home/lzhao/cami/apps/modelViewer.py",
+		"/C/Users/LuoLei Zhao/AppData/Local/Temp/scp00654/fastdata/home/lzhao/cami/apps/modelViewer.html",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjChar.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/worlds/Hetairoi_StartingRoom.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjNPC.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/xl/SpritePiece.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjWall.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/StStairs.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/StCeil.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/substructs/SSHangingLight.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/npcs/Relationship.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/themes/THHetairoi.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/anim8.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjLight.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/xl/Scene.lua",
+		"/C/Users/defaultuser0/omegalib/master/modules/firefly/loader_readsnap.py",
+		"/C/Users/defaultuser0/omegalib/master/modules/firefly/readsnap.py",
+		"/C/Users/LuoLei Zhao/Documents/NU2016/Fall2016/IEMS/Proj1/Penny_Lab.py",
+		"/C/Users/LuoLei Zhao/Documents/NU2016/Fall2016/IEMS/ZeevGCode.py",
+		"/C/Users/defaultuser0/omegalib/master/modules/firefly/config-file.py",
+		"/C/Users/defaultuser0/omegalib/master/modules/signac/signac.h",
+		"/C/Users/defaultuser0/omegalib/master/modules/signac/signac.cpp",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/main.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/rooms/initial_room2.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjDebugCamera.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/libs/sti.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/hump/timer.lua",
+		"/C/Users/LuoLei Zhao/Documents/NU2016/Fall2016/IEMS/Penny_Lab.py",
+		"/C/Users/defaultuser0/omegalib/master/modules/signac/numpy/npy_common.h",
+		"/C/Users/defaultuser0/omegalib/master/modules/firefly/loader.py",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceAneBodyLg.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/eqp/EqpTest.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceAneLegsSm.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceBodyLgUniform.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceBodyLgSuit.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceBodySmSuit.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/eqp/EqpKnife.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/hump/camera.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/Entity.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/en/EnFade.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceBodySmFade.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/en/EIDestructible.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/eo/EOCrate.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/SubStruct.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/xl/Lights.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceBodyMedGirl.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/npcs/npc_sayer.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/lvl/ObjChainLight.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/substructs/SSLightHanging.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceAneBodyMed.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceHeadHetairoi.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceAneHead.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/eqp/EIWeapon.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceBodyWhite.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceHeadSmWrap.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceHeadSayer.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/spr/scripts/PceLegsSmSkirt.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/eqp/EqpStaff.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/eqp/EqpDagger.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/lvl/ObjMovingBlock.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjIntHitbox.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/unusedObjs/ObjKeyHole.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/lvl/ObjVending.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/rooms/test_roomS.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/mixin/EquipIcon.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/eqp/EqpBlock.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/eqp/ObjEquippable.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/xl/TextEngine.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjIntLight.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/npcs/npc_ausin.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/xl/TextBox.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/xl/Inventory.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/en/EIBasicAI.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/en/EILoS.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/en/ObjEnemy.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjOrb.lua",
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjChain.lua"
+	],
+	"find":
+	{
+		"height": 31.0
+	},
+	"find_in_files":
+	{
+		"height": 138.0,
+		"where_history":
+		[
+			"",
+			"EqpHook",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"FXGeneric",
+			"jumpTHru",
+			"Dialog",
+			"\"Dialog\"",
+			"Dialog2",
+			"FadeSTate",
+			"FadeState",
+			"TextState",
+			"MoveManager",
+			"Jumper",
+			"conf",
+			"MainMenu",
+			"update",
+			"Log",
+			"defaultDialogue",
+			"defaultDialogu",
+			"defaultDialogue",
+			"processOptions",
+			"self.currentIndex",
+			"toClose",
+			"noLeave",
+			"shop",
+			"defaultInteraction",
+			"placeEnemyGroup",
+			"enFunct",
+			"enemyfunct",
+			"lastFolder",
+			"ceiling",
+			"addZone",
+			"addJumpthru",
+			"addslope",
+			"addWall",
+			"setJumpThru",
+			"setThruTimer",
+			"thrutimer",
+			"checkjumpThru",
+			"debugDisplay",
+			"\"ground\"",
+			"ground",
+			"setJumpthru",
+			"jumping",
+			"Memory",
+			"Trait",
+			"checkGround",
+			"--",
+			"util.print_table",
+			"num",
+			"self.entities",
+			"xl.DScreen",
+			"xOffset",
+			"time",
+			"scipy",
+			"numpy",
+			"cluster",
+			"run",
+			"l",
+			"dir",
+			"self.cam",
+			"camera",
+			"zoom",
+			"referenceVEl",
+			"spawnCoolDown",
+			"self.slopeDir",
+			"self.onStairs",
+			"self.modifier",
+			"FXExplosion",
+			"FXGeneric",
+			"ObjAttackHitbox",
+			"ObjLight",
+			"Lights",
+			"self.lighting",
+			"setAngle",
+			"angle",
+			"self.lighting",
+			"setPosition",
+			"self.light",
+			"ObjChain",
+			"light",
+			"drop",
+			"quickStart",
+			"SSCeilingLight",
+			"stand =",
+			"SHDagger",
+			"mCheckground",
+			"init",
+			"thruTime",
+			"self.thruTImer",
+			"checkGround",
+			"jumpThru",
+			"crouch",
+			"isCrouching",
+			"moveVertical",
+			"normalState",
+			"self.npc",
+			"CL_INT",
+			"player",
+			"dialog",
+			"self",
+			"self.dialog",
+			"createIntbox",
+			"setInteract",
+			"instance",
+			"self.items",
+			"player",
+			"createDialog",
+			"CoinDropper",
+			"items",
+			"setColor",
+			"alpha",
+			"self.currentdialog",
+			"self.currentElemnt",
+			"self.currentElement",
+			"print_table",
+			"self.timer",
+			"objunit",
+			"self.fs",
+			"self.key",
+			"self.user",
+			"enddialog",
+			"charHeight",
+			"ObjUnit",
+			"getdist",
+			"ObjattractHitbox",
+			"VHeight",
+			"ObjCoinGOld",
+			"ObjGoldCoin",
+			"objsource",
+			"ObjSource"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Relationship",
+			"Memory",
+			"SSHangingLight",
+			"buyer",
+			"Shop",
+			"self.speaker",
+			"ObjDialogSequence",
+			"dark_building",
+			"orange_building",
+			"yellow_building",
+			"red_building",
+			"SSVending",
+			"EqpStaff",
+			"",
+			"}}}",
+			"self:useStand(player,frame",
+			"EqpBlade",
+			"EIWeapon",
+			"DialogActive",
+			"DialogOverlap",
+			"EqpThrowKnife",
+			".__package = \"eqp\"",
+			"eqp.",
+			"self",
+			"ObjVending",
+			"Hetairoi_SavePoint",
+			"HtSavePoint",
+			"centY",
+			"centX",
+			"StPredef",
+			"RoomGenPredef",
+			"self:setOverlay",
+			"self.isActive",
+			"ObjAnchor",
+			"EqpTest",
+			"EqpHealthLarge",
+			"EqpHealthSmall",
+			"",
+			"EqpGrenade",
+			"self.invSlot",
+			"self.isPrimary",
+			"ObjVending",
+			"ObjReal",
+			"SSChest",
+			"EILoS",
+			"self.isOpen",
+			"ObjOldChest",
+			"ObjCoinGold",
+			"ObjCoinSilver",
+			"CoinSilver",
+			"ObjCoin",
+			"setEquip(nil,false,true",
+			"EqpBottle",
+			"SSLightHanging",
+			"throw_r",
+			"player.currentTarget",
+			"self.currentTarget",
+			"SHDagger",
+			"EqpDagger",
+			"\"hit\"",
+			"EqpStaff",
+			"EnFade",
+			"EqpBottle",
+			"EqpHook",
+			"self.attachPositions",
+			"EqpMace",
+			"self.links",
+			"SpwnLeak",
+			"tick",
+			"EOFall",
+			"EOGrass",
+			"moveToPoint",
+			"dir",
+			"moveToPoint",
+			"RefreshTime",
+			"self.dir",
+			"EILoS",
+			"EILos",
+			"objects.eqp",
+			"objects.",
+			"objects.eqp.ObjEquippable",
+			"ObjChainLight",
+			"ObjGoldChain",
+			"ObjChainLink",
+			"SSLightSide",
+			"ObjChainLink",
+			"ObjChain",
+			"SSBottom",
+			"SSBand",
+			"SSLowFence",
+			"SSFence",
+			"Theme",
+			"EnTrace",
+			"VtJumpsSolid",
+			"VtJumps",
+			"self.platformWidth",
+			"",
+			"SSPipes",
+			"SSGroundLight",
+			"SSAwning",
+			"SSLargeWindow",
+			"Game.genRand:random",
+			"SSCeilingLight",
+			"VtJumpsAllThru",
+			"VtStairway",
+			"VtJumpsSmall",
+			"VtDrops",
+			"VtStairway",
+			"VtJumpsSolid",
+			"VtSimple",
+			"Game.genRand:random",
+			"Game.worldGen:random",
+			"VtPlatforms",
+			"VtJumps",
+			"StVert",
+			"VtStairway",
+			"HzStreet",
+			"HzAlley",
+			"RoomUtils.invertDir",
+			"self.structType = ",
+			"StCeil",
+			"WorldManager",
+			"8 + 4",
+			"math.floor",
+			"ExBottom",
+			"ExTop",
+			"StSlope"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "objects/ObjUnit.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 42220,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								771,
+								771
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "state/MainMenu.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 992,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								234,
+								234
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 60.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "objects/ObjChar.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 62,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "assets/rooms/initial_room.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 96075,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 9016.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Love",
+	"project": "LeetLib.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"initial_room",
+				"assets\\rooms\\initial_room.lua"
+			],
+			[
+				"mainmenu",
+				"state\\MainMenu.lua"
+			],
+			[
+				"objun",
+				"objects\\ObjUnit.lua"
+			],
+			[
+				"pcelegs",
+				"assets\\spr\\scripts\\PceLegsSm.lua"
+			],
+			[
+				"anebody",
+				"assets\\spr\\scripts\\PceAneBodySm.lua"
+			],
+			[
+				"objunit",
+				"objects\\ObjUnit.lua"
+			],
+			[
+				"class",
+				"hump\\class.lua"
+			],
+			[
+				"mgame",
+				"MGame.lua"
+			],
+			[
+				"jumper",
+				"mixin\\Jumper.lua"
+			],
+			[
+				"gamestate",
+				"hump\\gamestate.lua"
+			],
+			[
+				"settingmanager",
+				"SettingManager.lua"
+			],
+			[
+				"extra",
+				"extra.lua"
+			],
+			[
+				"startup",
+				"startup.lua"
+			],
+			[
+				"main",
+				"main.lua"
+			],
+			[
+				"room",
+				"roomgen\\Room.lua"
+			],
+			[
+				"util",
+				"util.lua"
+			],
+			[
+				"objchest",
+				"objects\\lvl\\ObjChest.lua"
+			],
+			[
+				"chest",
+				"objects\\lvl\\ObjChestCoin.lua"
+			],
+			[
+				"shop",
+				"mixin\\Shop.lua"
+			],
+			[
+				"shope",
+				"objects\\shots\\SHHope.lua"
+			],
+			[
+				"test_npc",
+				"npcs\\test_npc.lua"
+			],
+			[
+				"clicktext",
+				"mixin\\ClickText.lua"
+			],
+			[
+				"test_npc2",
+				"npcs\\test_npc2.lua"
+			],
+			[
+				"dialog",
+				"state\\Dialog2.lua"
+			],
+			[
+				"ac",
+				"mixin\\DialogActive.lua"
+			],
+			[
+				"dialogac",
+				"mixin\\DialogActive.lua"
+			],
+			[
+				"dialogse",
+				"objects\\ObjDialogSequence.lua"
+			],
+			[
+				"testnpc",
+				"npcs\\test_npc.lua"
+			],
+			[
+				"objnpc",
+				"objects\\ObjNPC.lua"
+			],
+			[
+				"vt",
+				"roomgen\\structs\\VtJumpsSolid.lua"
+			],
+			[
+				"vtplatf",
+				"roomgen\\structs\\VtPlatforms.lua"
+			],
+			[
+				"vtjumps",
+				"roomgen\\structs\\VtJumps.lua"
+			],
+			[
+				"vtdro",
+				"roomgen\\structs\\VtDrops.lua"
+			],
+			[
+				"vtsta",
+				"roomgen\\structs\\VtStairway.lua"
+			],
+			[
+				"stvert",
+				"roomgen\\StVert.lua"
+			],
+			[
+				"sthori",
+				"roomgen\\StHoriz.lua"
+			],
+			[
+				"stcorner",
+				"roomgen\\STCornerVH.lua"
+			],
+			[
+				"stcornervh",
+				"roomgen\\StCornerHV.lua"
+			],
+			[
+				"stcornerh",
+				"roomgen\\StCornerHV.lua"
+			],
+			[
+				"ststop",
+				"roomgen\\StStop.lua"
+			],
+			[
+				"stcros",
+				"roomgen\\StCross.lua"
+			],
+			[
+				"extop",
+				"roomgen\\ExTop.lua"
+			],
+			[
+				"struct",
+				"roomgen\\Structure.lua"
+			],
+			[
+				"roomgen",
+				"roomgen\\RoomGen.lua"
+			],
+			[
+				"wrh",
+				"roomgen\\worlds\\WRHetairoi.lua"
+			],
+			[
+				"fadecom",
+				"roomgen\\enLists\\fadeCombinations.lua"
+			],
+			[
+				"wrhet",
+				"roomgen\\worlds\\WRHetairoi.lua"
+			],
+			[
+				"horiz",
+				"roomgen\\StHoriz.lua"
+			],
+			[
+				"stjumpssm",
+				"roomgen\\structs\\VtJumpsSmall.lua"
+			],
+			[
+				"sthoriz",
+				"roomgen\\StHoriz.lua"
+			],
+			[
+				"stvet",
+				"roomgen\\StVert.lua"
+			],
+			[
+				"vtst",
+				"roomgen\\structs\\VtStairway.lua"
+			],
+			[
+				"ststai",
+				"roomgen\\StStairs.lua"
+			],
+			[
+				"objwall",
+				"objects\\ObjWall.lua"
+			],
+			[
+				"objcahr",
+				"objects\\ObjChar.lua"
+			],
+			[
+				"sthor",
+				"roomgen\\StHoriz.lua"
+			],
+			[
+				"stceil",
+				"roomgen\\StCeil.lua"
+			],
+			[
+				"objchar",
+				"objects\\ObjChar.lua"
+			],
+			[
+				"ceil",
+				"roomgen\\StCeil.lua"
+			],
+			[
+				"ssgroundl",
+				"roomgen\\substructs\\SSGroundLight.lua"
+			],
+			[
+				"wrhe",
+				"roomgen\\worlds\\WRHetairoi.lua"
+			],
+			[
+				"thh",
+				"roomgen\\themes\\THHetairoi.lua"
+			],
+			[
+				"struc",
+				"roomgen\\Structure.lua"
+			],
+			[
+				"hangingl",
+				"roomgen\\substructs\\SSHangingLight.lua"
+			],
+			[
+				"wrheta",
+				"roomgen\\worlds\\WRHetairoi.lua"
+			],
+			[
+				"scene",
+				"xl\\Scene.lua"
+			],
+			[
+				"initial_room2",
+				"assets\\rooms\\initial_room2.lua"
+			],
+			[
+				"",
+				"Find Results"
+			],
+			[
+				"game",
+				"hump\\gamestate.lua"
+			],
+			[
+				"pcebodylgs",
+				"assets\\spr\\scripts\\PceBodyLgSuit.lua"
+			],
+			[
+				"pceanelegssm",
+				"assets\\spr\\scripts\\PceAneLegsSm.lua"
+			],
+			[
+				"pceanebodylg",
+				"assets\\spr\\scripts\\PceAneBodyLg.lua"
+			],
+			[
+				"pcebodylg",
+				"assets\\spr\\scripts\\PceBodyLgSuit.lua"
+			],
+			[
+				"spritepiec",
+				"xl\\SpritePiece.lua"
+			],
+			[
+				"spritepiece",
+				"xl\\SpritePiece.lua"
+			],
+			[
+				"pcebodysms",
+				"assets\\spr\\scripts\\PceBodySmSuit.lua"
+			],
+			[
+				"objcamera",
+				"objects\\ObjDebugCamera.lua"
+			],
+			[
+				"camera",
+				"hump\\camera.lua"
+			],
+			[
+				"eqptest",
+				"objects\\eqp\\EqpTest.lua"
+			],
+			[
+				"eqpknife",
+				"objects\\eqp\\EqpKnife.lua"
+			],
+			[
+				"pceanebodysm",
+				"assets\\spr\\scripts\\PceAneBodySm.lua"
+			],
+			[
+				"pcebody",
+				"assets\\spr\\scripts\\PceBodyWhite.lua"
+			],
+			[
+				"pceanebody",
+				"assets\\spr\\scripts\\PceAneBodyMed.lua"
+			],
+			[
+				"pcelegssm",
+				"assets\\spr\\scripts\\PceLegsSm.lua"
+			],
+			[
+				"enfade",
+				"objects\\en\\EnFade.lua"
+			],
+			[
+				"pcebodysmfade",
+				"assets\\spr\\scripts\\PceBodySmFade.lua"
+			],
+			[
+				"eocrate",
+				"objects\\eo\\EOCrate.lua"
+			],
+			[
+				"entity",
+				"objects\\Entity.lua"
+			],
+			[
+				"objchainlight",
+				"objects\\lvl\\ObjChainLight.lua"
+			],
+			[
+				"objlight",
+				"objects\\ObjLight.lua"
+			],
+			[
+				"substruct",
+				"roomgen\\SubStruct.lua"
+			],
+			[
+				"light",
+				"xl\\Lights.lua"
+			],
+			[
+				"chainlight",
+				"objects\\lvl\\ObjChainLight.lua"
+			],
+			[
+				"objcha",
+				"objects\\ObjChar.lua"
+			],
+			[
+				"worldgen",
+				"roomgen\\WorldGen.lua"
+			],
+			[
+				"objchaingl",
+				"objects\\lvl\\ObjChainLight.lua"
+			],
+			[
+				"hanging",
+				"roomgen\\substructs\\SSLightHanging.lua"
+			],
+			[
+				"ssceilinglight",
+				"roomgen\\substructs\\SSCeilingLight.lua"
+			],
+			[
+				"pceanebodymed",
+				"assets\\spr\\scripts\\PceAneBodyMed.lua"
+			],
+			[
+				"pceanemed",
+				"assets\\spr\\scripts\\PceAneBodyMed.lua"
+			],
+			[
+				"pceanehead",
+				"assets\\spr\\scripts\\PceAneHead.lua"
+			],
+			[
+				"pceheadhet",
+				"assets\\spr\\scripts\\PceHeadHetairoi.lua"
+			],
+			[
+				"pcebodywhi",
+				"assets\\spr\\scripts\\PceBodyWhite.lua"
+			],
+			[
+				"pceanelegs",
+				"assets\\spr\\scripts\\PceAneLegsSm.lua"
+			],
+			[
+				"pceheadsay",
+				"assets\\spr\\scripts\\PceHeadSayer.lua"
+			],
+			[
+				"pceheads",
+				"assets\\spr\\scripts\\PceHeadSmWrap.lua"
+			],
+			[
+				"pceanbodysm",
+				"assets\\spr\\scripts\\PceAneBodySm.lua"
+			],
+			[
+				"pceanebodyme",
+				"assets\\spr\\scripts\\PceAneBodyMed.lua"
+			],
+			[
+				"pceheadsa",
+				"assets\\spr\\scripts\\PceHeadSayer.lua"
+			],
+			[
+				"pceheadir",
+				"assets\\spr\\scripts\\PceHeadIrrelevant.lua"
+			],
+			[
+				"pceanelges",
+				"assets\\spr\\scripts\\PceAneLegsSm.lua"
+			],
+			[
+				"pceanesm",
+				"assets\\spr\\scripts\\PceAneBodySm.lua"
+			],
+			[
+				"pcebodysmsui",
+				"assets\\spr\\scripts\\PceBodySmSuit.lua"
+			],
+			[
+				"pcelegssk",
+				"assets\\spr\\scripts\\PceLegsSmSkirt.lua"
+			],
+			[
+				"pcebodymedgirl",
+				"assets\\spr\\scripts\\PceBodyMedGirl.lua"
+			],
+			[
+				"eiweapon",
+				"objects\\eqp\\EIWeapon.lua"
+			],
+			[
+				"eqpstaff",
+				"objects\\eqp\\EqpStaff.lua"
+			],
+			[
+				"eqpdagger",
+				"objects\\eqp\\EqpDagger.lua"
+			],
+			[
+				"pcelegssmskir",
+				"assets\\spr\\scripts\\PceLegsSmSkirt.lua"
+			],
+			[
+				"pceanebodys",
+				"assets\\spr\\scripts\\PceAneBodySm.lua"
+			],
+			[
+				"moving",
+				"objects\\lvl\\ObjMovingBlock.lua"
+			],
+			[
+				"test_room",
+				"assets\\rooms\\test_roomS.lua"
+			],
+			[
+				"test_rooms",
+				"assets\\rooms\\test_roomS.lua"
+			],
+			[
+				"dialogseq",
+				"objects\\ObjDialogSequence.lua"
+			],
+			[
+				"coindrop",
+				"mixin\\CoinDropper.lua"
+			],
+			[
+				"coingi",
+				"objects\\ObjIntLight.lua"
+			],
+			[
+				"vending",
+				"objects\\lvl\\ObjVending.lua"
+			],
+			[
+				"npc_ausin",
+				"npcs\\npc_ausin.lua"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 225.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

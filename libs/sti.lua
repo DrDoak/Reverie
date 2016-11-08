@@ -322,10 +322,10 @@ function Map:setSpriteBatches(layer)
 					ty = y * th + tile.offset.y
 					
 					-- Compensation for scale/rotation shift
-					if tile.sx	< 0 then tx = tx + (tw*2) end
-					if tile.sy	< 0 then ty = ty + (th*2) end
-					if tile.r	> 0 then tx = tx + (tw*2) end
-					if tile.r	< 0 then ty = ty + (th*2) end
+					if tile.sx	< 0 then tx = tx + (tw) end
+					if tile.sy	< 0 then ty = ty + (th) end
+					if tile.r	> 0 then tx = tx + (tw) end
+					if tile.r	< 0 then ty = ty + (th) end
 				elseif self.orientation == "isometric" then
 					tx = (x - y) * (tw / 2) + tile.offset.x
 					ty = (x + y) * (th / 2) + tile.offset.y

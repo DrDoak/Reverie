@@ -14,6 +14,7 @@ local ModuleTest = Class.new {
 	postCollide = _NOOP,
 	createFuncts = {},
 	destroyFuncts = {},
+	tickFuncts = {},
 	drawFuncts = {},
 	onCollideFuncts = {},
 	modules = {}
@@ -28,7 +29,8 @@ function ModuleTest:addModule( newModule )
 		self.tickFuncts[modName] = newModule.tick
 	end
 	if newModule.create then
-		self.createFuncts[modName] = newModule.create
+		--self.createFuncts[modName] = newModule.create
+		newModule.create(self)
 	end
 	if newModule.destroy then
 		self.destroyFuncts[modName] = newModule.destroy
@@ -71,11 +73,11 @@ function ModuleTest:mTick( dt )
 	end
 end
 
-function ModuleTest:mCreate()
-	for k,v in pairs(self.createFuncts) do
-		v(self)
-	end
-end
+-- function ModuleTest:mCreate()
+-- 	for k,v in pairs(self.createFuncts) do
+-- 		v(self)
+-- 	end
+-- end
 
 function ModuleTest:mDestroy()
 	for k,v in pairs(self.destroyFuncts) do

@@ -384,10 +384,10 @@ end
 
 function ObjUnit:processPassives( )
 	for i,v in pairs(self.passiveEffects) do
-		lume.trace()
 		v( self ,self.passiveVars[i])
 	end
 end
+
 function ObjUnit:setSpecialState(stateObject, canMove,uninterruptable)
 	--self.state = 4
 	self.prepTime = -5
@@ -1411,19 +1411,19 @@ function ObjUnit:checkInt(fixture)
 end
 
 function ObjUnit:manageInt( )
-	if self.detectBox then
-		local xOffset = 10 * self.dir
-		local yOffset = 0
-		self.exclamation:setPosition(self.x, self.y - 48)
-		Game.world:queryBoundingBox(self.x + xOffset - 8, self.y + yOffset - 8, self.x + xOffset + 8, self.y + yOffset + 8, self.wrapDetectInt)
-		if self.exclamationAdded and (not self.displayExclamation or self.numInt <= 0) then
-			Game.scene:remove(self.exclamation)
-			self.exclamationAdded = false
-		elseif self.numInt > 0 and not self.exclamationAdded and self.displayExclamation then
-			Game.scene:insert(self.exclamation)
-			self.exclamationAdded = true
-		end
-	end
+	-- if self.detectBox then
+	-- 	local xOffset = 10 * self.dir
+	-- 	local yOffset = 0
+	-- 	self.exclamation:setPosition(self.x, self.y - 48)
+	-- 	Game.world:queryBoundingBox(self.x + xOffset - 8, self.y + yOffset - 8, self.x + xOffset + 8, self.y + yOffset + 8, self.wrapDetectInt)
+	-- 	if self.exclamationAdded and (not self.displayExclamation or self.numInt <= 0) then
+	-- 		Game.scene:remove(self.exclamation)
+	-- 		self.exclamationAdded = false
+	-- 	elseif self.numInt > 0 and not self.exclamationAdded and self.displayExclamation then
+	-- 		Game.scene:insert(self.exclamation)
+	-- 		self.exclamationAdded = true
+	-- 	end
+	-- end
 end
 
 function ObjUnit:setHealth( health )

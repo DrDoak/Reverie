@@ -1,0 +1,32 @@
+{
+	"build_systems":
+	[
+		{
+			"cmd":
+			[
+				"C:/Apps/love/love.exe",
+				"$project_path"
+			],
+			"file_regex": "^(?:Error: )?\\s*\\[?([\\w/.]*?):([0-9]*):?([0-9]*)",
+			"name": "Love",
+			"selector": "source.lua",
+			"shell": true,
+			"working_dir": "${project_path:${folder}}"
+		}
+	],
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"*.gal",
+				"*.tmx",
+				"*.docx",
+				"*.doc",
+				"*.bmp",
+				"*.mp3"
+			],
+			"path": "."
+		}
+	]
+}
