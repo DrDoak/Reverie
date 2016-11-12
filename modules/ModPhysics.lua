@@ -1,10 +1,8 @@
-local ModPhysics = Class.create("ModPhysics", Entity, {health = 1})
+local ModPhysics = Class.create("ModPhysics", Entity)
+
+ModPhysics.trackFunctions = {"onCollide"}
 
 ----------------------Initialization-----------------
-function ModPhysics:init( x, y )
-	self.x = x
-	self.y = y
-end
 
 function ModPhysics:create()
 	--set default stats
@@ -27,7 +25,6 @@ function ModPhysics:create()
 	self.slopeDir = 0
 	self.numContacts = 0
 	self.height = self.height or 32
-	--set default sprite information
 
 	--default state information
 	self.forceX = 0
@@ -41,10 +38,8 @@ function ModPhysics:create()
 
 	self.wrapCheckGround = lume.fn(ModPhysics.mCheckGround, self)
 	self.checkJumpThru = lume.fn(ModPhysics.mCheckJumpThru, self)
-	self.attachPositions = {}
 end
 
----------------------------Ticks---------------------------
 function ModPhysics:tick(dt) 
 	local body = self.body
 	self.x,self.y = body:getPosition()
@@ -52,28 +47,26 @@ function ModPhysics:tick(dt)
 
 	--If the object is not affected by Gravity, apply force to oppose Gravity
 	if self.noGrav == true then 
-		self.body:applyForce(0, -self.body:getMass() * 480 * dt * 60) 
+		body:applyForce(0, -self.body:getMass() * 480 * dt * 60) 
 	elseif self.noGrav and self.noGrav > 0 then
 		self.noGrav = self.noGrav - 1
-		self.body:applyForce(0, -self.body:getMass() * 480 * dt * 60)
+		body:applyForce(0, -self.body:getMass() * 480 * dt * 60)
 	end
 
-	--Teleportation code, implementation of the function "SetPosition"
+	--Teleportation code. Since Set position can only be called on the tick step, the body is not
+	-- moved until here.
 	if self.canTeleport == true and body then
 		self.canTeleport = false
 		body:setPosition(self.newX, self.newY)
 	end
 	
-	if self.state == 3 then self.jumping = false end
-
 	self:processJumpThru()	
-	self:checkGround()
+	self:checkGround() -- Special code is required to handle slopes. Also needed to determine if object is on ground or not.
 
-	-- --Apply physics to the b2body
+	-- --Apply the body's intrinsic forces to the body
 	self:move( dt, self.body, self.forceX, self.forceY, self.isMoving)
 end
 
--------------------Physics Modifiers----------------------
 
 function ModPhysics:setSpeedModifier(modifier)
 	local velX, velY = self.body:getLinearVelocity()
@@ -88,7 +81,7 @@ function ModPhysics:move( dt, body, forceX, forceY, isMovingX)
 	-- Staying stable on slopes
 	if self.groundLevel and not self.jumping and (self.state ~= 3) then
 		if self.groundLevel - self.y > 2 then
-			self.body:applyForce(0, self.body:getMass() * math.max(2500,(6000 * math.abs(self.velX/self.maxXSpeed))))
+			self.body:applyForce(0, self.body:getMass() * math.max(2500,(6000 * math.abs(self.velX/self.maxXSpeed)))* dt * 60)
 		end
 	end
 	if self.jumping or self.numContacts == 0 then
@@ -100,7 +93,7 @@ function ModPhysics:move( dt, body, forceX, forceY, isMovingX)
 
 	--Jumping code        
 	if self.jumping then
-		self.body:applyForce(0, -self.body:getMass() * 480)
+		self.body:applyForce(0, -self.body:getMass() * 480 * 60 * dt)
 		self.inAir = true
 		if self.currentJumpTime - math.floor(self.currentJumpTime/2) * 2 == 0 then
 			body:applyLinearImpulse(0,-(self.jumpSpeed- (self.currentJumpTime * 64)))
@@ -138,12 +131,31 @@ function ModPhysics:move( dt, body, forceX, forceY, isMovingX)
 	end 
 
 	if isMovingX and self.dir == self.slopeDir then
-		self.body:applyForce(0, -self.body:getMass() * 480)
+		self.body:applyForce(0, -self.body:getMass() * 480 * 60 * dt)
 	end
 	--Apply force updates.
 	body:applyForce(forceX*60*dt,forceY*60*dt)
 end
 
+function ModPhysics:createBody( bodyType ,isFixedRotation, isBullet)
+	--initialize b2 Physics bodies. Everytime we create a new object, not only do we need to create
+	-- a "game logic" instance of the object (which is just this file), but we also need to add the object to the physics world.
+	-- Of course, some objects don't need to be added to the physics world, like special effects (no collisions).
+
+	-- We start by defining a body. A body is simply any single physics object. Bodies have mass, as well as a position.
+	self.body = love.physics.newBody( Game.world, self.x, self.y, bodyType ) -- Here we make a new body, 
+		-- We tell it which world we want to put it in. In this case, the game's current world. (my game only has one world at a time.)
+		-- We specify the location of the body
+		-- We also make it dynamic, which means it can be pushed around and interact with things. Other types are:
+			-- Static: No movement whatsoever, but can stop things (walls)
+			-- Kinematic: Cannot be pushed around, but can move (moving platforms.) 
+			--Whenever possible, try to used dynamic. Consistency = fewer bugs.
+	self.body:setFixedRotation(isFixedRotation) -- My character physics object is essentially just a hitbox, so we don't want it rotating.
+	self.body:setUserData(self) -- Always set this to self. This is the reference of the physics object to the game object.
+	self.body:setBullet(isBullet) -- Technically a "bullet" is slang for a "high-precision" physics object.
+		-- It is called a bullet because bullets travel really quickly and need high precision.
+		-- Since this is the player character, I want as high precision as possible. tap. questions point.
+end
 function ModPhysics:setFixture( shape, mass, isSensor)
 	local s = self.fixture:getShape()
 	local topLeftX, topLeftY, bottomRightX, bottomRightY = s:computeAABB( 0, 0, 0, 1 )
@@ -206,13 +218,11 @@ function ModPhysics:getDistanceToPoint( pointX, pointY )
 end
 
 function ModPhysics:setJumpThru( timer )
-	-- lume.trace(timer)
-
 	self.oldMask = self.fixture:getMask()
 	if self.oldMask == 3 then
 		self.oldMask = nil
 	end
-	-- lume.trace(self.oldMask)
+
 	local checkGroundY = self.y + (self.charHeight or self.height) + 4
 	self.numJumpThru = 0
 	Game.world:rayCast(self.x - 3, checkGroundY - 20, self.x - 3, checkGroundY, self.checkJumpThru)
@@ -232,9 +242,7 @@ end
 function ModPhysics:processJumpThru()
 	if self.thruTimer and self.thruTimer > 0 then
 		self.thruTimer = self.thruTimer - 1
-		-- lume.trace(self.thruTimer)
 		if self.thruTimer == 0 then
-			-- lume.trace()
 			local checkGroundY = self.y + (self.charHeight or self.height)
 			self.numJumpThru = 0
 			self.numContacts = 0

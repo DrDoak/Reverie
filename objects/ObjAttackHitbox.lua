@@ -143,12 +143,17 @@ end
 -- it will call this function. tapp. 
 function ObjAttackHitbox:onCollide(other, collision)
 	if other ~= nil and other ~= self.attacker then
+		-- for i = 1, #self.objectsHit do
+		-- 	if other == self.objectsHit[i] then
+		-- 		return
+		-- 	end
+		-- end
 		for k,v in pairs(self.objectsHit) do
 			if k == other then
 				return
 			end
 		end
-		if Class.istype(other, "ObjUnit") then
+		if Class.istype(other, "ObjBase")  and other:hasModule("ModActive") then
 			if (other == self.attacker) then
 				return
 			else

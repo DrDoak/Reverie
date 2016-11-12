@@ -1,26 +1,25 @@
 local ModDrawable = Class.create("ModDrawable", Entity)
 
-function ModDrawable:init( advancedSprites )
-	self.advancedSprites = advancedSprites
-end
+ModDrawable.trackFunctions = {"draw"}
 
 function ModDrawable:create()
 	self.animations = self.animations or {}
 	self.sprites = self.sprites or {}
 	self.idleCounter = 0
-	self.angle = 0
+	-- self.angle = 0
 	self.imgX = 64
 	self.imgY = 64
 	self.initImgH = 64
 	self.initImgW = 64
 	self.animationsPending = {}
+	self.attachPositions = {}
 end
 
 function ModDrawable:tick(dt)
 	self:updateSprites() 
 end
 
-function ModDrawable:destroy( ... )
+function ModDrawable:destroy()
 	for key, value in pairs(self.sprites) do
 		self:delSpritePiece(key)
 	end
@@ -118,7 +117,7 @@ function ModDrawable:changeAnimation(animation,speedMod,spritePieces)
 end
 
 function ModDrawable:updateSprites()
-	if not self.angle and not self.body:isFixedRotation() then
+	if not self.angle and (self.body and not self.body:isFixedRotation()) then
 		self:setSprAngle(self.body:getAngle())
 	end
 	for key,value in pairs(self.sprites) do
@@ -127,7 +126,8 @@ function ModDrawable:updateSprites()
 		end
 	end
 	self.referenceVel = 0
-	self:setSprPos(self.x,self.y + 16 + (self.charHeight or self.height)/2)
+	-- lume.trace(self.height)
+	self:setSprPos(self.x,self.y + 24 + (self.charHeight or self.height)/2)
 end
 
 function ModDrawable:orientAllSprites()
@@ -171,7 +171,6 @@ function ModDrawable:normalizeSprSize( speed )
 	local s = speed or 8
 	self.imgX = math.min( self.imgX + s, self.initImgW )
 	self.imgY = math.min( self.imgY + s, self.initImgH)
-	--self.sprite:setSize(self.imgX, self.imgY)
 end
 
 
@@ -253,6 +252,7 @@ function ModDrawable:addSpritePiece( piece , d)
 	d = d or self.depth or 9000
 	self.advancedSprites = true
 	sprite = SpritePiece(piece.path, (piece.width or 128), (piece.height or 128),0,d)
+	--sprite:setOrigin(16,16)
 	sprite:setOrigin((piece.originX or piece.width/2), (piece.originY or piece.height/2))
 	sprite:setSize((piece.imgX or piece.width/2), (piece.imgY or piece.height/2))
 	if piece.attachPoints then
@@ -305,17 +305,14 @@ end
 
 function ModDrawable:setSprPos( x , y )
 	for key, piece in pairs(self.sprites) do
-		local piecesPos = piece:updatePos(x,y + 16)
+		local piecesPos = piece:updatePos(x,y)
 		for k,v in pairs(piecesPos) do
 			self.attachPositions[k] = v
 		end
 	end
 	if self.sprite then
-		self.sprite:setPosition(x,y - 8)
+		self.sprite:setPosition(x,y)
 	end
-	-- for key, piece in pairs( self.lights ) do
-	-- 	self.lights[key].light:setPosition(x + self.lights[key].offsetX,y + self.lights[key].offsetY)
-	-- end
 end
 
 function ModDrawable:setSprAngle( angle )

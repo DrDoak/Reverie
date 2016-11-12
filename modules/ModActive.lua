@@ -1,5 +1,7 @@
 local ModActive = Class.create("ModActive", Entity)
 
+ModActive.trackFunctions = {"setHitState","normalState","hitState"}
+
 function ModActive:create()
 	--default state information
 	self.stun = 0
@@ -24,6 +26,13 @@ function ModActive:create()
 	self.redHealthDelay = 0
 end
 
+function ModActive:destroy()
+	if not self.destroyed then
+		if self.dmgHitbox then
+			Game:del(self.dmgHitbox)
+		end
+	end
+end
 function ModActive:tick( dt )
 	self.forceX = 0
 	self.forceY = 0
@@ -42,14 +51,14 @@ function ModActive:tick( dt )
 	
 	if self.health <= 0 and not self.immortal then
 		self.isAlive = false	
-	-- elseif self.state == 2 then
-	-- 	self:actionState()
 	elseif self.state == 3 then
 		self:hitState() 			-- self.status = "stun"
 	end
 	
 	self:updateHealth()
 end
+
+function ModActive:normalState()		end
 
 function ModActive:setPassive(name,effect)
 	for i,v in pairs(self.passiveEffects) do
@@ -79,15 +88,50 @@ function ModActive:updateHealth()
 		self.redHealth = math.min(self.health,self.redHealth + 1)
 		self:setHealth(self.health,self.redHealth)
 	end
-
-	--Shield stuff
-	-- if self.shieldDelay > 0 then
-	-- 	self.shieldDelay = self.shieldDelay - 1
-	-- elseif self.shield < self.maxShield then
-	-- 	self.shield = math.min(self.maxShield,self.shield + (1 * self.shieldRegain))
-	-- end
 end
 
+
+function ModActive:setHitState(stunTime, forceX, forceY, damage, element,faction,shieldDamage,blockStun,unblockable)
+	self.prepTime = 0
+	if faction and self.faction and faction == self.faction then
+		return false
+	elseif self.isAlive and element == "guardDeflect" then
+		self.state = 3
+		local ratio = self.KBRatio or 1
+		self.status = "stunned"
+		self:overrideAnimation("legs")
+		self:overrideAnimation("body")
+		self:overrideAnimation("head")
+
+		self.stun = blockStun or stunTime
+		if not self.superArmor then
+			self.body:setLinearVelocity(forceX * ratio,forceY * ratio)
+		end
+	elseif self.isAlive and self.invincibleTime == 0 then
+
+		local st = stunTime or 0
+		local dm = damage or 0
+		local ratio = self.KBRatio or 1
+
+		if forceX > 0 then
+			self.dir = -1
+		else
+			self.dir = 1
+		end
+		
+		self.stun = st
+
+		self:setHealth(self.redHealth - dm)
+		if not self.superArmor then
+			self.body:setLinearVelocity(forceX * ratio,forceY * ratio)
+		end
+		self.regainTime = 240
+		self.invincibleTime = 0
+		return "hit"
+	else
+		return false
+	end
+end
 
 function ModActive:hitState()
 	self:overrideAnimation("legs")

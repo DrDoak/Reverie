@@ -1,15 +1,10 @@
-local ModuleTest = require "objects.ModuleTest"
-local ObjBaseUnit = Class.create("ObjBaseUnit", ModuleTest)
+local ObjBase = require "ObjBase"
+local ObjBaseUnit = Class.create("ObjBaseUnit", ObjBase)
 	
 	function ObjBaseUnit:create()
-		local drawable = require "modules.ModDrawable"
-		self:addModule(drawable)
-		local active = require "modules.ModActive"
-		self:addModule(active)
-		local body = require "modules.ModPhysics"
-		self:addModule(body)
-		local inv = require "modules.ModInventory"
-		self:addModule(inv)
+		self:addModule(require "modules.ModActive") 
+		self:addModule( require "modules.ModPhysics")
+		self:addModule(require "modules.ModDrawable")
 	end
 
 return ObjBaseUnit

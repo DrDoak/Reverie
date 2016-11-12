@@ -1,6 +1,23 @@
 local ModInventory = Class.create("ModInventory", Entity)
+
 function ModInventory:create()
 	self.inventory = self.inventory or Inventory(1,1)
+	self.inventory:setUser(self)
+	self.inventory.currentEquips = self.currentEquips
+	self.inventory.currentPrimary = self.currentPrimary
+	
+	if self.currentEquip then
+		local newEquip = self.currentEquip
+		self.currentEquip = nil
+		Game:add( newEquip )
+		self:setEquip( newEquip , false)
+	end
+	if self.currentPrimary then
+		local newEquip = self.currentPrimary
+		self.currentPrimary = nil
+		Game:add( newEquip )
+		self:setEquip( newEquip ,false,true)
+	end
 end
 
 function ModInventory:tick( dt )

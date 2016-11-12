@@ -85,7 +85,7 @@ local pce = {
 	height = 32,
 	attachPoints = 
 		{
-			center = {x = 16,y = 0}
+			center = {x = 16,y = 16}
 		},
 	animations = ane
 }

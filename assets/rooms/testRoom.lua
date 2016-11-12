@@ -1,14 +1,14 @@
 return {
   version = "1.1",
   luaversion = "5.1",
-  tiledversion = "0.17.0",
+  tiledversion = "0.17.1",
   orientation = "orthogonal",
   renderorder = "right-down",
   width = 100,
   height = 100,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 10,
+  nextobjectid = 13,
   properties = {},
   tilesets = {
     {
@@ -458,6 +458,19 @@ return {
           shape = "rectangle",
           x = 320,
           y = 128,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 10,
+          name = "",
+          type = "ObjTest",
+          shape = "rectangle",
+          x = 224,
+          y = 224,
           width = 0,
           height = 0,
           rotation = 0,

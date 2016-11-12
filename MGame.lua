@@ -87,8 +87,8 @@ function MGame:update( dt )
 
 	self:emitEvent( "pretick" )
 	xl.DScreen.print("Num Objs: ", "(%f)", util.tablelength(self.entities))
-	self.player:tick( dt, true ) -- The player object is ALWAYS updated first. Game logic.
-	xl.DScreen.print("Character DT: ", "(%f)", (love.timer.getTime() - baseTime))
+	-- self.player:tick( dt, true ) -- The player object is ALWAYS updated first. Game logic.
+	-- xl.DScreen.print("Character DT: ", "(%f)", (love.timer.getTime() - baseTime))
 	baseTime = love.timer.getTime()
 
 	lume.each(self.entities, "tick", dt) --The game loops through all the entities in the entity list and calls the tick function for everyone of them.
