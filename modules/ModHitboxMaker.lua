@@ -1,4 +1,6 @@
 local ModHitboxMaker = Class.create("ModHitboxMaker", Entity)
+local ObjAttackHitbox = require "objects.ObjAttackHitbox"
+ModHitboxMaker.trackFunctions = {"registerHit"}
 
 function ModHitboxMaker:createHitbox(wth, hgt, XOffset, YOffset, dmg, stn, pers, Xforce, Yforce, elem, deflect)
 	local myWidth = wth
@@ -42,6 +44,22 @@ function ModHitboxMaker:createHitbox(wth, hgt, XOffset, YOffset, dmg, stn, pers,
 	ObjAttackHitbox:setHeavy(heavy)
 	Game:add(ObjAttackHitbox)
 	return ObjAttackHitbox
+end
+
+function ModHitboxMaker:registerHit(target, hitType, hitbox) end
+
+function ModHitboxMaker:addToAttackList( prob,conditionCheck,funct,properties)
+	local newList = {}
+	newList.weight = prob
+	newList.condition = conditionCheck
+	newList.funct = funct
+	newList.properties = {}
+	if properties then
+		for i,v in ipairs(properties) do
+			newList.properties[v] = true
+		end
+	end
+	table.insert(self.attackList,newList)
 end
 
 return ModHitboxMaker

@@ -93,7 +93,7 @@ function ModInventory:setPrimary(active)
 			self.currentPrimary:setLightActive(active)
 		else
 			if active then 
-				self.currentPrimary:usePrimary()
+				self.currentPrimary:use()
 			end
 		end
 	end
@@ -176,7 +176,7 @@ function ModInventory:mSetEquip(newEquip, animate, slot)
 			self:setPassive(newEquip.name, newEquip.passiveEffect)
 		else
 			newEquip.toDestroy = false
-			if animate then self:setActionState("crouch",1) end
+			-- if animate then self:setActionState("crouch",1) end
 			newEquip.user = self
 			newEquip.faction = self.faction
 			if self.equipIcons then
@@ -213,7 +213,8 @@ end
 
 --Adds an ObjEquippable subclass to the player's inventory
 function ModInventory:addToInv(item, stackable, amount,overwrite, animate)
-	if animate then self:setActionState("crouch",1) end
+	-- if animate then self:setActionState("crouch",1) end
+	lume.trace()
 	if stackable then
 		for _,v in self.inventory:iter() do
 			if v.type == item.type then
@@ -240,12 +241,14 @@ function ModInventory:addToInv(item, stackable, amount,overwrite, animate)
 end
 
 function ModInventory:equipIfOpen(item, isPrimary)
+	lume.trace()
 	if isPrimary then
 		if not self.currentPrimary then
 			self.inventory:setEquip(item,self,"primary")
 		end
 	else
 		if self.currentEquips["neutral"] and self.currentEquips["neutral"].type == item.type then
+			lume.trace()
 			self:setEquip(item,"neutral")
 		elseif self.currentEquips["up"] and self.currentEquips["up"].type == item.type then
 			self:setEquip(item, "up")
@@ -262,15 +265,11 @@ function ModInventory:equipIfOpen(item, isPrimary)
 end
 
 function  ModInventory:setEquipCreateItem(item ,animate)
-	-- util.print_table(self.sprites)
-	local class = require( "objects.eqp." .. item )
+	local class = require( "objects." .. item )
 	local inst = class()
 	Game:add(inst)
-	-- lume.trace(self.sprites)
-	-- util.print_table(self.sprites)
+	lume.trace(inst.onPlayerInteract)
 	inst:onPlayerInteract(self)
-	--character:setEquip(inst, animate)
-	--Game:del(inst)
 	return inst
 end
 

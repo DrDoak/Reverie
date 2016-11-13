@@ -1,7 +1,7 @@
 local ModControllable = Class.create("ModControllable", Entity)
 local Keymap  = require "xl.Keymap"
 
-ModControllable.dependencies = {"ModActive"}
+ModControllable.dependencies = {"ModActive","ModInventory"}
 ModControllable.trackFunctions = {"normalState"}
 --calculates necessary force to make the character move in a certain direction
 function ModControllable:calcForce( dv, vel, accel, maxSpeed )
@@ -27,7 +27,6 @@ function ModControllable:normalState()
 	if Keymap.isDown("down") and Keymap.isDown("jump") then
 		self:setJumpThru(1)
 	end
-	self:setPrimary(Keymap.isPressed("primary"))
 	self:animate()
 	--self:normalizeSprSize()
 	self:proccessInventory()
@@ -145,30 +144,35 @@ end
 --Manages character's inventory management, item usage and environmental interaction code.
 function ModControllable:proccessInventory()
 	--Open Inventory
-	-- if Keymap.isDown("inv") and not self.inventoryLocked then
-	-- 	--Sound.playFX("stapler.mp3")
-	-- 	InventoryMenu:open(self.inventory)
-	-- end
-	-- --Item using code
-	-- if Keymap.isPressed("use") and self.canPressUse then
-	-- 	if Keymap.isDown("up") and self.currentEquips["up"] then
-	-- 		self.currentEquips["up"]:use()
-	-- 	elseif Keymap.isDown("down") and self.currentEquips["down"] then
-	-- 		self.currentEquips["down"]:use()
-	-- 	elseif self.currentEquips["neutral"] then
-	-- 		self.currentEquips["neutral"]:use()
-	-- 	end
-	-- 	-- elseif self.currentPrimary then
-	-- 	-- 	self.currentPrimary:use()
-	-- 	-- end
-	-- end
+	if Keymap.isDown("inv") and not self.inventoryLocked then
+		--Sound.playFX("stapler.mp3")
+		InventoryMenu:open(self.inventory)
+	end
+	--Item using code
+	if Keymap.isPressed("use") and self.currentEquips["neutral"] then
+		lume.trace()
+		self.currentEquips["neutral"]:use()
+		-- if Keymap.isDown("up") and self.currentEquips["up"] then
+		-- 	self.currentEquips["up"]:use()
+		-- elseif Keymap.isDown("down") and self.currentEquips["down"] then
+		-- 	self.currentEquips["down"]:use()
+		-- elseif self.currentEquips["neutral"] then
+		-- 	self.currentEquips["neutral"]:use()
+		-- end
+		-- elseif self.currentPrimary then
+		-- 	self.currentPrimary:use()
+		-- end
+	end
+
+	self:setPrimary(Keymap.isPressed("primary"))
+
 	--interaction code
 
-	-- if Keymap.isPressed("interact") and not Game.DialogActive then
-	-- 	local intHitbox = ObjIntHitbox(self) 
-	-- 	Game:add(intHitbox)
-	-- end
-	--if Keymap.isPressed("journal") then gamestate.push(JBase) end	
+	if Keymap.isPressed("interact") and not Game.DialogActive then
+		local intHitbox = ObjIntHitbox(self) 
+		Game:add(intHitbox)
+	end
+	if Keymap.isPressed("journal") then gamestate.push(JBase) end	
 end
 
 function ModControllable:drawJumpFX( amount )

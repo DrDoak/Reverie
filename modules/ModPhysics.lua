@@ -158,6 +158,7 @@ function ModPhysics:createBody( bodyType ,isFixedRotation, isBullet)
 end
 function ModPhysics:setFixture( shape, mass, isSensor)
 	local s = self.fixture:getShape()
+	self.x,self.y = self.body:getPosition()
 	local topLeftX, topLeftY, bottomRightX, bottomRightY = s:computeAABB( 0, 0, 0, 1 )
 	local height1 = math.abs(topLeftY - bottomRightY)
 	local width1 = math.abs(topLeftX - bottomRightY) 

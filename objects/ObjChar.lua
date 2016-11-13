@@ -73,6 +73,7 @@ function ObjChar:create()
 
 	--initialize Inventory
 	self:addModule(require "modules.ModInventory")
+	self:setEquipCreateItem("ObjWeapon")
 	-- self:setEquipCreateItem("EqpTest")
 end
 

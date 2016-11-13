@@ -246,6 +246,13 @@ function ModDrawable:addSpritePieces( newPieces )
 	end
 end
 
+function ModDrawable:addSprite( piece )
+	self.sprite = xl.Sprite(piece.path, piece.width, piece.height)
+	self.sprite:setSize((piece.imgX or piece.width/2), (piece.imgY or piece.height/2))
+	self.sprite:setOrigin((piece.originX or piece.width/2), (piece.originY or piece.height/2))
+	self:changeAnimation(1,1,0, 1)
+	Game.scene:insert(self.sprite)
+end
 function ModDrawable:addSpritePiece( piece , d)
 	local sprite
 	local SpritePiece = require "xl.SpritePiece"

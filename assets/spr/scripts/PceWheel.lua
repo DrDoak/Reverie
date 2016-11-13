@@ -56,18 +56,18 @@ local ane = {
 				attachMod = {{{x=0,y=-4}}}
 	},
 	slash_p = {
-				row = 4,
-				range = 2,
+				row = 1,
+				range = 1,
 				delay = 0.06,
 				noLoop = true,
-				attachMod = {{{x=4,y=3},{x=3,y=-1}}}
+				attachMod = {{{x=0,y=0}}}
 	},
 	slash_r = {
-				row = 4,
-				range = "2-3",
+				row = 1,
+				range = 1,
 				delay = 0.06,
 				noLoop = true,
-				attachMod = {{{x=2,y=-2},{x=3,y=-4}}}
+				attachMod = {{{x=0,y=0}}}
 	},
 	hit = {
 				row = 1,
