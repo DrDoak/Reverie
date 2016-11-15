@@ -20,7 +20,7 @@ function ModActive:create()
 	self.invincibleTime = 0
 	self.regainTime = 0
 
-	self.max_health = self.max_health or self.health or 100
+	self.max_health = self.max_health or self.health or 20
 	self.health = self.health or self.max_health
 	self.redHealth = self.health
 	self.redHealthDelay = 0
@@ -43,7 +43,7 @@ function ModActive:tick( dt )
 	self:processPassives()
 
 	if #self.specialStates > 0 then
-		self:specialState()
+		self:specialState( dt )
 	elseif self.state ~= 3 then
 		self.status = "normal"
 		self:normalState()
@@ -62,21 +62,23 @@ function ModActive:normalState()		end
 
 function ModActive:setPassive(name,effect)
 	for i,v in pairs(self.passiveEffects) do
-		lume.trace(i)
 		if i == name then
 			self.passiveEffects[i] = nil
 			self.passiveVars[i] = nil
 			return
 		end
 	end
-	self.passiveEffects[name] = effect
-	lume.trace("Added to set passive: ", self.passiveEffects[name])
-	self.passiveVars[name] = {}
+	if effect then
+		self.passiveEffects[name] = effect
+		lume.trace("Added to set passive: ", self.passiveEffects[name])
+		self.passiveVars[name] = {}
+	end
 end
 
 function ModActive:processPassives( )
-	for i,v in pairs(self.passiveEffects) do
-		v( self ,self.passiveVars[i])
+	for k,v in pairs(self.passiveEffects) do
+		-- lume.trace(self.passiveVars[k])
+		v( self ,self.passiveVars[k])
 	end
 end
 
@@ -216,7 +218,6 @@ function ModActive:hitState()
 	end
 end
 
-
 function ModActive:setSpecialState(stateObject, canMove,uninterruptable)
 	--self.state = 4
 	self.prepTime = -5
@@ -236,21 +237,21 @@ function ModActive:setSpecialState(stateObject, canMove,uninterruptable)
 	--table.insert(self.specialObj,stateObject)
 end
 
-function ModActive:specialState()
+function ModActive:specialState(dt )
 	local canMove = false
 	for k, v in pairs(self.specialStates) do 
 		self.exit = false
 		self.newFrame = false
 		v.count = v.count + 1
-		local frame
+		local totalTime
 		local ty = type( v.funct )
 		if (self.status == "hit" or self.status == "stunned") and not v.unInterruptable then
-			frame = 10000
+			totalTime = 10000
 			self.exit = true
 			if ty == "table" then
-				v.funct:specialState(self,frame)
+				v.funct:specialState(self,totalTime,dt)
 			else
-				v.funct( self ,frame)
+				v.funct( self ,totalTime , dt)
 			end
 			-- lume.trace("Setting state to 3")
 			self.state = 3
@@ -258,11 +259,11 @@ function ModActive:specialState()
 			if v.canMove then
 				self:normalMove()
 			end
-			frame = v.count or 0
+			totalTime = v.count or 0
 			if ty == "table" then
-				v.funct:specialState(self,frame)
+				v.funct:specialState(self,totalTime , dt)
 			else
-				v.funct( self ,frame)
+				v.funct( self ,totalTime , dt)
 			end
 		end
 	
@@ -271,6 +272,15 @@ function ModActive:specialState()
 			table.remove(self.specialStates,k)
 		end
 	end
+end
+
+function ModActive:setHealth( health )
+	self.health = math.min(self.max_health,math.max(health,0))
+	self.redHealth = math.min(self.redHealth,self.health)
+end
+
+function ModActive:getHealth(  )
+	return self.health
 end
 
 return ModActive

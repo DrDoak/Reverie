@@ -13,6 +13,7 @@ function ModControllable:calcForce( dv, vel, accel, maxSpeed )
 end
 
 function ModControllable:normalState()
+
 	--self.lighting:setPosition(self.x, self.y + self.height-2)
 	local maxXSpeed, maxYSpeed = self.maxXSpeed, self.maxYSpeed
 	--local decForce = self.deceleration * self.body:getMass() 

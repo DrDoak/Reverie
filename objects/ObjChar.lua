@@ -7,7 +7,7 @@ local ObjChar = Class.create("ObjChar", ObjBaseUnit)
 
 -- Initializes values of ObjChar, only runs once at the start of the game
 -- sets up values which initial conditions
-function ObjChar:init(  )
+function ObjChar:init( )
 	-- inventory initialization
 	self.inventory = Inventory(3,3)
 
@@ -73,7 +73,7 @@ function ObjChar:create()
 
 	--initialize Inventory
 	self:addModule(require "modules.ModInventory")
-	self:setEquipCreateItem("ObjWeapon")
+	self:setEquipCreateItem("ObjTorch")
 	-- self:setEquipCreateItem("EqpTest")
 end
 

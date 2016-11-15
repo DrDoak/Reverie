@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"Obja",
+				"ObjBaseUnit"
+			],
+			[
 				"ac",
 				"ActiveObj"
 			],
@@ -95,43 +99,26 @@
 			"file": "objects/ObjCrate.lua",
 			"settings":
 			{
-				"buffer_size": 452,
+				"buffer_size": 453,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "objects/ObjChar.lua",
+			"file": "objects/ObjTest.lua",
 			"settings":
 			{
-				"buffer_size": 3195,
+				"buffer_size": 618,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "modules/ModInventory.lua",
+			"file": "modules/ModActive.lua",
 			"settings":
 			{
-				"buffer_size": 7723,
+				"buffer_size": 7048,
 				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "modules/ModControllable.lua",
-			"settings":
-			{
-				"buffer_size": 6017,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ObjBase.lua",
-			"settings":
-			{
-				"buffer_size": 2444,
 				"line_ending": "Windows"
 			}
 		},
@@ -139,52 +126,15 @@
 			"file": "objects/ObjWeapon.lua",
 			"settings":
 			{
-				"buffer_size": 1255,
-				"encoding": "UTF-8",
+				"buffer_size": 1286,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "assets/spr/scripts/PceBody.lua",
+			"file": "objects/ObjAttackHitbox.lua",
 			"settings":
 			{
-				"buffer_size": 633,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "assets/spr/scripts/PceWheel.lua",
-			"settings":
-			{
-				"buffer_size": 1416,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "modules/ModHitboxMaker.lua",
-			"settings":
-			{
-				"buffer_size": 2037,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "modules/ModEquippable.lua",
-			"settings":
-			{
-				"buffer_size": 8531,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "modules/ModInteractive.lua",
-			"settings":
-			{
-				"buffer_size": 1011,
+				"buffer_size": 6236,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -226,33 +176,37 @@
 	],
 	"file_history":
 	[
+		"/C/Users/LuoLei Zhao/leetlib/objects/ObjTest.lua",
 		"/C/Users/LuoLei Zhao/leetlib/modules/ModDrawable.lua",
-		"/C/Users/LuoLei Zhao/leetlib/assets/spr/scripts/PceWheel.lua",
-		"/C/Users/LuoLei Zhao/leetlib/Error",
+		"/C/Users/LuoLei Zhao/leetlib/modules/ModActive.lua",
+		"/C/Users/LuoLei Zhao/leetlib/objects/ObjUnit.lua",
+		"/C/Users/LuoLei Zhao/leetlib/objects/ObjChar.lua",
+		"/C/Users/LuoLei Zhao/leetlib/objects/ObjBaseUnit.lua",
+		"/C/Users/LuoLei Zhao/leetlib/objects/ObjAttackHitbox.lua",
+		"/C/Users/LuoLei Zhao/leetlib/modules/ModHitboxMaker.lua",
+		"/C/Users/LuoLei Zhao/leetlib/objects/ObjWeapon.lua",
+		"/C/Users/LuoLei Zhao/leetlib/modules/ModEquippable.lua",
 		"/C/Users/LuoLei Zhao/leetlib/modules/ModInteractive.lua",
-		"/C/Users/LuoLei Zhao/leetlib/xl/Inventory.lua",
+		"/C/Users/LuoLei Zhao/leetlib/modules/ModWooden.lua",
+		"/C/Users/LuoLei Zhao/leetlib/assets/spr/scripts/PceWheel.lua",
+		"/C/Users/LuoLei Zhao/leetlib/assets/spr/scripts/PceBody.lua",
+		"/C/Users/LuoLei Zhao/leetlib/modules/ModPartEmitter.lua",
 		"/C/Users/LuoLei Zhao/leetlib/modules/ModInventory.lua",
+		"/C/Users/LuoLei Zhao/leetlib/modules/ModControllable.lua",
+		"/C/Users/LuoLei Zhao/leetlib/SettingManager.lua",
+		"/C/Users/LuoLei Zhao/leetlib/ObjBase.lua",
+		"/C/Users/LuoLei Zhao/leetlib/libs/Global.lua",
+		"/C/Users/LuoLei Zhao/leetlib/ModBase.lua",
+		"/C/Users/LuoLei Zhao/leetlib/Error",
+		"/C/Users/LuoLei Zhao/leetlib/xl/Inventory.lua",
 		"/C/Users/LuoLei Zhao/leetlib/modules/ModPhysics.lua",
 		"/C/Users/LuoLei Zhao/leetlib/assets/spr/scripts/SprKnife.lua",
-		"/C/Users/LuoLei Zhao/leetlib/modules/ModEquippable.lua",
-		"/C/Users/LuoLei Zhao/leetlib/modules/ModHitboxMaker.lua",
 		"/C/Users/LuoLei Zhao/leetlib/modules/ModCheckView.lua",
-		"/C/Users/LuoLei Zhao/leetlib/modules/ModActive.lua",
-		"/C/Users/LuoLei Zhao/leetlib/modules/ModControllable.lua",
-		"/C/Users/LuoLei Zhao/leetlib/ModBase.lua",
 		"/C/Users/LuoLei Zhao/leetlib/modules/ModEscapeFromHitstun.lua",
-		"/C/Users/LuoLei Zhao/leetlib/objects/ObjChar.lua",
-		"/C/Users/LuoLei Zhao/leetlib/modules/ModPartEmitter.lua",
-		"/C/Users/LuoLei Zhao/leetlib/modules/ModWooden.lua",
 		"/C/Users/LuoLei Zhao/leetlib/assets/spr/scripts/SprBox.lua",
-		"/C/Users/LuoLei Zhao/leetlib/assets/spr/scripts/PceBody.lua",
 		"/C/Users/LuoLei Zhao/leetlib/objects/ObjBox.lua",
 		"/C/Users/LuoLei Zhao/leetlib/objects/ObjCrate.lua",
-		"/C/Users/LuoLei Zhao/leetlib/objects/ObjBaseUnit.lua",
-		"/C/Users/LuoLei Zhao/leetlib/objects/ObjUnit.lua",
 		"/C/Users/LuoLei Zhao/leetlib/modules/ModDash.lua",
-		"/C/Users/LuoLei Zhao/leetlib/objects/ObjAttackHitbox.lua",
-		"/C/Users/LuoLei Zhao/leetlib/objects/ObjTest.lua",
 		"/C/Users/LuoLei Zhao/leetlib/modules/ModHasHUD.lua",
 		"/C/Users/LuoLei Zhao/leetlib/modules/ModInventoryControl.lua",
 		"/C/Users/LuoLei Zhao/leetlib/objects/ModExperimental.lua",
@@ -349,11 +303,7 @@
 		"/C/Users/LuoLei Zhao/Documents/NU2016/Fall2016/IEMS/Proj1/Penny_Lab.py",
 		"/C/Users/LuoLei Zhao/Documents/NU2016/Fall2016/IEMS/ZeevGCode.py",
 		"/C/Users/defaultuser0/omegalib/master/modules/firefly/config-file.py",
-		"/C/Users/defaultuser0/omegalib/master/modules/signac/signac.h",
-		"/C/Users/defaultuser0/omegalib/master/modules/signac/signac.cpp",
-		"/C/Users/LuoLei Zhao/IrrelevantGame/main.lua",
-		"/C/Users/LuoLei Zhao/IrrelevantGame/assets/rooms/initial_room2.lua",
-		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjDebugCamera.lua"
+		"/C/Users/defaultuser0/omegalib/master/modules/signac/signac.h"
 	],
 	"find":
 	{
@@ -374,6 +324,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"objunit:specialstate",
+			"specialState",
+			"ObjUnit",
+			"oncollide",
+			"setHealth",
+			"v.count",
+			"specialState",
+			"addToInv",
+			"proccessInventory",
+			"passive",
+			"setSpecialState",
+			"useStand",
+			"addToInv",
 			"addSpritePiece",
 			"activateSpritepiece",
 			"addspritePiece",
@@ -488,20 +451,7 @@
 			"override",
 			"hitstate",
 			"sethitState",
-			"ModHitboxMaker",
-			"setHitstate",
-			"ObjAttackHitbox",
-			"hitbox",
-			"create",
-			"ObjUnit",
-			"lights",
-			"light",
-			"updateHealthShields",
-			"ObjUnit",
-			"manageInt",
-			"Drawable",
-			"ActiveObj",
-			"BodyObj"
+			"ModHitboxMaker"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -509,6 +459,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"ModActive",
 			"ObjWeapon",
 			"ModCheckView",
 			"ModEquippable",
@@ -635,8 +586,7 @@
 			"Theme",
 			"EnTrace",
 			"VtJumpsSolid",
-			"VtJumps",
-			"self.platformWidth"
+			"VtJumps"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -647,7 +597,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -656,15 +606,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 452,
+						"buffer_size": 453,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								371,
-								371
+								343,
+								343
 							]
 						],
 						"settings":
@@ -676,169 +626,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "objects/ObjChar.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3195,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2674,
-								2674
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1004.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "modules/ModInventory.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7723,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5293,
-								5293
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3320.0,
-						"zoom_level": 1.0
-					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "modules/ModControllable.lua",
+					"buffer": 1,
+					"file": "objects/ObjTest.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6017,
+						"buffer_size": 618,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4801,
-								4801
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2769.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "ObjBase.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2444,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								561,
-								561
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 219.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "objects/ObjWeapon.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1255,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								903,
-								903
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 108.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "assets/spr/scripts/PceBody.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 633,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								354,
-								354
+								77,
+								77
 							]
 						],
 						"settings":
@@ -854,20 +659,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "assets/spr/scripts/PceWheel.lua",
+					"buffer": 2,
+					"file": "modules/ModActive.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1416,
+						"buffer_size": 7048,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1112,
-								1112
+								5391,
+								5391
 							]
 						],
 						"settings":
@@ -876,27 +681,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 604.0,
+						"translation.y": 4723.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "modules/ModHitboxMaker.lua",
+					"buffer": 3,
+					"file": "objects/ObjWeapon.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2037,
+						"buffer_size": 1286,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								118,
-								118
+								549,
+								549
 							]
 						],
 						"settings":
@@ -904,57 +709,28 @@
 							"syntax": "Packages/Lua/Lua.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "modules/ModEquippable.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8531,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3283,
-								3283
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1881.0,
+						"translation.x": -0.0,
+						"translation.y": 156.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
-					"file": "modules/ModInteractive.lua",
+					"buffer": 4,
+					"file": "objects/ObjAttackHitbox.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1011,
+						"buffer_size": 6236,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								167,
-								167
+								5567,
+								5567
 							]
 						],
 						"settings":
@@ -962,11 +738,11 @@
 							"syntax": "Packages/Lua/Lua.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": -0.0,
+						"translation.y": 3271.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -1025,12 +801,120 @@
 		"selected_items":
 		[
 			[
+				"modac",
+				"modules\\ModActive.lua"
+			],
+			[
+				"objweapo",
+				"objects\\ObjWeapon.lua"
+			],
+			[
+				"moda",
+				"modules\\ModActive.lua"
+			],
+			[
+				"objtest",
+				"objects\\ObjTest.lua"
+			],
+			[
+				"objattack",
+				"objects\\ObjAttackHitbox.lua"
+			],
+			[
+				"objun",
+				"objects\\ObjUnit.lua"
+			],
+			[
+				"modacti",
+				"modules\\ModActive.lua"
+			],
+			[
 				"modequip",
 				"modules\\ModEquippable.lua"
 			],
 			[
+				"objweapon",
+				"objects\\ObjWeapon.lua"
+			],
+			[
+				"hitboxm",
+				"modules\\ModHitboxMaker.lua"
+			],
+			[
+				"objwe",
+				"objects\\ObjWeapon.lua"
+			],
+			[
+				"objch",
+				"objects\\ObjChar.lua"
+			],
+			[
+				"objw",
+				"objects\\ObjWeapon.lua"
+			],
+			[
+				"hitbox",
+				"modules\\ModHitboxMaker.lua"
+			],
+			[
+				"modequi",
+				"modules\\ModEquippable.lua"
+			],
+			[
+				"objattackhit",
+				"objects\\ObjAttackHitbox.lua"
+			],
+			[
+				"objbaseunit",
+				"objects\\ObjBaseUnit.lua"
+			],
+			[
+				"modinter",
+				"modules\\ModInteractive.lua"
+			],
+			[
+				"setting",
+				"SettingManager.lua"
+			],
+			[
+				"modcontro",
+				"modules\\ModControllable.lua"
+			],
+			[
+				"global",
+				"libs\\Global.lua"
+			],
+			[
+				"modpartemi",
+				"modules\\ModPartEmitter.lua"
+			],
+			[
+				"modactive",
+				"modules\\ModActive.lua"
+			],
+			[
+				"modactiv",
+				"modules\\ModActive.lua"
+			],
+			[
+				"modwoodn",
+				"modules\\ModWooden.lua"
+			],
+			[
+				"modinventory",
+				"modules\\ModInventory.lua"
+			],
+			[
+				"objchar",
+				"objects\\ObjChar.lua"
+			],
+			[
 				"pcewheel",
 				"assets\\spr\\scripts\\PceWheel.lua"
+			],
+			[
+				"modbase",
+				"ModBase.lua"
 			],
 			[
 				"moddraw",
@@ -1043,10 +927,6 @@
 			[
 				"pcebody",
 				"assets\\spr\\scripts\\PceBody.lua"
-			],
-			[
-				"modinventory",
-				"modules\\ModInventory.lua"
 			],
 			[
 				"modcontr",
@@ -1077,32 +957,16 @@
 				"modules\\ModDrawable.lua"
 			],
 			[
-				"hitbox",
-				"modules\\ModHitboxMaker.lua"
-			],
-			[
 				"modph",
 				"modules\\ModPhysics.lua"
-			],
-			[
-				"modequi",
-				"modules\\ModEquippable.lua"
 			],
 			[
 				"objcahr",
 				"objects\\ObjChar.lua"
 			],
 			[
-				"objweapon",
-				"objects\\ObjWeapon.lua"
-			],
-			[
 				"inven",
 				"xl\\Inventory.lua"
-			],
-			[
-				"objchar",
-				"objects\\ObjChar.lua"
 			],
 			[
 				"modhitboxmaker",
@@ -1111,10 +975,6 @@
 			[
 				"sprbox",
 				"assets\\spr\\scripts\\SprBox.lua"
-			],
-			[
-				"objtest",
-				"objects\\ObjTest.lua"
 			],
 			[
 				"modhitb",
@@ -1143,10 +1003,6 @@
 			[
 				"pcewhe",
 				"assets\\spr\\scripts\\PceWheel.lua"
-			],
-			[
-				"modac",
-				"modules\\ModActive.lua"
 			],
 			[
 				"modparte",
@@ -1213,10 +1069,6 @@
 				"objects\\ObjBaseUnit.lua"
 			],
 			[
-				"objattack",
-				"objects\\ObjAttackHitbox.lua"
-			],
-			[
 				"modact",
 				"modules\\ModActive.lua"
 			],
@@ -1233,20 +1085,8 @@
 				"modules\\ModPhysics.lua"
 			],
 			[
-				"modacti",
-				"modules\\ModActive.lua"
-			],
-			[
 				"objbase",
 				"objects\\ObjBaseUnit.lua"
-			],
-			[
-				"modactive",
-				"modules\\ModActive.lua"
-			],
-			[
-				"modbase",
-				"ModBase.lua"
 			],
 			[
 				"inventoryco",
@@ -1287,10 +1127,6 @@
 			[
 				"keymap",
 				"xl\\Keymap.lua"
-			],
-			[
-				"objattackhit",
-				"objects\\ObjAttackHitbox.lua"
 			],
 			[
 				"mga",
@@ -1363,10 +1199,6 @@
 			[
 				"initial_room",
 				"assets\\rooms\\initial_room.lua"
-			],
-			[
-				"objun",
-				"objects\\ObjUnit.lua"
 			],
 			[
 				"pcelegs",
@@ -1479,62 +1311,6 @@
 			[
 				"vtdro",
 				"roomgen\\structs\\VtDrops.lua"
-			],
-			[
-				"vtsta",
-				"roomgen\\structs\\VtStairway.lua"
-			],
-			[
-				"stvert",
-				"roomgen\\StVert.lua"
-			],
-			[
-				"sthori",
-				"roomgen\\StHoriz.lua"
-			],
-			[
-				"stcorner",
-				"roomgen\\STCornerVH.lua"
-			],
-			[
-				"stcornervh",
-				"roomgen\\StCornerHV.lua"
-			],
-			[
-				"stcornerh",
-				"roomgen\\StCornerHV.lua"
-			],
-			[
-				"ststop",
-				"roomgen\\StStop.lua"
-			],
-			[
-				"stcros",
-				"roomgen\\StCross.lua"
-			],
-			[
-				"extop",
-				"roomgen\\ExTop.lua"
-			],
-			[
-				"struct",
-				"roomgen\\Structure.lua"
-			],
-			[
-				"roomgen",
-				"roomgen\\RoomGen.lua"
-			],
-			[
-				"wrh",
-				"roomgen\\worlds\\WRHetairoi.lua"
-			],
-			[
-				"fadecom",
-				"roomgen\\enLists\\fadeCombinations.lua"
-			],
-			[
-				"wrhet",
-				"roomgen\\worlds\\WRHetairoi.lua"
 			]
 		],
 		"width": 0.0

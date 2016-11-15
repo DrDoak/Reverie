@@ -4,6 +4,7 @@ local ObjTest = Class.create("ObjTest", ObjBaseUnit)
 function ObjTest:create()
 	ObjBaseUnit.create(self)
 
+
 	self:createBody( "dynamic" ,false, true)
 	self.shape = love.physics.newRectangleShape(16,16)
 	self.fixture = love.physics.newFixture(self.body, self.shape, 1)

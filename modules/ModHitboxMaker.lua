@@ -30,7 +30,6 @@ function ModHitboxMaker:createHitbox(wth, hgt, XOffset, YOffset, dmg, stn, pers,
 		faction = wth["faction"] or self.faction
 		-- lume.trace(guardDamage)
 	end
-
 	local x = self.x + (XOffset * self.dir)
 	local y = self.y - YOffset
 	Xforce = Xforce * self.dir

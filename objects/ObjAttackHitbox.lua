@@ -58,9 +58,9 @@ function ObjAttackHitbox:create()
 	end
 	self.fixture = love.physics.newFixture(self.body, self.shape, 1)
 	self.fixture:setSensor(true)
-	-- self.fixtureDRAW = xl.SHOW_HITBOX(self.fixture)
 	self.objectsHit = {}
 	self.refresh = 0
+	-- self.fixtureDRAW = xl.SHOW_HITBOX(self.fixture)
 	-- lume.trace(self.guardDamage)
 end
  
@@ -89,7 +89,7 @@ function ObjAttackHitbox:tick(dt)
 		if self.persistence <= 0 then
 			return Game:del(self)
 		else 
-			self.persistence = self.persistence  - 1
+			self.persistence = self.persistence  - dt
 		end		
 	end
 	if self.followObj and not self.followObj.destroyed then

@@ -38,6 +38,8 @@ function ModEquippable:tick(dt)
 		if user ~= nil then
 			self.body:setGravityScale(0.0)
 			self.dir = user.dir
+			self.x = user.x
+			self.y = user.y
 			if user.inAir == false then self.hasTouchedGround = true end
 			if user.isCrouching == true then
 				self:setPosition(8,16)
@@ -91,23 +93,28 @@ function ModEquippable:onPlayerInteract(player,data)
 	end
 end
 
-function ModEquippable:createSpritePiece( originX,originY ,sprClass)
+function ModEquippable:createSpritePiece( originX,originY ,sprClass,predefSprite)
 	local newTable = {}
 	newTable.name = sprClass or "weapon"
-	self.sprClass = newTable.name
-	newTable.path = self.sprite.imagename or "assets/spr/weapons/spear.png"
-	newTable.width = self.sprite.frameWidth
-	newTable.height = self.sprite.frameHeight
-	local ogX = originX or self.sprite.frameWidth/2
-	local ogY = originY or self.sprite.frameHeight/2
-	newTable.originX = ogX
-	newTable.originY = ogY
-	newTable.attachPoints = {
-			grip1 = {x = ogX,y=ogY}
-		}
-	newTable.connectSprite = "body"
-	newTable.connectPoint = "hand1"
-	newTable.connectMPoint = "grip1"
+	if predefSprite then
+		self.sprClass = predefSprite.name
+		newTable = predefSprite
+	else
+		self.sprClass = newTable.name
+		newTable.path = imagePath or self.sprite.imagename or "assets/spr/weapons/spear.png"
+		newTable.width = self.sprite.frameWidth
+		newTable.height = self.sprite.frameHeight
+		local ogX = originX or self.sprite.frameWidth/2
+		local ogY = originY or self.sprite.frameHeight/2
+		newTable.originX = ogX
+		newTable.originY = ogY
+		newTable.attachPoints = {
+				grip1 = {x = ogX,y=ogY}
+			}
+		newTable.connectSprite = "body"
+		newTable.connectPoint = "hand1"
+		newTable.connectMPoint = "grip1"
+	end
 	self.spritePiece = newTable
 	return newTable
 end
@@ -121,6 +128,7 @@ function ModEquippable:activateSpritePiece( user )
 end
 
 function ModEquippable:use()
+	lume.trace()
 	local isDown = love.keyboard.isDown
 	local user = self.user
 	self.user.status = "offense"

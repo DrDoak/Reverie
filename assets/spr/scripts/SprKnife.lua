@@ -1,7 +1,6 @@
 local ane = {}
 
 local pce = {
-	name = "main",
 	path = "assets/spr/sword.png",
 	width = 48,
 	height = 16,
