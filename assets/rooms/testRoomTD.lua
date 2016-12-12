@@ -8,7 +8,7 @@ return {
   height = 50,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 4,
+  nextobjectid = 10,
   properties = {},
   tilesets = {
     {
@@ -132,7 +132,7 @@ return {
         {
           id = 2,
           name = "char",
-          type = "ObjChar",
+          type = "ObjCharTD",
           shape = "rectangle",
           x = 448,
           y = 416,
@@ -151,6 +151,58 @@ return {
           y = 288,
           width = 0,
           height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 6,
+          name = "Crate",
+          type = "ObjCrate3D",
+          shape = "rectangle",
+          x = 496,
+          y = 448,
+          width = 32,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 7,
+          name = "Crate",
+          type = "ObjCrate3D",
+          shape = "rectangle",
+          x = 576,
+          y = 448,
+          width = 32,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 8,
+          name = "Crate",
+          type = "ObjCrate3D",
+          shape = "rectangle",
+          x = 656,
+          y = 448,
+          width = 32,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 9,
+          name = "Crate",
+          type = "ObjCrate3D",
+          shape = "rectangle",
+          x = 368,
+          y = 448,
+          width = 32,
+          height = 16,
           rotation = 0,
           visible = true,
           properties = {}

@@ -83,10 +83,10 @@ local pce = {
 	path = "assets/spr/ugly_wheel.png",
 	width = 32,
 	height = 32,
-	attachPoints = 
-		{
-			center = {x = 16,y = 16}
-		},
+	-- attachPoints = 
+	-- 	{
+	-- 		center = {x = 16,y = 16}
+	-- 	},
 	animations = ane
 }
 

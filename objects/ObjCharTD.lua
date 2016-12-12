@@ -1,8 +1,8 @@
-local ObjBaseUnit = require "objects.ObjBaseUnit"
+local ObjBaseUnitTD = require "objects.ObjBaseUnitTD"
 local Inventory = require "xl.Inventory"
 -- local Sound = require "xl.Sound"
 
-local ObjChar = Class.create("ObjChar", ObjBaseUnit)
+local ObjChar = Class.create("ObjChar", ObjBaseUnitTD)
 --util.transient( ObjChar, "healthbar", "guardbar" , "equipIcons" , "equipIcon2" , "sprite")
 
 -- Initializes values of ObjChar, only runs once at the start of the game
@@ -42,13 +42,12 @@ end
 --Initializes values of ObjChar which will occur at the beginning of every room
 --Recreates b2 body in every room.
 function ObjChar:create()
-	ObjBaseUnit.create(self)
+	ObjBaseUnitTD.create(self)
 
-	self:addModule(require "modules.ModControllable")
+	self:addModule(require "modules.ModControllableTD")
 
 	self:addSpritePiece(require("assets.spr.scripts.PceWheel"))
-	self:addSpritePiece(require("assets.spr.scripts.PceBody"))
-
+	-- self:addSpritePiece(require("assets.spr.scripts.PceBody"))
 
 	self:setDepth(self.depth or 5000)
 	
@@ -60,18 +59,15 @@ function ObjChar:create()
 
 	--initialize player hitboxes
 	self:createBody( "dynamic" ,true, true)
-	self.shape = love.physics.newRectangleShape(7, 16)
+	self.shape = love.physics.newRectangleShape(12, 4)
 	self.shapeCrouch = love.physics.newRectangleShape(8,20)
 	self.fixture = love.physics.newFixture(self.body, self.shape, 1)
-	self:setFixture(self.shape, 22.6) -- you may notice that the player has a body, but I never define the shape of the body.
-	-- That is because there are things called "Fixtures" which are essentially just shapes. One body can be comprised of multiple fixtures.
-	-- this is all part of love2d. I wrote the function setFixture which takes a shape and a weight and sets it as the 
-	-- fixture of the player character. This simplifies things a bit. The reason why is that you can simply swap shapes whenever you need to
-	-- without worrying about the complexities of deleting fixtures (deleting fixtures suck.)
+	self:setFixture(self.shape, 22.6) 
 	self.fixture:setCategory(CL_CHAR)
+	self.fixtureDRAW = xl.SHOW_HITBOX(self.fixture)
 
 	--initialize Inventory
-	self:addModule(require "modules.ModInventory")
+	-- self:addModule(require "modules.ModInventory")
 	-- self:setEquipCreateItem("ObjTorch")
 	-- self:setEquipCreateItem("EqpTest")
 end

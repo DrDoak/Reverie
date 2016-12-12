@@ -49,6 +49,7 @@ function xl.SHOW_HITBOX (hbox)
 		local floor = math.floor
 		local ok, shape = pcall(hbox.getShape, hbox)
 		if not ok then
+			lume.trace()
 			Game.scene:remove( node )
 		else
 			local bx,by = hbox:getBody():getPosition()
@@ -56,12 +57,12 @@ function xl.SHOW_HITBOX (hbox)
 			loveGraphics.translate( bx, by + 16 )
 			loveGraphics.rotate(hbox:getBody():getAngle())
 			loveGraphics.setColor(50, 200, 50)
-			local ty = tostring( shape )
-			if ty == "ChainShape" or ty == "EdgeShape" then
+			local ty = shape:getType()
+			if ty == "chain" or ty == "edge" then
 				loveGraphics.line( shape:getPoints() )
-			elseif ty == "PolygonShape" then
+			elseif ty == "polygon" then
 				love.graphics.polygon( "fill", shape:getPoints() )
-			elseif ty == "CircleShape" then
+			elseif ty == "circle" then
 				local x,y = shape:getPoint()
 				local r = shape:getRadius()
 				loveGraphics.circle( "fill", x, y, r, 20 )

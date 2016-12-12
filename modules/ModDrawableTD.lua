@@ -25,12 +25,22 @@ function ModDrawableTD:updateSprites()
 		if self.sprites[key].noLoop == false then
 			self:changeAnimation(self.sprites[key].currentAnim )
 		end
-		lume.trace(key)
-		lume.trace(value.z)
-		value:setDepth(self.y)
-		--Game.scene:move(value,self.y + value.z)
+		Game.scene:move(value,self.y)
 	end
-	self:setSprPos(self.x,self.y + 24 + (self.charHeight or self.height)/2)
+	xl.DScreen.print(self.type .. " depth:", "(%f)", self.y)
+	self:setSprPos(self.x,self.y + 29 + self.height/2)
+end
+
+function ModDrawableTD:setSprPos( x , y )
+	for key, piece in pairs(self.sprites) do
+		local piecesPos = piece:updatePos(x,y - piece.vert/2)
+		for k,v in pairs(piecesPos) do
+			self.attachPositions[k] = v
+		end
+	end
+	if self.sprite then
+		self.sprite:setPosition(x,y)
+	end
 end
 
 function ModDrawableTD:animate()
@@ -154,4 +164,50 @@ function ModDrawableTD:changeAnimation(animation,speedMod,spritePieces)
 	return hasAnimation
 end
 
+function ModDrawableTD:addSpritePiece( piece , d)
+	local sprite
+	local SpritePiece = require "xl.SpritePiece"
+	self.advancedSprites = true
+
+	sprite = SpritePiece(piece.path, (piece.width or 128), (piece.height or 128),0,d)
+	local imgY = (piece.imgY or piece.height/2)
+	sprite:setOrigin((piece.originX or piece.width/2), (piece.originY or piece.height/2))
+	sprite:setSize((piece.imgX or piece.width/2), imgY)
+	sprite.vert = piece.vert or imgY
+	if piece.attachPoints then
+		for key, point in pairs(piece.attachPoints) do
+			self.attachPositions[key] = {x=(point.x -sprite.ox), y =(point.y -sprite.oy)}
+			sprite:addPoint(key,(point.x -sprite.ox),(point.y -sprite.oy))
+		end
+	end
+	if piece.connectSprite then
+		local connectSprite
+		for key, sprite in pairs(self.sprites) do
+			if key == piece.connectSprite then
+				connectSprite = sprite
+				break
+			end
+		end
+		sprite:addConnectPoint(connectSprite, piece.connectPoint,piece.connectMPoint)
+	end
+	sprite:setAnimation(1,1,1)
+	--ssprite:setDepth(d + (piece.z or 0))
+	Game.scene:insert(sprite)
+	self.sprites[piece.name] = sprite
+	if piece.animations then
+		local animations
+		if type(piece.animations) == "string" then
+			animations = require(piece.animations)
+		else
+			animations = piece.animations
+		end
+		for k,v in pairs(animations) do
+			if not self.animations[k] then
+				self.animations[k] = {}
+				self.animations[k]["sprites"] = {}
+			end
+			self.animations[k]["sprites"][piece.name] = v
+		end
+	end
+end
 return ModDrawableTD

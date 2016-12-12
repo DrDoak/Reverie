@@ -101,7 +101,7 @@ end
 
 function ModInventory:setPassive(name,effect)
 	for i,v in pairs(self.passiveEffects) do
-		lume.trace(i)
+		-- lume.trace(i)
 		if i == name then
 			self.passiveEffects[i] = nil
 			self.passiveVars[i] = nil
@@ -109,7 +109,7 @@ function ModInventory:setPassive(name,effect)
 		end
 	end
 	self.passiveEffects[name] = effect
-	lume.trace("Added to set passive: ", self.passiveEffects[name])
+	-- lume.trace("Added to set passive: ", self.passiveEffects[name])
 	self.passiveVars[name] = {}
 end
 
@@ -268,7 +268,7 @@ function  ModInventory:setEquipCreateItem(item ,animate)
 	local class = require( "objects." .. item )
 	local inst = class()
 	Game:add(inst)
-	lume.trace(inst.onPlayerInteract)
+	-- lume.trace(inst.onPlayerInteract)
 	inst:onPlayerInteract(self)
 	return inst
 end

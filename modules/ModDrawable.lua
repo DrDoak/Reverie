@@ -278,7 +278,7 @@ function ModDrawable:addSpritePiece( piece , d)
 	sprite:setAnimation(1,1,1)
 	--ssprite:setDepth(d + (piece.z or 0))
 	Game.scene:insert(sprite)
-	self.sprites[piece.name] = spritex
+	self.sprites[piece.name] = sprite
 	if piece.animations then
 		local animations
 		if type(piece.animations) == "string" then

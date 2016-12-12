@@ -123,6 +123,8 @@ function ModPhysicsTD:setFixture( shape, mass, isSensor)
 	self.fixture:setCategory(CL_CHAR)
 	self.fixture:setFriction(0.01)
 	self.fixture:setRestitution( 0.0 )
+	--self.fixtureDRAW = xl.SHOW_HITBOX(self.fixture) --Uncomment to see hitbox.
+
 	self.body:setPosition(self.x, self.y - ((height2 - height1)/2))	
 end
 
@@ -170,7 +172,7 @@ function ModPhysicsTD:mCheckGround(fixture, x, y, xn, yn, fraction )
 	if fixture then
 		local other = fixture:getBody():getUserData()
 		local category = fixture:getCategory()
-		if other ~= nil and fixture:isSensor() == false and category ~= CL_INT and other ~= self and mask1 ~= CL_CHAR then
+		if other ~= nil and fixture:isSensor() == false and category ~= CL_INT and other ~= self  then
 			self.numContacts = self.numContacts + 1
 			if other.slopeDir then
 				self.slopeDir = self.slopeDir + other.slopeDir
