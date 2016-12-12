@@ -4,7 +4,7 @@
 		{
 			"cmd":
 			[
-				"C:/Apps/love/love.exe",
+				"C:/Program Files/LOVE/love.exe",
 				"$project_path"
 			],
 			"file_regex": "^(?:Error: )?\\s*\\[?([\\w/.]*?):([0-9]*):?([0-9]*)",

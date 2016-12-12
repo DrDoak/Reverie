@@ -189,7 +189,6 @@ function ModEquippable:specialState(player, frame)
 	end
 	if self.aerialAttack == true and player.inAir == false and player.jumpCooldown == 0 then
 		    player.exit = true
-		    player:landing()
 	end
 	if player.exit == true then
 		self.inUse = false
@@ -274,9 +273,9 @@ function ModEquippable:setLightActive( active )
 	end
 end
 
-function ModEquippable:registerHit(target, hitType, hitbox)
+function ModEquippable:onHitConfirm(target, hitType, hitbox)
 	if self.user then
-		self.user:registerHit(target,hitType,hitbox)
+		self.user:onHitConfirm(target,hitType,hitbox)
 	end
 end
 

@@ -1,6 +1,7 @@
 local ModActive = Class.create("ModActive", Entity)
 
-ModActive.trackFunctions = {"setHitState","normalState","hitState"}
+ModActive.dependencies = {"ModPartEmitter"}
+ModActive.trackFunctions = {"setHitState","normalState","hitState","onDeath","onHitConfirm","onKill"}
 
 function ModActive:create()
 	--default state information
@@ -24,6 +25,23 @@ function ModActive:create()
 	self.health = self.health or self.max_health
 	self.redHealth = self.health
 	self.redHealthDelay = 0
+	self.killCount = 0
+
+	self:addEmitter("hitFX" , self.hitFX or "assets/spr/hit.png")
+	self:setRandomDirection("hitFX" , 3 * 32)
+	self:setRandRotation("hitFX",2,0,1)
+	local hitFX = self.psystems["hitFX"]
+	hitFX:setParticleLifetime(1, 2);
+	self:setFade("hitFX")
+
+	self:addEmitter("heal" , "assets/spr/heal.png")
+	local heal = self.psystems["heal"]
+	heal:setDirection(((3*math.pi)/2))
+	heal:setSpeed(64)
+	heal:setSpread(math.pi/4)
+	heal:setParticleLifetime(1, 1);
+	self:setAreaSpread("heal","normal",2,2)
+	self:setFade("heal")
 end
 
 function ModActive:destroy()
@@ -42,19 +60,22 @@ function ModActive:tick( dt )
 
 	self:processPassives()
 
-	if #self.specialStates > 0 then
+	if self.health <= 0 then
+		self.isAlive = false
+		self:onDeath()
+	elseif not self.destroyed then
+		self.isAlive = true	
+		if #self.specialStates > 0 then
 		self:specialState( dt )
-	elseif self.state ~= 3 then
-		self.status = "normal"
-		self:normalState()
-	end
+		elseif self.state ~= 3 then
+			self.status = "normal"
+			self:normalState()
+		end
 	
-	if self.health <= 0 and not self.immortal then
-		self.isAlive = false	
-	elseif self.state == 3 then
-		self:hitState() 			-- self.status = "stun"
+		if self.health > 0 and  self.state == 3 then
+			self:hitState() 			-- self.status = "stun"
+		end
 	end
-	
 	self:updateHealth()
 end
 
@@ -91,7 +112,9 @@ function ModActive:updateHealth()
 		self:setHealth(self.health,self.redHealth)
 	end
 end
-
+function ModActive:setFaction( factionName )
+	self.faction = factionName
+end
 
 function ModActive:setHitState(stunTime, forceX, forceY, damage, element,faction,shieldDamage,blockStun,unblockable)
 	self.prepTime = 0
@@ -115,10 +138,12 @@ function ModActive:setHitState(stunTime, forceX, forceY, damage, element,faction
 		local dm = damage or 0
 		local ratio = self.KBRatio or 1
 
-		if forceX > 0 then
-			self.dir = -1
-		else
-			self.dir = 1
+		if forceX and  math.abs(forceX) > 0 then
+			if forceX and (forceX > 0) then
+				self.dir = -1
+			else
+				self.dir = 1
+			end
 		end
 		
 		self.stun = st
@@ -141,11 +166,8 @@ function ModActive:hitState()
 	self:overrideAnimation("head")
 
 	if self.status == "stunned" then
-		-- lume.trace("stunned")
-		--self:controlDash()
 		self:changeAnimation({"stun","hit"})
 	else
-		-- lume.trace("Changing animation to Hit")
 		self:changeAnimation("hit")
 	end
 
@@ -275,12 +297,60 @@ function ModActive:specialState(dt )
 end
 
 function ModActive:setHealth( health )
+	local diff = health - self.health
 	self.health = math.min(self.max_health,math.max(health,0))
 	self.redHealth = math.min(self.redHealth,self.health)
+	if diff > 0 then
+		self:emit("heal", math.max(math.min(math.floor(math.abs(diff)/4),2),2))
+	elseif diff < 0 then
+		self:emit("hitFX", math.max(math.min(math.floor(math.abs(diff)/4),2),2))
+	end
+end
+
+function ModActive:setMaxHealth( maxHealth, noRefill )
+	self.max_health = maxHealth
+	if not noRefill then
+		self.health = self.max_health
+	end
 end
 
 function ModActive:getHealth(  )
 	return self.health
+end
+
+
+function ModActive:onDeath()
+	if not self.immortal then
+		Game:del(self)
+	end
+end
+
+function ModActive:onHitConfirm(target, hitType, hitbox)
+	if target.destroyed or target.health <= 0 then
+		self:onKill(target,hitType,hitbox)
+	end
+end
+
+function ModActive:onKill( target,hitType,hitbox )
+	self.killCount = self.killCount + 1
+end
+
+function ModActive:jump()
+	local velX, velY = self.body:getLinearVelocity()
+	if not self.inAir and self.jumpCooldown == 0 then
+		if self.jumpSpeed ~= 0  then
+			self.body:setLinearVelocity(velX, -self.jumpSpeed)
+		end
+		self.jumpCooldown = 15
+		self.jumping = true
+		self.isMoving = true
+	end
+	if self.jumping then
+		self.currentJumpTime = self.currentJumpTime + 1
+	end
+	if self.currentJumpTime > self.maxJumpTime then
+		self.jumping = false
+	end
 end
 
 return ModActive

@@ -1,12 +1,15 @@
 local ModPartEmitter = Class.create("ModPartEmitter", Entity)
 local Scene = require "xl.Scene"
 
-function ModPartEmitter:addEmitter(emitterName , image,funct)
-	self.psystems = self.psystems or {}
-	self.nodes = self.nodes or {}
+function ModPartEmitter:create()
+	self.psystems = {}
+	self.nodes = {}
+end
+
+function ModPartEmitter:addEmitter(emitterName , image,size, funct)
 	emitterName = emitterName or "default"
 	local img = love.graphics.newImage(image  or "assets/spr/orb_burst.png")
-	self.psystems[emitterName] = love.graphics.newParticleSystem(img, 32);
+	self.psystems[emitterName] = love.graphics.newParticleSystem(img, size or 32);
 	if funct then
 		funct(self.psystems[emitterName])
 	end
@@ -57,8 +60,9 @@ function ModPartEmitter:setAreaSpread( emitterName, distribution, dx,dy)
 end
 
 function ModPartEmitter:destroy()
-	for k,v in ipairs(table_name) do
-		Game.scene:remove(v.node)
+	for k,v in pairs(self.psystems) do
+		v:reset()
+		Game.scene:remove(self.nodes[k])
 	end
 end
 return ModPartEmitter

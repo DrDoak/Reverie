@@ -33,7 +33,8 @@ TileLayermt.__index = TileLayermt
 -- MGamestate callback
 function MGame:init()
 	self.locked = false     -- is the game state locked or isn't it
-	self.ticks  = 0         -- how many ticks have we run through so far? One way of measuring time
+	self.ticks  = 0         -- how many ticks have we run through so far?
+	self.gameTime = 0
 	self.scene  = Scene.new(40)      -- the main drawing scene. Scene = everything that is on screen in the Game world. Very important and very common in every game
 	self.hud    = Scene.new(20)      -- the HUD scene. 
 	self.backgrounds = Scene.new(10) -- the level backgrounds.
@@ -52,7 +53,9 @@ function MGame:init()
 	self.permdata  = {}  -- stores permanent object state (i.e. switches, etc.)
 	self.scissor   = {} 
 	self.entities  = {}  -- list of entities. This is a list of everything currently in the world. It is importante because.....
+	self.toDestroy = {}	
 	self.world     = love.physics.newWorld()
+
 	self.lights    = Lights.newLightScene(GAME_SIZE.w, GAME_SIZE.h)
 	self.wrapPreSolve  = lume.fn(self.preSolve, self)
 	self.wrapPostSolve = lume.fn(self.postSolve, self)
@@ -60,7 +63,6 @@ function MGame:init()
 	self.wrapOnContactEnd   = lume.fn(self.onContactEnd, self)
 
 	self:resize( love.graphics.getDimensions() )
-
 
 	-----Initialize Canvases for drawing
 	self.ActiveCanvas = love.graphics.newCanvas( GAME_SIZE.w, GAME_SIZE.h) --this canvas will hold all active objects (sprites,tiles)
@@ -79,7 +81,9 @@ function MGame:update( dt )
 	end
 
 	self.ticks = self.ticks + 1
+	self.gameTime = self.gameTime + dt
 	if self.ticks == 1/0 then self.ticks = 0 end
+	if self.gameTime == 1/0 then self.gameTime = 0 end
 
 	-- lock the game and update stuff
 	self.locked = true
@@ -117,6 +121,9 @@ function MGame:update( dt )
 	xl.DScreen.print("Physics: ", "(%f)", (love.timer.getTime() - baseTime))
 	baseTime = love.timer.getTime()
 
+	for k,v in pairs(self.toDestroy) do
+		self:mDel(v)
+	end
 	self.locked = false
 end
 
@@ -132,7 +139,8 @@ function MGame:draw()
 	-- draw backgrounds
 
 	love.graphics.setCanvas(self.ActiveCanvas)
-	self.ActiveCanvas:clear(0,0,0,0)
+	-- self.ActiveCanvas:clear(0,0,0,0)
+	love.graphics.clear()
 	
 	-- draw tilelayers
 	for k,v in pairs(self.tilelayers) do
@@ -166,10 +174,16 @@ end
 ----
 function MGame:resize(w,h)
 	self.lights:resize( w,h )
-
 	local scale, sciz = 1, self.scissor
 	scale, sciz[1], sciz[2], sciz[3], sciz[4], sciz.ox, sciz.oy = xl.calculateViewport(GAME_SIZE, w, h, 1, 16)
 	self.cam:zoomTo(scale * 2)
+end
+
+----
+-- Gamestate callback
+---
+function MGame:mousepressed()
+	self:emitEvent( "mousereleased" )
 end
 
 ----
@@ -251,7 +265,14 @@ end
 -- @return entity
 ----
 function MGame:del(entity)
+	self.entities[entity].destroyed = true
+	self.entities[entity] = nil
+	self.toDestroy[entity] = entity
+end
+
+function MGame:mDel( entity )
 	local permid = entity.permanentid
+	self.toDestroy[entity] = nil
 	if permid then
 		self.permdata[permid] = self.permdata[permid] or {}
 		entity:save( self.permdata[permid] )

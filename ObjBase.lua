@@ -8,25 +8,37 @@ local ObjBase = Class.new {
 
 	-- overridable methods
 	create = _NOOP,
-	destroy = _NOOP,
 	draw = _NOOP,
 	onCollide = _NOOP,
 	postCollide = _NOOP,
-	allFuncts = {},
-	overRideFuncts = {"create","tick","destroy"},
-	modules = {},
 }
 
-function ObjBase:tick( dt )
-end
-
 function ObjBase:addModule( newModule )
+	if not self.modules then self.modules = {} end
+	if not self.removableModules then self.removableModules = {} end
+	if not self.allFuncts then 
+		self.allFuncts = {}
+		self.allFuncts["create"]= {}
+		self.allFuncts["create"]["default"] = self.create
+
+		self.allFuncts["tick"]= {}
+		self.allFuncts["tick"]["default"] = self.default
+
+		self.allFuncts["destroy"]= {}
+		self.allFuncts["destroy"]["default"] = self.destroy
+
+		self.allFuncts["onRemove"]= {}
+		self.allFuncts["onRemove"]["default"] = self.onRemove
+	end
+	if not self.overRideFuncts then
+		self.overRideFuncts = {"create","tick","destroy","onRemove"}
+	end
 	local modName = newModule.type
 
 	if newModule.dependencies then
 		for i,v in ipairs(newModule.dependencies) do
 			if not self:hasModule(v) then
-				lume.trace("module: ",v,"added through dependency to module: ", modName)
+				-- lume.trace("module: ",v,"added through dependency to module: ", modName)
 				local dependencyPath = "modules." .. v
 				self:addModule(require(dependencyPath))
 			end
@@ -49,6 +61,8 @@ function ObjBase:addModule( newModule )
 			self.allFuncts[v][modName] = newModule[v]
 		end
 	end
+	Class.include(self,newModule)
+
 	if newModule.create then
 		newModule.create(self)
 	end
@@ -56,17 +70,28 @@ function ObjBase:addModule( newModule )
 		self.allFuncts["onRemove"][modName] = newModule.onRemove
 	end
 
-	Class.include(self,newModule)
 	for i,v in ipairs(self.overRideFuncts) do
 		local function iterateFunctions( self, ... )
-			for k,funct in pairs(self.allFuncts[v]) do
-				funct(self,...)
+			local returnVals = {}
+			if self.allFuncts[v] then
+				for k,funct in pairs(self.allFuncts[v]) do
+					if funct then
+						local ret = funct(self,...)
+						if ret then
+							table.insert(returnVals,ret)
+						end
+					end
+				end
 			end
+			return returnVals
 		end
 		--local funct = lume.fn(iterateFunctions, self)
 		self[v] = iterateFunctions
 	end
 	self.modules[modName] = true
+	if newModule.removable then
+		self.removableModules[modName] = true
+	end
 end
 
 function ObjBase:hasModule( modName )
@@ -74,16 +99,26 @@ function ObjBase:hasModule( modName )
 end
 
 function ObjBase:removeModule(modName )
-	if self.allFuncts["onRemove"][modName] then
+	if self.allFuncts["onRemove"] and self.allFuncts["onRemove"][modName] then
 		self.allFuncts["onRemove"][modName](self)
 	end
-	for i,v in ipairs(self.allFuncts) do
+	for k,v in pairs(self.allFuncts) do
 		v[modName] = nil
 	end
+	self.modules[modName] = nil
+	self.removableModules[modName] = nil
 end
 
 function ObjBase:getModules()
 	return self.modules
+end
+
+function ObjBase:getAllRemovableModules()
+	local newTable = {}
+	for k,v in pairs(self.removableModules) do
+		table.insert(newTable,k)
+	end
+	return newTable
 end
 
 function ObjBase:trackFunction( functionName )
@@ -100,7 +135,6 @@ function ObjBase:trackFunction( functionName )
 			funct(self,...)
 		end
 	end
-	--local funct = lume.fn(iterateFunctions, self)
 	self[functionName] = iterateFunctions
 end
 

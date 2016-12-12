@@ -17,11 +17,11 @@ local startup = { window = {} }
 -- Fail with asserts if it doesn't.
 ----
 function startup.sanityCheck()
-	local function sancheck(s,m) assert(love.graphics.isSupported(s), "Your graphics card doesn't support " .. m) end
-	sancheck("canvas", "Framebuffers.")
-	sancheck("shader", "shaders")
-	sancheck("subtractive", "the subtractive blend mode.")
-	sancheck("npot", "non-power-of-two textures.")
+	-- local function sancheck(s,m) assert(love.graphics.isSupported(s), "Your graphics card doesn't support " .. m) end
+	-- sancheck("canvas", "Framebuffers.")
+	-- sancheck("shader", "shaders")
+	-- sancheck("subtractive", "the subtractive blend mode.")
+	-- sancheck("npot", "non-power-of-two textures.")
 end
 
 function startup.takeScreenshot()

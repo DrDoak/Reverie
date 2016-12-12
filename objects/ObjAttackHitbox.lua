@@ -60,8 +60,7 @@ function ObjAttackHitbox:create()
 	self.fixture:setSensor(true)
 	self.objectsHit = {}
 	self.refresh = 0
-	-- self.fixtureDRAW = xl.SHOW_HITBOX(self.fixture)
-	-- lume.trace(self.guardDamage)
+	-- self.fixtureDRAW = xl.SHOW_HITBOX(self.fixture) --Uncomment to see hitbox.
 end
  
 function ObjAttackHitbox:setFaction( faction )
@@ -174,10 +173,10 @@ function ObjAttackHitbox:onCollide(other, collision)
 					local posY2 = other.y
 					local x = (self.x + posX2)/2
 					local y = (self.y + posY2)/2
-					if not self.attacker.registerHit then
+					if not self.attacker.onHitConfirm then
 						error("attacker: ", self.attacker.type, "cannot register hit")
 					end
-					self.attacker:registerHit(other, hitType, self)
+					self.attacker:onHitConfirm(other, hitType, self)
 				end
 			end
 		end

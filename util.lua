@@ -36,7 +36,7 @@ function util.create( typename, ... )
 end
 
 function util.loopvalue( value, min, max )
-	if     value < min then
+	if value < min then
 		return max + min - value - 1
 	elseif value > max then
 		return min + value - max - 1
@@ -280,11 +280,9 @@ function util.hasValue(table, goal)
     return false
 end
 
-function util.deleteFromTable(table, goal)
-    for index, value in ipairs (table) do
-        if value == goal then
-            value = nil
-        end
+function util.deleteFromTable(searchTable, goal)
+    for index, value in ipairs (searchTable) do
+        table.remove(searchTable,index)
     end
     return false
 end

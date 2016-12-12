@@ -91,8 +91,8 @@ local function GenerateAreaLight()
 		local y = math.sin(angle)
 		table.insert(vertices, {x, y, 0, 0, unpack(color)})
 	end
-	local mesh = love.graphics.newMesh(vertices, nil, "fan") -- use "fan" draw mode
-	mesh:setVertexColors(true)
+	local mesh = love.graphics.newMesh(vertices, "fan") -- use "fan" draw mode
+ 	mesh:setAttributeEnabled("VertexColor", true)
 	return mesh
 end
 

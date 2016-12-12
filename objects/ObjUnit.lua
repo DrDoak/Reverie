@@ -28,7 +28,7 @@ function ObjUnit:create()
 	self.currentJumpTime = 0
 	self.jumpSpeed = 960
 	self.deceleration = -12
-	self.maxXSpeed = 6 * 32
+	self.maxSpeed = 6 * 32
 	self.speedModifier = 1.0
 	self.acceleration = 20 * 32
 
@@ -476,7 +476,7 @@ function ObjUnit:move( dt, body, forceX, forceY, isMovingX)
 	-- Staying stable in slopes
 	if self.groundLevel and not self.jumping and (self.state ~= 3) then
 		if self.groundLevel - self.y > 2 then
-			self.body:applyForce(0, self.body:getMass() * math.max(2500,(6000 * math.abs(self.velX/self.maxXSpeed))))
+			self.body:applyForce(0, self.body:getMass() * math.max(2500,(6000 * math.abs(self.velX/self.maxSpeed))))
 		end
 	end
 	if self.jumping or self.numContacts == 0 then
@@ -508,7 +508,7 @@ function ObjUnit:move( dt, body, forceX, forceY, isMovingX)
 	-- reset gravity change due to slope
 	self.body:setGravityScale(1.0)
 	--deceleration
-	if  not self.inAir and (isMovingX == false or math.abs(self.velX- self.referenceVel) > math.abs(self.maxXSpeed) * 1.1) then
+	if  not self.inAir and (isMovingX == false or math.abs(self.velX- self.referenceVel) > math.abs(self.maxSpeed) * 1.1) then
 		if self.state == 3 then
 			forceX = velX * (decForce/4)
 		else
@@ -996,7 +996,7 @@ function ObjUnit:setSprColor( r, g, b, a )
 end
 
 function ObjUnit:animate()
-	local maxXSpeed, maxYSpeed = self.maxXSpeed, self.maxYSpeed
+	local maxSpeed, maxYSpeed = self.maxSpeed, self.maxYSpeed
 	local walkanim = math.abs(4 / self.velX)
 	local newVelX = self.velX - self.referenceVel
 	walkanim = math.max(walkanim, 0.18)
@@ -1022,7 +1022,7 @@ function ObjUnit:animate()
 				--self:freezeAnimation("body",0.0)
 				--self:freezeAnimation("head",0.0)
 			end 
-			if math.abs(newVelX) >= maxXSpeed - 52 then
+			if math.abs(newVelX) >= maxSpeed - 52 then
 				self:changeAnimation({"run","walk"})
 			else
 				self:changeAnimation("walk")
@@ -1268,7 +1268,7 @@ function ObjUnit:mCheckJumpThru(fixture, x, y, xn, yn, fraction )
 end
 ---------------------------AI Tests----------------------------
 
-function ObjUnit:registerHit(target, hitType, hitbox)
+function ObjUnit:onHitConfirm(target, hitType, hitbox)
 	-- lume.trace(target.type)
 	-- lume.trace(target.health)
 	-- lume.trace(target.max_health)
@@ -1297,13 +1297,13 @@ function ObjUnit:moveToPoint(destinationX, destinationY, proximity,grounded)
 		if self.x < destinationX then
 			self.dir = 1
 			self.isMoving = true
-			if velX < (self.maxXSpeed * self.speedModifier) then
+			if velX < (self.maxSpeed * self.speedModifier) then
 				self.forceX = self.acceleration  * self.body:getMass()
 			end
 		elseif self.x > destinationX then
 			self.dir = -1
 			self.isMoving = true
-			if velX > -(self.maxXSpeed * self.speedModifier) then
+			if velX > -(self.maxSpeed * self.speedModifier) then
 				self.forceX = -self.acceleration  * self.body:getMass()
 			end
 		end

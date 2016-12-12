@@ -1,6 +1,6 @@
 local ModHitboxMaker = Class.create("ModHitboxMaker", Entity)
 local ObjAttackHitbox = require "objects.ObjAttackHitbox"
-ModHitboxMaker.trackFunctions = {"registerHit"}
+ModHitboxMaker.trackFunctions = {"onHitConfirm"}
 
 function ModHitboxMaker:createHitbox(wth, hgt, XOffset, YOffset, dmg, stn, pers, Xforce, Yforce, elem, deflect)
 	local myWidth = wth
@@ -45,7 +45,7 @@ function ModHitboxMaker:createHitbox(wth, hgt, XOffset, YOffset, dmg, stn, pers,
 	return ObjAttackHitbox
 end
 
-function ModHitboxMaker:registerHit(target, hitType, hitbox) end
+function ModHitboxMaker:onHitConfirm(target, hitType, hitbox) end
 
 function ModHitboxMaker:addToAttackList( prob,conditionCheck,funct,properties)
 	local newList = {}

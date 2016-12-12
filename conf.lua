@@ -35,7 +35,7 @@ function love.conf(t)
 	t.window.title = "Reverie"
 	t.window.icon  = "assets/icon32.png"
 	t.window.fullscreen = false
-	t.window.fullscreentype = "normal"
+	-- t.window.fullscreentype = "normal"
 	t.window.width = GAME_SIZE.w
 	t.window.height = GAME_SIZE.h
 	t.window.resizable = false

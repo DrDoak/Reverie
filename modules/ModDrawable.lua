@@ -13,6 +13,7 @@ function ModDrawable:create()
 	self.initImgW = 64
 	self.animationsPending = {}
 	self.attachPositions = {}
+	self.icons = {}
 end
 
 function ModDrawable:tick(dt)
@@ -173,9 +174,8 @@ function ModDrawable:normalizeSprSize( speed )
 	self.imgY = math.min( self.imgY + s, self.initImgH)
 end
 
-
 function ModDrawable:animate()
-	local maxXSpeed, maxYSpeed = self.maxXSpeed, self.maxYSpeed
+	local maxSpeed, maxYSpeed = self.maxSpeed, self.maxYSpeed
 	local walkanim = math.abs(4 / self.velX)
 	local newVelX = self.velX - self.referenceVel
 	walkanim = math.max(walkanim, 0.18)
@@ -201,7 +201,7 @@ function ModDrawable:animate()
 				--self:freezeAnimation("body",0.0)
 				--self:freezeAnimation("head",0.0)
 			end 
-			if math.abs(newVelX) >= maxXSpeed - 52 then
+			if math.abs(newVelX) >= maxSpeed - 52 then
 				self:changeAnimation({"run","walk"})
 			else
 				self:changeAnimation("walk")
@@ -231,11 +231,6 @@ function ModDrawable:animate()
 	if self.isHolding then
 		self:changeAnimation({"holding","guard"})
 	end
-
-	-- if self.shieldDelay > 165 then
-	-- 	self:changeAnimation({"guard","stand"})
-	-- end
-
 end
 
 function ModDrawable:addSpritePieces( newPieces )
@@ -337,4 +332,72 @@ function ModDrawable:setDepth( depth )
 	self.depth = depth
 end
 
+
+function ModDrawable:addIcon( newIcon )
+	local newPieces
+	local newTable = {}
+	newIcon = util.deepcopy(newIcon)
+	for i,v in ipairs(self.icons) do
+		if v.path == newIcon.path then
+			return 
+		end
+	end
+	local iconName = "icon" .. #self.icons + 1
+	newIcon.name = iconName
+	if #self.icons > 0 then
+		newIcon.connectSprite = "icon" .. (#self.icons)
+	elseif self.sprites["main"] then
+		newIcon.connectSprite = "main"
+		newIcon.connectPoint = "center"
+		newIcon.attachPoints.prevIco = {x=16,y=48}
+	elseif self.sprites["legs"] then
+		newIcon.connectSprite = "legs"
+		newIcon.connectPoint = "center"
+		newIcon.attachPoints.prevIco = {x=16,y=48}
+	end
+	-- lume.trace(newIcon.path)
+	-- lume.trace(iconName)
+	-- util.print_table(self.icons)
+	-- lume.trace(Game:getTicks())
+
+	self:addSpritePiece(newIcon)
+	-- lume.trace(self.sprites[newIcon.name].setAngle)
+	self.icons[#self.icons + 1] = newIcon
+
+end
+
+function ModDrawable:removeIcon( iconPath   )
+	local pushBack = false
+	local deletedInd = 0
+	for i,v in pairs(self.icons) do
+		if v.path == iconPath then
+			pushBack = true
+			self:delSpritePiece(v.name)
+			deletedInd = i
+			-- lume.trace("I is: ",i,"removed: ", v.name, "path: ",iconPath)
+		elseif pushBack then
+			self:delSpritePiece(v.name)
+			v.connectSprite = "icon" .. (i - 2)
+			v.name = "icon" .. (i - 1)
+			if (i-1) == 1 then
+				if self.sprites["main"] then
+					v.connectSprite = "main"
+				else
+					v.connectSprite = "legs"
+				end
+				v.connectPoint = "center"
+				v.attachPoints.prevIco = {x=16,y=48}
+			end
+			lume.trace("prev was: ", i, "Now is: " , v.name)
+			lume.trace("trying to connect to: " , v.connectSprite)
+			self:addSpritePiece(v)
+		end
+	end
+
+	if deletedInd ~= 0 then
+		table.remove(self.icons,deletedInd)
+	else
+		lume.trace("Attempting to remove icon that does not exist.")
+	end
+end
 return ModDrawable

@@ -8,7 +8,7 @@ return {
   height = 100,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 13,
+  nextobjectid = 15,
   properties = {},
   tilesets = {
     {
@@ -440,7 +440,7 @@ return {
         },
         {
           id = 8,
-          name = "",
+          name = "char",
           type = "ObjChar",
           shape = "rectangle",
           x = 288,
@@ -453,7 +453,7 @@ return {
         },
         {
           id = 9,
-          name = "",
+          name = "cam",
           type = "ObjDebugCamera",
           shape = "rectangle",
           x = 320,
@@ -466,11 +466,24 @@ return {
         },
         {
           id = 10,
-          name = "",
+          name = "testobj",
           type = "ObjTest",
           shape = "rectangle",
           x = 224,
           y = 224,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 14,
+          name = "smallBox",
+          type = "ObjTest2",
+          shape = "rectangle",
+          x = 480,
+          y = 192,
           width = 0,
           height = 0,
           rotation = 0,

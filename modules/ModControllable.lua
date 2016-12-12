@@ -4,24 +4,17 @@ local Keymap  = require "xl.Keymap"
 ModControllable.dependencies = {"ModActive","ModInventory"}
 ModControllable.trackFunctions = {"normalState"}
 --calculates necessary force to make the character move in a certain direction
-function ModControllable:calcForce( dv, vel, accel, maxSpeed )
-	local f = dv * accel-- - vel
-	if math.abs( vel - self.referenceVel) >= (maxSpeed ) and dv == util.sign( vel ) then
-		f = dv * 0.000001
-	end
-	return f
-end
 
 function ModControllable:normalState()
 
 	--self.lighting:setPosition(self.x, self.y + self.height-2)
-	local maxXSpeed, maxYSpeed = self.maxXSpeed, self.maxYSpeed
+	local maxSpeed, maxYSpeed = self.maxSpeed, self.maxYSpeed
 	--local decForce = self.deceleration * self.body:getMass() 
 	if not self.isCrouching then
 		if self.referenceVel ~= 0  and ((self.dir == 1 and self.referenceVel < 0) or (self.dir == -1 and self.referenceVel > 0)) then 
-			self:moveLateral(self.maxXSpeed, self.maxYSpeed, self.acceleration * 2)
+			self:moveLateral(self.maxSpeed, self.maxYSpeed, self.acceleration * 2)
 		else
-			self:moveLateral(self.maxXSpeed, self.maxYSpeed, self.acceleration)
+			self:moveLateral(self.maxSpeed, self.maxYSpeed, self.acceleration)
 		end
 	end
 	self:moveVertical()
@@ -36,9 +29,9 @@ end
 
 function ModControllable:normalMove()
 	if self.referenceVel ~= 0  and ((self.dir == 1 and self.referenceVel < 0) or (self.dir == -1 and self.referenceVel > 0)) then
-		self:moveLateral(self.maxXSpeed, self.maxYSpeed, self.acceleration * 2)
+		self:moveLateral(self.maxSpeed, self.maxYSpeed, self.acceleration * 2)
 	else
-		self:moveLateral(self.maxXSpeed, self.maxYSpeed, self.acceleration)
+		self:moveLateral(self.maxSpeed, self.maxYSpeed, self.acceleration)
 	end
  	self:moveVertical()
 end
@@ -100,9 +93,9 @@ function ModControllable:moveVertical()
 end
 
 --Manages left/right
-function ModControllable:moveLateral(maxXSpeed, maxYSpeed, acceleration)
+function ModControllable:moveLateral(maxSpeed, maxYSpeed, acceleration)
 	--Movement Code
-	maxXSpeed = maxXSpeed or self.maxXSpeed
+	maxSpeed = maxSpeed or self.maxSpeed
 	local accForce
 	if acceleration then
 		accForce = acceleration * self.body:getMass()
@@ -129,13 +122,13 @@ function ModControllable:moveLateral(maxXSpeed, maxYSpeed, acceleration)
 		--end
 	end
 	if self.turnTime then self.turnTime = self.turnTime - 1 end
-	if dvX ~= 0 and math.abs(self.velX - self.referenceVel) < maxXSpeed * self.speedModifier then
+	if dvX ~= 0 and math.abs(self.velX - self.referenceVel) < maxSpeed * self.speedModifier then
 		self.forceX = dvX * accForce
 		if util.sign(self.velX) == dvX then
 			self.forceX = self.forceX * 2
 		end
 	end
-	self.forceX = self:calcForce( dvX, self.velX, accForce, maxXSpeed )
+	self.forceX = self:calcForce( dvX, self.velX, accForce, maxSpeed )
 	if self.inAir then
 		self.forceX = self.forceX * 0.8
 	end
