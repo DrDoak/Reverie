@@ -1,8 +1,8 @@
-local ObjBaseUnit = require "objects.ObjBaseUnit"
+local ObjBaseUnitTD = require "objects.ObjBaseUnitTD"
 local Inventory = require "xl.Inventory"
 -- local Sound = require "xl.Sound"
 
-local ObjChar = Class.create("ObjChar", ObjBaseUnit)
+local ObjChar = Class.create("ObjChar", ObjBaseUnitTD)
 --util.transient( ObjChar, "healthbar", "guardbar" , "equipIcons" , "equipIcon2" , "sprite")
 
 -- Initializes values of ObjChar, only runs once at the start of the game
@@ -42,9 +42,9 @@ end
 --Initializes values of ObjChar which will occur at the beginning of every room
 --Recreates b2 body in every room.
 function ObjChar:create()
-	ObjBaseUnit.create(self)
+	ObjBaseUnitTD.create(self)
 
-	self:addModule(require "modules.ModControllable")
+	self:addModule(require "modules.ModControllableTD")
 
 	self:addSpritePiece(require("assets.spr.scripts.PceWheel"))
 	self:addSpritePiece(require("assets.spr.scripts.PceBody"))

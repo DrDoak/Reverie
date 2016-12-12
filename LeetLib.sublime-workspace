@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"speedMod",
+				"speedModY"
+			],
+			[
 				"fire",
 				"fire"
 			],
@@ -109,54 +113,27 @@
 			}
 		},
 		{
-			"file": "ObjBase.lua",
+			"file": "objects/ObjChar.lua",
 			"settings":
 			{
-				"buffer_size": 3403,
+				"buffer_size": 3201,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "modules/ModDrawable.lua",
+			"file": "modules/ModControllable.lua",
 			"settings":
 			{
-				"buffer_size": 11496,
-				"encoding": "UTF-8",
+				"buffer_size": 5788,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "assets/spr/scripts/SprSmallBox.lua",
+			"file": "modules/ModPhysicsTD.lua",
 			"settings":
 			{
-				"buffer_size": 229,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "objects/ObjTest2.lua",
-			"settings":
-			{
-				"buffer_size": 597,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "modules/ModActive.lua",
-			"settings":
-			{
-				"buffer_size": 8975,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "modules/ModPartEmitter.lua",
-			"settings":
-			{
-				"buffer_size": 2236,
+				"buffer_size": 5496,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -165,8 +142,15 @@
 			"file": "modules/ModPhysics.lua",
 			"settings":
 			{
-				"buffer_size": 9989,
-				"encoding": "UTF-8",
+				"buffer_size": 10039,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "modules/ModActive.lua",
+			"settings":
+			{
+				"buffer_size": 8975,
 				"line_ending": "Windows"
 			}
 		}
@@ -207,38 +191,45 @@
 	],
 	"file_history":
 	[
-		"/C/Users/LuoLei Zhao/leetlib/modules/ModControllable.lua",
+		"/C/Users/LuoLei Zhao/leetlib/modules/ModControllableTD.lua",
+		"/C/Users/LuoLei Zhao/leetlib/objects/ObjBaseUnitTD.lua",
+		"/C/Users/LuoLei Zhao/leetlib/assets/rooms/testRoom.lua",
+		"/C/Users/LuoLei Zhao/leetlib/state/MainMenu.lua",
+		"/C/Users/LuoLei Zhao/leetlib/ObjBase.lua",
+		"/C/Users/LuoLei Zhao/leetlib/modules/ModDrawable.lua",
+		"/C/Users/LuoLei Zhao/leetlib/assets/spr/scripts/SprSmallBox.lua",
+		"/C/Users/LuoLei Zhao/leetlib/objects/ObjTest2.lua",
 		"/C/Users/LuoLei Zhao/leetlib/modules/ModActive.lua",
+		"/C/Users/LuoLei Zhao/leetlib/modules/ModPartEmitter.lua",
+		"/C/Users/LuoLei Zhao/leetlib/modules/ModPhysics.lua",
+		"/C/Users/LuoLei Zhao/leetlib/objects/ObjChar.lua",
+		"/C/Users/LuoLei Zhao/leetlib/modules/ModEquippable.lua",
+		"/C/Users/LuoLei Zhao/leetlib/modules/ModHitboxMaker.lua",
+		"/C/Users/LuoLei Zhao/leetlib/objects/ObjAttackHitbox.lua",
 		"/C/Users/LuoLei Zhao/leetlib/objects/ObjUnit.lua",
+		"/C/Users/LuoLei Zhao/leetlib/conf.lua",
+		"/C/Users/LuoLei Zhao/leetlib/xl/Lights.lua",
+		"/C/Users/LuoLei Zhao/leetlib/modules/ModControllable.lua",
 		"/C/Users/LuoLei Zhao/leetlib/SettingManager.lua",
 		"/C/Users/LuoLei Zhao/leetlib/startup.lua",
-		"/C/Users/LuoLei Zhao/leetlib/modules/ModPhysics.lua",
-		"/C/Users/LuoLei Zhao/leetlib/modules/ModPartEmitter.lua",
-		"/C/Users/LuoLei Zhao/leetlib/conf.lua",
 		"/C/Users/LuoLei Zhao/leetlib/util.lua",
 		"/C/Users/LuoLei Zhao/leetlib/xl/Scene.lua",
 		"/C/Users/LuoLei Zhao/leetlib/objects/ObjBaseUnit.lua",
 		"/C/Users/LuoLei Zhao/leetlib/objects/ObjCrate.lua",
 		"/C/Users/LuoLei Zhao/leetlib/objects/ObjTest.lua",
 		"/C/Users/LuoLei Zhao/leetlib/modules/ModWooden.lua",
-		"/C/Users/LuoLei Zhao/leetlib/modules/ModHitboxMaker.lua",
 		"/C/Users/LuoLei Zhao/leetlib/MGame.lua",
 		"/C/Users/LuoLei Zhao/leetlib/xl/Keymap.lua",
 		"/C/Users/LuoLei Zhao/leetlib/objects/ObjDebugCamera.lua",
-		"/C/Users/LuoLei Zhao/leetlib/objects/ObjAttackHitbox.lua",
 		"/C/Users/LuoLei Zhao/leetlib/objects/ObjTorch.lua",
-		"/C/Users/LuoLei Zhao/leetlib/objects/ObjChar.lua",
-		"/C/Users/LuoLei Zhao/leetlib/modules/ModEquippable.lua",
 		"/C/Users/LuoLei Zhao/leetlib/xl/SpritePiece.lua",
 		"/C/Users/LuoLei Zhao/leetlib/modules/ModInventory.lua",
 		"/C/Users/LuoLei Zhao/leetlib/assets/spr/scripts/SprTorchEqp.lua",
 		"/C/Users/LuoLei Zhao/leetlib/assets/spr/scripts/PceBody.lua",
 		"/C/Users/LuoLei Zhao/leetlib/objects/ObjWeapon.lua",
-		"/C/Users/LuoLei Zhao/leetlib/modules/ModDrawable.lua",
 		"/C/Users/LuoLei Zhao/leetlib/libs/class.lua",
 		"/C/Users/LuoLei Zhao/leetlib/modules/ModInteractive.lua",
 		"/C/Users/LuoLei Zhao/leetlib/assets/spr/scripts/PceWheel.lua",
-		"/C/Users/LuoLei Zhao/leetlib/ObjBase.lua",
 		"/C/Users/LuoLei Zhao/leetlib/libs/Global.lua",
 		"/C/Users/LuoLei Zhao/leetlib/ModBase.lua",
 		"/C/Users/LuoLei Zhao/leetlib/Error",
@@ -264,7 +255,6 @@
 		"/C/Users/LuoLei Zhao/leetlib/assets/spr/scripts/AneWheel.lua",
 		"/C/Users/LuoLei Zhao/leetlib/objects/ModLight.lua",
 		"/C/Users/LuoLei Zhao/leetlib/objects/ModHitboxMaker.lua",
-		"/C/Users/LuoLei Zhao/leetlib/state/MainMenu.lua",
 		"/C/Users/LuoLei Zhao/leetlib/hump/camera.lua",
 		"/C/Users/LuoLei Zhao/leetlib/hump/gamestate.lua",
 		"/C/Users/LuoLei Zhao/leetlib/assets/rooms/initial_room.lua",
@@ -328,13 +318,7 @@
 		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/worlds/Hetairoi_StartingRoom.lua",
 		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjNPC.lua",
 		"/C/Users/LuoLei Zhao/IrrelevantGame/xl/SpritePiece.lua",
-		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjWall.lua",
-		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/StStairs.lua",
-		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/StCeil.lua",
-		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/substructs/SSHangingLight.lua",
-		"/C/Users/LuoLei Zhao/IrrelevantGame/npcs/Relationship.lua",
-		"/C/Users/LuoLei Zhao/IrrelevantGame/roomgen/themes/THHetairoi.lua",
-		"/C/Users/LuoLei Zhao/IrrelevantGame/anim8.lua"
+		"/C/Users/LuoLei Zhao/IrrelevantGame/objects/ObjWall.lua"
 	],
 	"find":
 	{
@@ -355,6 +339,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"referenceVel",
+			"ObjBaseUnit",
+			"ModPhysics",
+			"debug room",
+			"* dt",
+			"dt",
+			"registerHit",
+			"60",
+			"maxJumpt",
+			"maxJumpTime",
+			"dt",
+			"fullscreen",
 			"setHealth",
 			"maxXSpeed",
 			"onDea",
@@ -470,19 +466,7 @@
 			"Inventory",
 			"deathShade",
 			"ObjChar",
-			"TextInterface",
-			"keymap",
-			"KeyMap",
-			"ObjChar",
-			"normalMove",
-			"mod",
-			"lume.",
-			"Experimental",
-			"ModuleTest",
-			"ModuleBase",
-			"ModuleTest",
-			"self:control",
-			"ObjUnit"
+			"TextInterface"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -490,6 +474,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"ObjBaseUnitTD",
+			"ModControllable",
+			"onHitConfirm",
 			"maxSpeed",
 			"ObjTorch",
 			"ModActive",
@@ -614,10 +601,7 @@
 			"ObjChain",
 			"SSBottom",
 			"SSBand",
-			"SSLowFence",
-			"SSFence",
-			"Theme",
-			"EnTrace"
+			"SSLowFence"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -628,7 +612,7 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -644,8 +628,8 @@
 						"selection":
 						[
 							[
-								18039,
-								18039
+								18016,
+								18016
 							]
 						],
 						"settings":
@@ -654,56 +638,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 12049.0,
+						"translation.y": 11977.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "ObjBase.lua",
+					"file": "objects/ObjChar.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3403,
+						"buffer_size": 3201,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2414,
-								2414
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1839.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "modules/ModDrawable.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 11496,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								314,
-								314
+								174,
+								185
 							]
 						],
 						"settings":
@@ -715,24 +670,53 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "assets/spr/scripts/SprSmallBox.lua",
+					"buffer": 2,
+					"file": "modules/ModControllable.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 229,
+						"buffer_size": 5788,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								229,
-								229
+								64,
+								100
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "modules/ModPhysicsTD.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5496,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								231,
+								231
 							]
 						],
 						"settings":
@@ -743,24 +727,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "objects/ObjTest2.lua",
+					"file": "modules/ModPhysics.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 597,
+						"buffer_size": 10039,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								336,
-								336
+								1284,
+								1252
 							]
 						],
 						"settings":
@@ -769,10 +753,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 6.0,
+						"translation.y": 581.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -788,37 +772,8 @@
 						"selection":
 						[
 							[
-								7991,
-								7997
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 5799.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "modules/ModPartEmitter.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2236,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								514,
-								514
+								0,
+								0
 							]
 						],
 						"settings":
@@ -831,35 +786,6 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "modules/ModPhysics.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9989,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1990,
-								1990
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 987.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -918,8 +844,72 @@
 		"selected_items":
 		[
 			[
+				"objbaseunittd",
+				"objects\\ObjBaseUnitTD.lua"
+			],
+			[
+				"moddraw",
+				"modules\\ModDrawable.lua"
+			],
+			[
 				"modph",
 				"modules\\ModPhysics.lua"
+			],
+			[
+				"modcont",
+				"modules\\ModControllable.lua"
+			],
+			[
+				"modphysicst",
+				"modules\\ModPhysicsTD.lua"
+			],
+			[
+				"modcontr",
+				"modules\\ModControllable.lua"
+			],
+			[
+				"modphy",
+				"modules\\ModPhysics.lua"
+			],
+			[
+				"objbaseun",
+				"objects\\ObjBaseUnit.lua"
+			],
+			[
+				"modacti",
+				"modules\\ModActive.lua"
+			],
+			[
+				"modcontrol",
+				"modules\\ModControllable.lua"
+			],
+			[
+				"modphysics",
+				"modules\\ModPhysicsTD.lua"
+			],
+			[
+				"modphysicstd",
+				"modules\\ModPhysicsTD.lua"
+			],
+			[
+				"objchar",
+				"objects\\ObjChar.lua"
+			],
+			[
+				"testroom",
+				"assets\\rooms\\testRoom.lua"
+			],
+			[
+				"modac",
+				"modules\\ModActive.lua"
+			],
+			[
+				"modcon",
+				"modules\\ModControllable.lua"
+			],
+			[
+				"lights",
+				"xl\\Lights.lua"
 			],
 			[
 				"objtest",
@@ -934,16 +924,8 @@
 				"modules\\ModActive.lua"
 			],
 			[
-				"modac",
-				"modules\\ModActive.lua"
-			],
-			[
 				"obju",
 				"objects\\ObjUnit.lua"
-			],
-			[
-				"modphy",
-				"modules\\ModPhysics.lua"
 			],
 			[
 				"modparte",
@@ -1026,10 +1008,6 @@
 				"modules\\ModPartEmitter.lua"
 			],
 			[
-				"modcon",
-				"modules\\ModControllable.lua"
-			],
-			[
 				"sprtorcheq",
 				"assets\\spr\\scripts\\SprTorchEqp.lua"
 			],
@@ -1098,10 +1076,6 @@
 				"objects\\ObjUnit.lua"
 			],
 			[
-				"modacti",
-				"modules\\ModActive.lua"
-			],
-			[
 				"modequip",
 				"modules\\ModEquippable.lua"
 			],
@@ -1166,10 +1140,6 @@
 				"modules\\ModInventory.lua"
 			],
 			[
-				"objchar",
-				"objects\\ObjChar.lua"
-			],
-			[
 				"pcewheel",
 				"assets\\spr\\scripts\\PceWheel.lua"
 			],
@@ -1178,20 +1148,12 @@
 				"ModBase.lua"
 			],
 			[
-				"moddraw",
-				"modules\\ModDrawable.lua"
-			],
-			[
 				"pceweh",
 				"assets\\spr\\scripts\\PceWheel.lua"
 			],
 			[
 				"pcebody",
 				"assets\\spr\\scripts\\PceBody.lua"
-			],
-			[
-				"modcontr",
-				"modules\\ModControllable.lua"
 			],
 			[
 				"modintera",
@@ -1232,10 +1194,6 @@
 			[
 				"mod",
 				"modules\\ModActive.lua"
-			],
-			[
-				"modcont",
-				"modules\\ModControllable.lua"
 			],
 			[
 				"modbas",
@@ -1396,38 +1354,6 @@
 			[
 				"anebod",
 				"assets\\spr\\scripts\\AneBody.lua"
-			],
-			[
-				"anewheel",
-				"assets\\spr\\scripts\\AneWheel.lua"
-			],
-			[
-				"pcebod",
-				"assets\\spr\\scripts\\PceBody.lua"
-			],
-			[
-				"active",
-				"modules\\ActiveObj.lua"
-			],
-			[
-				"modeu",
-				"objects\\ModuleTest.lua"
-			],
-			[
-				"initial_room",
-				"assets\\rooms\\initial_room.lua"
-			],
-			[
-				"pcelegs",
-				"assets\\spr\\scripts\\PceLegsSm.lua"
-			],
-			[
-				"anebody",
-				"assets\\spr\\scripts\\PceAneBodySm.lua"
-			],
-			[
-				"class",
-				"hump\\class.lua"
 			]
 		],
 		"width": 0.0

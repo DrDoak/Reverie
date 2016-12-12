@@ -76,6 +76,8 @@ function ModActive:tick( dt )
 			self:hitState() 			-- self.status = "stun"
 		end
 	end
+	self.isMoving = self.isMoving or  self.isMovingX or self.isMovingY
+
 	self:updateHealth()
 end
 

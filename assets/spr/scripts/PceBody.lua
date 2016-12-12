@@ -27,6 +27,7 @@ local pce = {
 	path = "assets/spr/body.png",
 	width = 32,
 	height = 32,
+	z = -100,
 	attachPoints = {
 			center = {x = 16,y = 24},
 			hand1 = {x = 16,y = 16}

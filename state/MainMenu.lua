@@ -20,7 +20,7 @@ local Items = {
 	{
 		text = "Debug Room",
 		action = goto_room,
-		args = { "assets/rooms/testRoom" },
+		args = { "assets/rooms/testRoomTD" },
 	},
 }
 
