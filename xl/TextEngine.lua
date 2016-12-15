@@ -93,6 +93,7 @@ end
 function TextEngine.proccessLocation(text, dx, dy, line, width)
 	local ft = love.graphics.getFont()
 	local w,l = ft:getWrap(text, width)
+	l = #l
 	dx = dx + w
 	if text:sub(-1) == "\n" then
 		l = l + 1
@@ -151,8 +152,8 @@ function TextEngine.ProccessText(textList, width, font)
 	-- main text-processing loop
 	for k,v in ipairs(textList) do
 		if type(v) == "string" then
-			--lume.trace(font)
 			local w,l = font:getWrap(v,width)
+			l = #l
 			if x ~= 0 or l > 1 then
 				local s1,s2 = SplitWrappedText(v)
 				InsertAndUpdate(s1)

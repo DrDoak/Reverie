@@ -159,10 +159,20 @@ function ModPhysicsTD:getAngleToPoint(x, y)
 end
 
 function ModPhysicsTD:turnToPoint(x, y)
-	if x > self.x then
-		self.dir = 1
+	local xDiff = x - self.x
+	local yDiff = y - self.y
+	if math.abs(xDiff) > math.abs(yDiff) then
+		if xDiff > 0 then
+			self.dir = 1
+		else
+			self.dir = -1
+		end
 	else
-		self.dir = -1
+		if yDiff > 0 then
+			self.dir = 2
+		else
+			self.dir = 0
+		end
 	end
 end
 

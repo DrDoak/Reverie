@@ -1,6 +1,6 @@
-local FXBase = require "objects.fx.FXBase"
+--local FXBase = require "objects.fx.FXBase"
 local Keymap  = require "xl.Keymap"
-local ClickText = Class.create("ClickText", FXBase)
+local ClickText = Class.create("ClickText", Entity)
 local TextBox = require "xl.TextBox"
 local Text = require "xl.Text"
 local Scene = require "xl.Scene"
@@ -45,13 +45,13 @@ function ClickText:create()
 		self.alpha = 150
 		self.fs = 0
 	end
-	self.exclamation = xl.Sprite("assets/spr/fx/exclamation.png", 32, 32, 0, 10000)
-	self.exclamation:setAnimation(1,1,1)
-	self.exclamation:setOrigin(16,16)
-	self.exclamationAdded = true
-	self.displayExclamation = true
-	Game.hud:insert(self.exclamation)
-	self.exclamation:setPosition(632,68)
+	-- self.exclamation = xl.Sprite("assets/spr/fx/exclamation.png", 32, 32, 0, 10000)
+	-- self.exclamation:setAnimation(1,1,1)
+	-- self.exclamation:setOrigin(16,16)
+	-- self.exclamationAdded = true
+	-- self.displayExclamation = true
+	-- Game.hud:insert(self.exclamation)
+	-- self.exclamation:setPosition(632,68)
 	self.timer = 10000
 	self.textbox:setColor(0,0,0,self.alpha)
 	if Game.DialogActive then
@@ -62,12 +62,12 @@ function ClickText:create()
 end
 
 function ClickText:tick(dt)
-	Game.hud:move(self.exclamation, 10001)
+	-- Game.hud:move(self.exclamation, 10001)
 	Game.hud:move(self.textboxNode, 10000)
 	self.timer = self.timer - 1
 	-- lume.trace(self.timer)
 	local exSize = math.max(math.min(10100-self.timer,32),1)
-	self.exclamation:setSize(exSize,exSize)
+	-- self.exclamation:setSize(exSize,exSize)
 	if Keymap.isPressed(self.key) then
 		lume.trace("Key Pressed")
 		self.timer = 0
@@ -102,7 +102,7 @@ function ClickText:destroy( )
 	self.destroyed = true
 	Game.DialogActive = nil
 	Game.hud:remove(self.textboxNode)
-	Game.hud:remove(self.exclamation)
+	-- Game.hud:remove(self.exclamation)
 end
 
 function ClickText:endDialog()

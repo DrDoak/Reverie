@@ -8,7 +8,7 @@ return {
   height = 50,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 25,
+  nextobjectid = 26,
   properties = {},
   tilesets = {
     {
@@ -316,10 +316,10 @@ return {
           name = "",
           type = "ObjSlope",
           shape = "rectangle",
-          x = 960,
-          y = 368,
-          width = 32,
-          height = 16,
+          x = 736,
+          y = 288,
+          width = 96,
+          height = 192,
           rotation = 0,
           visible = true,
           properties = {
@@ -367,6 +367,19 @@ return {
             { x = 0, y = 0 },
             { x = 0, y = 96 }
           },
+          properties = {}
+        },
+        {
+          id = 25,
+          name = "testInt",
+          type = "ObjTestInt",
+          shape = "rectangle",
+          x = 592,
+          y = 496,
+          width = 32,
+          height = 16,
+          rotation = 0,
+          visible = true,
           properties = {}
         }
       }

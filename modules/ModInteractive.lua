@@ -2,9 +2,16 @@ local ModInteractive = Class.create("ModInteractive", Entity)
 
 ModInteractive.trackFunctions = {"onPlayerInteract"}
 
+
 function ModInteractive:onPlayerInteract(player) 
 end
 
+function ModInteractive:tick( dt )
+	if not self.intBody then
+		self:createIntBox()
+	end
+	self:updateIntBox()
+end
 function ModInteractive:createIntBox()
 	local posX, posY = self.body:getPosition()
 	self.intBody = love.physics.newBody(self:world(),posX,posY,"kinematic")
@@ -29,7 +36,11 @@ function ModInteractive:setIntBox( active )
 end
 	
 function ModInteractive:destroy( ... )
-	self.intFixture:destroy()
-	self.intBody:destroy()
+	if self.intFixture then	
+		self.intFixture:destroy()
+	end
+	if self.intBody then
+		self.intBody:destroy()
+	end
 end
 return ModInteractive

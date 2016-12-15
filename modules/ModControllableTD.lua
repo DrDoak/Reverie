@@ -1,5 +1,6 @@
 local ModControllable = require "modules.ModControllable"
 local Keymap  = require "xl.Keymap"
+local ObjIntHitbox = require "objects.ObjIntHitboxTD"
 
 local ModControllableTD = Class.create("ModControllableTD", ModControllable)
 ModControllableTD.dependencies = {"ModActive","ModInventory"}
@@ -58,4 +59,10 @@ function ModControllableTD:normalMove(maxSpeedX, maxSpeedY)
 	self.isMovingY = (dvY ~= 0) or self.inAir
 end
 
+function ModControllable:proccessInventory()
+	if Keymap.isPressed("interact") and not Game.DialogActive then
+		local intHitbox = ObjIntHitboxTD(self) 
+		Game:add(intHitbox)
+	end
+end
 return ModControllableTD
