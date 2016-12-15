@@ -302,6 +302,12 @@ local function exportstring( s )
   return string.format("%q", s)
 end
 
+----
+-- Converts a series of arguments into a table.
+----
+function util.pack(...)
+  return {  ... }
+end
 --// The Save Function
 function util.save(  tbl,filename )
   local charS,charE = "   ","\n"

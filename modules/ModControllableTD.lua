@@ -7,17 +7,19 @@ ModControllableTD.trackFunctions = {"normalState"}
 
 
 function ModControllableTD:normalState()
-	local maxSpeed, maxYSpeed = self.maxSpeed, self.maxYSpeed
+	local maxSpeed, maxSpeedY = self.maxSpeed, self.maxSpeedY
 	self:normalMove()
 	self:animate()
 	self:proccessInventory()
+ 	xl.DScreen.print("charpos: ", "(%f,%f)",self.x,self.y)
+
 end
 
 --Manages left/right
-function ModControllableTD:normalMove(maxXSpeed, maxYSpeed)
+function ModControllableTD:normalMove(maxSpeedX, maxSpeedY)
 	--Movement Code
-	maxXSpeed = maxXSpeed or self.maxXSpeed
-	maxYSpeed = maxYSpeed or self.maxYSpeed
+	maxSpeedX = maxSpeedX or self.maxSpeedX
+	maxSpeedY = maxSpeedY or self.maxSpeedY
 	local accForce = self.acceleration * self.body:getMass()
 
 	local dvX,xdir,dvY,ydir = 0,0,0,0
@@ -38,20 +40,20 @@ function ModControllableTD:normalMove(maxXSpeed, maxYSpeed)
 		dvX = dvX + 1
 	 	self.dir =   1 
 	end
-	if dvX ~= 0 and math.abs(self.velX - self.referenceVelX) < maxXSpeed * self.speedModX then
+	if dvX ~= 0 and math.abs(self.velX - self.referenceVelX) < maxSpeedX * self.speedModX then
 		self.forceX = dvX * accForce
 		if util.sign(self.velX) == dvX then
 			self.forceX = self.forceX * 2
 		end
 	end
-	if dvX ~= 0 and math.abs(self.velX - self.referenceVelY) < maxYSpeed * self.speedModY then
+	if dvX ~= 0 and math.abs(self.velX - self.referenceVelY) < maxSpeedY * self.speedModY then
 		self.forceY = dvY * accForce
 		if util.sign(self.velY) == dvY then
 			self.forceY = self.forceY * 2
 		end
 	end
-	self.forceX = self:calcForce( dvX, self.velX, accForce, maxXSpeed )
-	self.forceY = self:calcForce( dvY, self.velY, accForce, maxYSpeed )
+	self.forceX = self:calcForce( dvX, self.velX, accForce, maxSpeedX )
+	self.forceY = self:calcForce( dvY, self.velY, accForce, maxSpeedY )
 	self.isMovingX = (dvX ~= 0) or self.inAir 
 	self.isMovingY = (dvY ~= 0) or self.inAir
 end

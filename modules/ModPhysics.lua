@@ -161,22 +161,26 @@ function ModPhysics:createBody( bodyType ,isFixedRotation, isBullet)
 end
 
 function ModPhysics:setFixture( shape, mass, isSensor)
-	local s = self.fixture:getShape()
 	self.x,self.y = self.body:getPosition()
-	local topLeftX, topLeftY, bottomRightX, bottomRightY = s:computeAABB( 0, 0, 0, 1 )
-	local height1 = math.abs(topLeftY - bottomRightY)
-	local width1 = math.abs(topLeftX - bottomRightY) 
+	local s
+	local height1 = 0
+	local width1 = 0
+	local topLeftX, topLeftY, bottomRightX, bottomRightY = 0,0,0,0
+	if self.fixture then
+		s = self.fixture:getShape()
+		topLeftX, topLeftY, bottomRightX, bottomRightY = s:computeAABB( 0, 0, 0, 1 )
+		height1 = math.abs(topLeftY - bottomRightY)
+		width1 = math.abs(topLeftX - bottomRightY) 
+		self.fixture:destroy()
+	end
 	topLeftX, topLeftY, bottomRightX, bottomRightY = shape:computeAABB( 0, 0, 0, 1 )
 	self.height = math.abs(topLeftY - bottomRightY)
 	local height2 = self.height
 	local width2 = math.abs(topLeftX - bottomRightY)
-	self.fixture:destroy()
 	self.fixture = love.physics.newFixture(self.body, shape, 1)
 	local m = mass or self.mass or 25
 	self.body:setMass(m)
-	-- if self.imgY then
-	-- 	--self.sprite:setOrigin(64, (self.imgY * 2) - height2 - 3)
-	-- end
+
 	local sensor = isSensor or false
 	self.fixture:setSensor(sensor)
 	self.fixture:setCategory(CL_CHAR)
@@ -264,7 +268,7 @@ function ModPhysics:testProximity(destinationX, destinationY, proximity)
 end
 
 function ModPhysics:getDistanceToPoint( pointX, pointY )
-	return math.sqrt(math.pow(pointX - self.x,2) + math.pow(pointY - self.y,2 ) )
+	return xl.distance(self.x,self.y,pointX,pointY)
 end
 
 function ModPhysics:getAngleToPoint(x, y)

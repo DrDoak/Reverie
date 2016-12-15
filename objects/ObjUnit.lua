@@ -996,7 +996,7 @@ function ObjUnit:setSprColor( r, g, b, a )
 end
 
 function ObjUnit:animate()
-	local maxSpeed, maxYSpeed = self.maxSpeed, self.maxYSpeed
+	local maxSpeed, maxSpeedY = self.maxSpeed, self.maxSpeedY
 	local walkanim = math.abs(4 / self.velX)
 	local newVelX = self.velX - self.referenceVel
 	walkanim = math.max(walkanim, 0.18)

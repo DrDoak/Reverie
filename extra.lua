@@ -130,6 +130,10 @@ function xl.switchState( state, ... )
 	Gamestate.switch( state, ... )
 end
 
+function xl.distance( x1,y1,x2,y2 )
+	return math.sqrt(math.pow(x2 - x1,2) + math.pow(y2 - y1,2 ) )
+end
+
 -- disable xl.SHOW_HITBOX
 -- xl.SHOW_HITBOX = function () end
 

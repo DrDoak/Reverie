@@ -8,13 +8,13 @@ ModControllable.trackFunctions = {"normalState"}
 function ModControllable:normalState()
 
 	--self.lighting:setPosition(self.x, self.y + self.height-2)
-	local maxSpeed, maxYSpeed = self.maxSpeed, self.maxYSpeed
+	local maxSpeed, maxSpeedY = self.maxSpeed, self.maxSpeedY
 	--local decForce = self.deceleration * self.body:getMass() 
 	if not self.isCrouching then
 		if self.referenceVel ~= 0  and ((self.dir == 1 and self.referenceVel < 0) or (self.dir == -1 and self.referenceVel > 0)) then 
-			self:moveLateral(self.maxSpeed, self.maxYSpeed, self.acceleration * 2)
+			self:moveLateral(self.maxSpeed, self.maxSpeedY, self.acceleration * 2)
 		else
-			self:moveLateral(self.maxSpeed, self.maxYSpeed, self.acceleration)
+			self:moveLateral(self.maxSpeed, self.maxSpeedY, self.acceleration)
 		end
 	end
 	self:moveVertical()
@@ -29,11 +29,12 @@ end
 
 function ModControllable:normalMove()
 	if self.referenceVel ~= 0  and ((self.dir == 1 and self.referenceVel < 0) or (self.dir == -1 and self.referenceVel > 0)) then
-		self:moveLateral(self.maxSpeed, self.maxYSpeed, self.acceleration * 2)
+		self:moveLateral(self.maxSpeed, self.maxSpeedY, self.acceleration * 2)
 	else
-		self:moveLateral(self.maxSpeed, self.maxYSpeed, self.acceleration)
+		self:moveLateral(self.maxSpeed, self.maxSpeedY, self.acceleration)
 	end
  	self:moveVertical()
+
 end
 
 function ModControllable:moveVertical()
@@ -93,7 +94,7 @@ function ModControllable:moveVertical()
 end
 
 --Manages left/right
-function ModControllable:moveLateral(maxSpeed, maxYSpeed, acceleration)
+function ModControllable:moveLateral(maxSpeed, maxSpeedY, acceleration)
 	--Movement Code
 	maxSpeed = maxSpeed or self.maxSpeed
 	local accForce

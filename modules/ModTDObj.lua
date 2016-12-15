@@ -8,7 +8,7 @@ function ModTDObj:matchBodyToSpr(sprPiece)
 	local vert = (sprPiece.vert or imgY) * (imgY/sprPiece.height)
 	local h = imgY - vert
 	self.shape = love.physics.newRectangleShape(sprPiece.imgX or sprPiece.width/2,h)
-	self.fixture = love.physics.newFixture(self.body, self.shape, 1)
+	self:setFixture(self.shape, 50)
 end
 
 return ModTDObj

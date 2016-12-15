@@ -7,8 +7,8 @@ function ModPhysicsTD:create()
 	self.speedModX = 1.0
 	self.speedModY = 1.0
 	self.acceleration = self.acceleration or  20 * 32
-	self.maxXSpeed = self.maxXSpeed or self.maxSpeed or 6 * 32
-	self.maxYSpeed = self.maxYSpeed or (self.maxXSpeed * 0.6)
+	self.maxSpeedX = self.maxSpeedX or self.maxSpeed or 6 * 32
+	self.maxSpeedY = self.maxSpeedY or (self.maxSpeedX * 0.6)
 
 	--set Physics initializations
 	self.dir = self.dir or 1
@@ -70,9 +70,10 @@ end
 function ModPhysicsTD:move( dt, body, forceX, forceY, isMovingX,isMovingY)
 	local decForce = self.deceleration * body:getMass()
 	local velX, velY = body:getLinearVelocity()
+	-- lume.trace("type: ",self.type,"FX: ",forceX,"FY: ",forceY,isMovingX)
 
 	--deceleration
-	if not self.inAir and (isMovingX == false or math.abs(self.velX- self.referenceVelX) > math.abs(self.maxXSpeed) * 1.1) then
+	if not self.inAir and (isMovingX == false or math.abs(self.velX- self.referenceVelX) > math.abs(self.maxSpeedX) * 1.1) then
 		if self.state == 3 then
 			forceX = velX * (decForce/4)
 		else
@@ -80,21 +81,23 @@ function ModPhysicsTD:move( dt, body, forceX, forceY, isMovingX,isMovingY)
 		end
 	end
 
-	if not self.inAir and (isMovingY == false or math.abs(self.velY- self.referenceVelY) > math.abs(self.maxYSpeed) * 1.1) then
-		if self.state == 3 then
+	if not self.inAir and (isMovingY == false or math.abs(self.velY- self.referenceVelY) > math.abs(self.maxSpeedY) * 1.1) then
+		if self.slopeDir ~= 0 then
+			forceY = velY * decForce * 2.5
+		elseif self.state == 3 then
 			forceY = velY * (decForce/4)
 		else
-			forceY = velY * decForce
+			forceY = velY * decForce * 1.6
 		end
 	end
 
-	forceY = forceY + (forceX * self.slopeDir)
-	--Apply force updates.
+	body:setLinearVelocity(velX,velY + (velX * -self.slopeDir * 0.4))
+	-- lume.trace(self.type,forceX)
 	body:applyForce(forceX,forceY)
 end
 
 function ModPhysicsTD:createBody( bodyType ,isFixedRotation, isBullet)
-	self.body = love.physics.newBody( Game.world, self.x, self.y, bodyType ) 
+	self.body = love.physics.newBody( Game.world, self.x + self.width/2, self.y+ self.height, bodyType ) 
 	self.body:setFixedRotation(isFixedRotation) 
 	self.body:setUserData(self) 
 	self.body:setBullet(isBullet)
@@ -102,30 +105,33 @@ function ModPhysicsTD:createBody( bodyType ,isFixedRotation, isBullet)
 end
 
 function ModPhysicsTD:setFixture( shape, mass, isSensor)
-	local s = self.fixture:getShape()
 	self.x,self.y = self.body:getPosition()
-	local topLeftX, topLeftY, bottomRightX, bottomRightY = s:computeAABB( 0, 0, 0, 1 )
-	local height1 = math.abs(topLeftY - bottomRightY)
-	local width1 = math.abs(topLeftX - bottomRightY) 
+	local s
+	local height1 = 0
+	local width1 = 0
+	local topLeftX, topLeftY, bottomRightX, bottomRightY = 0,0,0,0
+	if self.fixture then
+		s = self.fixture:getShape()
+		topLeftX, topLeftY, bottomRightX, bottomRightY = s:computeAABB( 0, 0, 0, 1 )
+		height1 = math.abs(topLeftY - bottomRightY)
+		width1 = math.abs(topLeftX - bottomRightY) 
+		self.fixture:destroy()
+	end
 	topLeftX, topLeftY, bottomRightX, bottomRightY = shape:computeAABB( 0, 0, 0, 1 )
 	self.height = math.abs(topLeftY - bottomRightY)
 	local height2 = self.height
 	local width2 = math.abs(topLeftX - bottomRightY)
-	self.fixture:destroy()
 	self.fixture = love.physics.newFixture(self.body, shape, 1)
 	local m = mass or self.mass or 25
 	self.body:setMass(m)
-	-- if self.imgY then
-	-- 	--selfsprite:setOrigin(64, (self.imgY * 2) - height2 - 3)
-	-- end.
+
 	local sensor = isSensor or false
 	self.fixture:setSensor(sensor)
 	self.fixture:setCategory(CL_CHAR)
 	self.fixture:setFriction(0.01)
 	self.fixture:setRestitution( 0.0 )
-	--self.fixtureDRAW = xl.SHOW_HITBOX(self.fixture) --Uncomment to see hitbox.
-
 	self.body:setPosition(self.x, self.y - ((height2 - height1)/2))	
+
 end
 
 function ModPhysicsTD:setPosition(x,y)
@@ -172,10 +178,10 @@ function ModPhysicsTD:mCheckGround(fixture, x, y, xn, yn, fraction )
 	if fixture then
 		local other = fixture:getBody():getUserData()
 		local category = fixture:getCategory()
-		if other ~= nil and fixture:isSensor() == false and category ~= CL_INT and other ~= self  then
+		if other ~= nil and category ~= CL_INT and other ~= self  then
 			self.numContacts = self.numContacts + 1
-			if other.slopeDir then
-				self.slopeDir = self.slopeDir + other.slopeDir
+			if other.slope then
+				self.slopeDir = self.slopeDir + other.slope
 			end
 		end
 	end

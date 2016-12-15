@@ -90,35 +90,34 @@ function MGame:update( dt )
 	local baseTime = love.timer.getTime()
 
 	self:emitEvent( "pretick" )
-	xl.DScreen.print("Num Objs: ", "(%f)", util.tablelength(self.entities))
+	--xl.DScreen.print("Num Objs: ", "(%f)", util.tablelength(self.entities))
 	-- self.player:tick( dt, true ) -- The player object is ALWAYS updated first. Game logic.
 	-- xl.DScreen.print("Character DT: ", "(%f)", (love.timer.getTime() - baseTime))
 	baseTime = love.timer.getTime()
 
 	lume.each(self.entities, "tick", dt) --The game loops through all the entities in the entity list and calls the tick function for everyone of them.
-	xl.DScreen.print("Entities DT: ", "(%f)", (love.timer.getTime() - baseTime))
+	--xl.DScreen.print("Entities DT: ", "(%f)", (love.timer.getTime() - baseTime))
 
 	self:emitEvent( "posttick" )
-
 	self.scene:update(dt) -- This updates the sprites on screen to reflect what happened to their game objects.
 
-	xl.DScreen.print("Scene DT: ", "(%f)", (love.timer.getTime() - baseTime))
+	--xl.DScreen.print("Scene DT: ", "(%f)", (love.timer.getTime() - baseTime))
 	baseTime = love.timer.getTime()
 
 	self.hud:update(dt) -- HUD update
 
-	xl.DScreen.print("HUD DT: ", "(%f)", (love.timer.getTime() - baseTime))
+	--xl.DScreen.print("HUD DT: ", "(%f)", (love.timer.getTime() - baseTime))
 	baseTime = love.timer.getTime()
 
 	self.backgrounds:update(dt) -- Background update.
 
-	xl.DScreen.print("BKG DT: ", "(%f)", (love.timer.getTime() - baseTime))
+	--xl.DScreen.print("BKG DT: ", "(%f)", (love.timer.getTime() - baseTime))
 	baseTime = love.timer.getTime()
 
 	self._contacts = {}
 	self.world:update(dt) -- update physics. Understand the difference between physics update and game update.
 
-	xl.DScreen.print("Physics: ", "(%f)", (love.timer.getTime() - baseTime))
+	--xl.DScreen.print("Physics: ", "(%f)", (love.timer.getTime() - baseTime))
 	baseTime = love.timer.getTime()
 
 	for k,v in pairs(self.toDestroy) do
@@ -183,7 +182,7 @@ end
 -- Gamestate callback
 ---
 function MGame:mousepressed()
-	self:emitEvent( "mousereleased" )
+	--self:emitEvent( "mousereleased" )
 end
 
 ----
@@ -231,6 +230,7 @@ function MGame:getOverlay(  )
 end
 
 function MGame:emitEvent( name, ... )
+	-- lume.trace(name)
 	for _,entity in pairs(self.listeners[name]) do
 		entity[name](entity, ...)
 	end

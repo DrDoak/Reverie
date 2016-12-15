@@ -27,7 +27,6 @@ function ModDrawableTD:updateSprites()
 		end
 		Game.scene:move(value,self.y)
 	end
-	xl.DScreen.print(self.type .. " depth:", "(%f)", self.y)
 	self:setSprPos(self.x,self.y + 29 + self.height/2)
 end
 
@@ -44,7 +43,7 @@ function ModDrawableTD:setSprPos( x , y )
 end
 
 function ModDrawableTD:animate()
-	local maxSpeed, maxYSpeed = self.maxSpeed, self.maxYSpeed
+	local maxSpeed, maxSpeedY = self.maxSpeed, self.maxSpeedY
 	local walkanim = math.abs(4 / self.velX)
 	local newVelX = self.velX - self.referenceVelX
 	local newVelY = (self.velY - self.referenceVelY) * 1.4
