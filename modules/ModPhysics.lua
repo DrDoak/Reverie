@@ -339,6 +339,7 @@ function ModPhysics:mCheckGround(fixture, x, y, xn, yn, fraction )
 end
 
 function ModPhysics:destroy()
+	lume.trace(self.type)
 	if self.body then
 		self.body:destroy()
 	end

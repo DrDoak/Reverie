@@ -7,6 +7,7 @@ function ObjEnemy:create()
 	local body = require "modules.ModPhysicsTD"
 	local body = require "modules.ModTDAI"
 	self:addModule(body)
+	self:addModule(require "modules.ModCharacter")
 
 	self:createBody( "dynamic" ,true, false)
 
@@ -17,12 +18,13 @@ function ObjEnemy:create()
 	self:addSpritePiece(require("assets.spr.scripts.PceWheel"))
 	self:addSpritePiece(require("assets.spr.scripts.PceBody"))
 	self:setMaxHealth(100)
-	self.maxSpeedX = 32
-	self.maxSpeedY = 32
+	self.maxSpeedX = 3 * 32
+	self.maxSpeedY = 3 * 32
+	self:setGoal({x=6*32,y=10*32},"testRoom2")
 end
 
 function ObjEnemy:normalState()
-	self:moveToPoint(Game.player.x,Game.player.y,8)
+	self:moveToGoal()
 end
 
 return ObjEnemy

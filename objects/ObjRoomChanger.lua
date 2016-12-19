@@ -1,17 +1,17 @@
 local ObjBase = require "ObjBase"
-local ObjSlope = Class.create("ObjSlope", ObjBase)
+local ObjRoomChanger = Class.create("ObjRoomChanger", ObjBase)
 	
-function ObjSlope:create()
+function ObjRoomChanger:create()
 	self:addModule(require "modules.ModPhysicsTD")
+	self:addModule(require "modules.ModRoomChanger")
 
 	self:createBody( "kinematic" ,true, false)
 	self.shape = love.physics.newRectangleShape(self.width,self.height)
 
 	self:setFixture(self.shape, 1)
-	self.slope = self.slope or 1
 	self.fixture:setSensor(true)
+	self.fixtureDRAW = xl.SHOW_HITBOX(self.fixture) --Uncomment to see hitbox.
+
 end
 
-
-
-return ObjSlope
+return ObjRoomChanger

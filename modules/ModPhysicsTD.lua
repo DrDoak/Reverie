@@ -1,6 +1,8 @@
 local ModPhysics = require "modules.ModPhysics"
 local ModPhysicsTD = Class.create("ModPhysicsTD", ModPhysics)
 
+ModPhysicsTD.trackFunctions = {"onCollide"}
+
 function ModPhysicsTD:create()
 	--set default stats
 	self.deceleration = -12
@@ -97,7 +99,7 @@ function ModPhysicsTD:move( dt, body, forceX, forceY, isMovingX,isMovingY)
 end
 
 function ModPhysicsTD:createBody( bodyType ,isFixedRotation, isBullet)
-	self.body = love.physics.newBody( Game.world, self.x + self.width/2, self.y+ self.height, bodyType ) 
+	self.body = love.physics.newBody( Game.world, self.x + self.width/2, self.y+ self.height - 16, bodyType ) 
 	self.body:setFixedRotation(isFixedRotation) 
 	self.body:setUserData(self) 
 	self.body:setBullet(isBullet)
@@ -138,6 +140,8 @@ function ModPhysicsTD:setPosition(x,y)
 	self.canTeleport = true
 	self.newX = x
 	self.newY = y
+	self.x = x
+	self.y = y
 end
 
 ---------------------------AI Tests----------------------------
@@ -199,9 +203,13 @@ function ModPhysicsTD:mCheckGround(fixture, x, y, xn, yn, fraction )
 end
 
 function ModPhysicsTD:destroy()
+	-- lume.trace(self.type)
 	if self.body then
 		self.body:destroy()
 	end
+end
+
+function ModPhysicsTD:onCollide(other, collision)
 end
 
 return ModPhysicsTD

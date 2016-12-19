@@ -6,12 +6,50 @@ function ModTDAI:create()
 	self.currDest = {x = 0, y = 0}
 	self.nodeList = {}
 	self.currTarget = {x=0,y=0}
-	self.nodeThreashold = 8--w9--self.width/2
+	self.nodeThreashold = 8 --self.width/2
 	self.lastPos = {x = self.x, y = self.y}
+	self.goalPosition = {}
+	self.roomPaths = {}
 end
 
-function ModTDAI:moveToPoint( destinationX,destinationY ,proximity,dt)
+function ModTDAI:setGoal(goalPosition, roomName )
+	self.finalDestination = goalPosition
+
+	if not roomName or ("assets/rooms/".. roomName == self.currentRoom) then
+		self.goalPosition = goalPosition
+	else
+		self.roomPaths = Game.worldManager:pathToPoint(self.currentRoom, {x=self.x,y=self.y}, roomName)
+		local curPath = self.roomPaths[1]
+		self.goalPosition = curPath.pos
+		util.print_table(self.goalPosition)
+		lume.trace(self.x,self.y)
+		table.remove(self.roomPaths,1)
+	end
+end
+
+function ModTDAI:moveToGoal()
+	-- self:moveToPoint(self.goalPosition.x,self.goalPosition.y,self.nodeThreashold)
+	-- lume.trace(self.goalPosition.x,self.goalPosition.y, self.x,self.y)
+	if self.goalPosition and self:moveToPoint(self.goalPosition.x,self.goalPosition.y,self.nodeThreashold) then
+		self.goalPosition = nil
+		if #self.roomPaths > 0 then
+			self.goalPosition = self.roomPaths[1].pos
+			table.remove(self.roomPaths,1)
+		elseif self.finalDestination then
+			lume.trace()
+			self.goalPosition = self.finalDestination
+			self.finalDestination = nil
+		end
+	end
+end
+
+function ModTDAI:moveToPoint( destinationX,destinationY ,proximity)
 	self.numCasts = 0
+
+	if self:testProximity(destinationX,destinationY,proximity) then
+		return true
+	end 
+	-- lume.trace(destinationX,destinationY,proximity)
 	if self:checkClear(self.x,self.y,destinationX,destinationY,16) then--proximity) then
 		self.nodeList = {}
 		self:directToPoint(destinationX,destinationY,proximity)
@@ -51,7 +89,7 @@ function ModTDAI:moveToPoint( destinationX,destinationY ,proximity,dt)
 		end
 	end
 	xl.DScreen.print("numCasts: ", "(%f)",self.numCasts)
-
+	return false
 end
 function ModTDAI:nextNode()
 	table.remove(self.nodeList,1)
@@ -92,19 +130,7 @@ function ModTDAI:planPath(dX,dY,prox)
 		self.currTarget = nil
 	end
 end
-function ModTDAI:reconstructPath( lastNode )
-	self.nodeList = {}
-	-- lume.trace("Reconstructing Path")
-	local cNode = lastNode
-	while (cNode.cameFrom) do
-		--util.print_table(cNode)
-		table.insert(self.nodeList,cNode)
-		cNode = cNode.cameFrom
-	end
-	self.nodeList = util.reverseTable(self.nodeList)
-	-- util.print_table(self.nodeList)
-	return self.nodeList
-end
+
 function ModTDAI:getNeighbors( current, goal, proximity)
 	local newNeighbors = {}
 	-- lume.trace("CurrentPOs:")
@@ -258,36 +284,21 @@ function ModTDAI:getChainNeighbors( neighborsTable, current,points,prox)
 	end
 end
 
-function ModTDAI:newPath(start,goal,prox) --start, goal,map,width,height,noList,pathType)
+function ModTDAI:newPath(start,goal,prox, goCloseAsPossibleIfNoPath) --start, goal,map,width,height,noList,pathType)
 	-- lume.trace("initializing A star search")
 	prox = prox or 4
 	-- local start = {x=self.x,y=self.y}
     -- The set of nodes already evaluated.
     local closedSet = {}
-    --The set of currently discovered nodes still to be evaluated.
-    --Initially, only the start node is known.
     local openSet = {}
+    local closestNode = {}
+    local closestToGoalDist = 99999
     table.insert(openSet,start)
-    --For each node, which node it can most efficiently be reached from.
-    --If a node can be reached from many nodes, cameFrom will eventually contain the
-    --most efficient previous step.
 
     local cameFrom = {}
-
-    -- For each node, the cost of getting from the start node to that node.
-    -- local gScore = RoomUtils.initialize2dArray( width ,height,99999)
-
-    -- The cost of going from start to start is zero.
     start.gScore = 0
-
-    -- For each node, the total cost of getting from the start node to the goal
-    -- by passing by that node. That value is partly known, partly heuristic.
-
-    -- For the first node, that value is completely heuristic.
     start.fScore = xl.distance(start.x,start.y,goal.x,goal.y)
-
     start.cameFrom = nil
-
     local newIteration = 0
     while (table.getn(openSet) > 0) do
     	local minI = 0
@@ -300,14 +311,18 @@ function ModTDAI:newPath(start,goal,prox) --start, goal,map,width,height,noList,
     		end
     	end
     	local current = openSet[minI]
-
-        if xl.distance(current.x,current.y,goal.x,goal.y) < prox * 2 then
-            return self:reconstructPath(current)
+    	local distToGoal = xl.distance(current.x,current.y,goal.x,goal.y)
+        if distToGoal < prox * 2 then
+        	-- lume.trace()
+        	self.nodeList = xl.reconstructPath(current)
+            return self.nodeList
+        elseif distToGoal < closestToGoalDist then
+        	closestToGoalDist = distToGoal
+        	closestNode = current
         end
 
         table.remove(openSet,minI)
         table.insert(closedSet,current)
-
         local neighbors = self:getNeighbors(current,goal,prox)
         for i,v in ipairs(neighbors) do
             if not self:hasCoordinate(closedSet,v,prox) then
@@ -326,8 +341,14 @@ function ModTDAI:newPath(start,goal,prox) --start, goal,map,width,height,noList,
         end
         newIteration = newIteration + 1
         if newIteration > 500 then
+        	lume.trace()
         	break
         end
+    end
+    if goCloseAsPossibleIfNoPath then
+    	lume.trace("no path, going the closest possible")
+    	self.nodeList = xl.reconstructPath(closestNode)
+        return self.nodeList
     end
     return false
 end
@@ -346,8 +367,6 @@ function ModTDAI:directToPoint(destinationX, destinationY, proximity)
 	if proximity ~= nil and self:testProximity(destinationX,destinationY,proximity) then
 		return false
 	else
-		self.isMovingY = false
-		self.isMovingX = false
 		if self.y - destinationY > 2 then -- must move up
 			self.dir = 0
 			if velY < (self.maxSpeedY * self.speedModY) then

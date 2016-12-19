@@ -45,16 +45,16 @@ function ModActive:create()
 end
 
 function ModActive:destroy()
-	if not self.destroyed then
-		if self.dmgHitbox then
-			Game:del(self.dmgHitbox)
-		end
+	if self.dmgHitbox then
+		Game:del(self.dmgHitbox)
 	end
 end
 function ModActive:tick( dt )
 	self.forceX = 0
 	self.forceY = 0
-	self.isMoving = false	
+	self.isMoving = false
+	self.isMovingY = false
+	self.isMovingX = false	
 	
 	if self.state == 3 then self.jumping = false end
 

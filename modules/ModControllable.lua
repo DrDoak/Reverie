@@ -1,6 +1,5 @@
 local ModControllable = Class.create("ModControllable", Entity)
 local Keymap  = require "xl.Keymap"
-local ObjIntHitbox = require "objects.ObjIntHitbox"
 
 ModControllable.dependencies = {"ModActive","ModInventory"}
 ModControllable.trackFunctions = {"normalState"}
@@ -165,8 +164,7 @@ function ModControllable:proccessInventory()
 	--interaction code
 
 	if Keymap.isPressed("interact") and not Game.DialogActive then
-		local intHitbox = ObjIntHitbox(self) 
-		Game:add(intHitbox)
+		self:createIntHitbox()
 	end
 	if Keymap.isPressed("journal") then gamestate.push(JBase) end	
 end

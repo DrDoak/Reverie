@@ -12,6 +12,7 @@ local Camera = require "hump.camera"
 local Keymap = require "xl.Keymap"
 local Lights = require "xl.Lights"
 local Gamestate = require "hump.gamestate"
+local ObjWorldManager = require "objects.ObjWorldManager"
 
 local MGame = {}
 local function __NULL__() end
@@ -64,6 +65,10 @@ function MGame:init()
 
 	self:resize( love.graphics.getDimensions() )
 
+	self.worldManager = ObjWorldManager()
+	self.worldManager:create()
+	self.listeners["roombegin"][self.worldManager] = self.worldManager
+
 	-----Initialize Canvases for drawing
 	self.ActiveCanvas = love.graphics.newCanvas( GAME_SIZE.w, GAME_SIZE.h) --this canvas will hold all active objects (sprites,tiles)
 	love.graphics.setBackgroundColor(0,0,0,0)
@@ -95,6 +100,7 @@ function MGame:update( dt )
 	-- xl.DScreen.print("Character DT: ", "(%f)", (love.timer.getTime() - baseTime))
 	baseTime = love.timer.getTime()
 
+	self.worldManager:tick(dt)
 	lume.each(self.entities, "tick", dt) --The game loops through all the entities in the entity list and calls the tick function for everyone of them.
 	--xl.DScreen.print("Entities DT: ", "(%f)", (love.timer.getTime() - baseTime))
 
@@ -230,8 +236,9 @@ function MGame:getOverlay(  )
 end
 
 function MGame:emitEvent( name, ... )
-	-- lume.trace(name)
 	for _,entity in pairs(self.listeners[name]) do
+		lume.trace(name)
+		lume.trace(entity)
 		entity[name](entity, ...)
 	end
 end
@@ -414,6 +421,7 @@ end
 
 -- This function loads a room from a table containing the room's information.
 function MGame:i_loadRoom( name, loadData )
+	self.worldManager:onRoomLoad( name, self.roomname )
 	if type(name) == "table" then
 		self.roomname = name.name
 	else
@@ -426,7 +434,7 @@ function MGame:i_loadRoom( name, loadData )
 	-- So we delete everything else.
 	while next( self.entities ) do
 		for key,value in pairs(self.entities) do
-			self:del(value)
+			self:mDel(value)
 		end
 	end
 
@@ -488,9 +496,11 @@ function MGame:i_loadRoom( name, loadData )
 				--lume.trace(object.type)
 				local class = require("objects." .. object.type)
 				local inst = class()
-				inst.name, inst.x, inst.y, inst.width, inst.height = object.name, object.x, object.y - 16, object.width, object.height
+				inst.name, inst.x, inst.y, inst.width, inst.height = object.name, object.x, object.y , object.width, object.height
 				if object.polyline then
 					local x,y,polyline = inst.x, inst.y, object.polyline
+					-- x = x - 16
+					y = y - 16
 					local pointlist = {}
 					for k=1,#polyline do
 						table.insert(pointlist, x + polyline[k].x)

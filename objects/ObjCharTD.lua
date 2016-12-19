@@ -45,6 +45,7 @@ function ObjChar:create()
 	ObjBaseUnitTD.create(self)
 
 	self:addModule(require "modules.ModControllableTD")
+	
 
 	self:addSpritePiece(require("assets.spr.scripts.PceWheel"))
 	-- self:addSpritePiece(require("assets.spr.scripts.PceBody"))

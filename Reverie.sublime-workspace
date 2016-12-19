@@ -1,0 +1,1201 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"for",
+				"fori\tfor i,v in ipairs()"
+			],
+			[
+				"dest",
+				"destinationY"
+			],
+			[
+				"des",
+				"destinationX"
+			],
+			[
+				"no",
+				"nodeList"
+			],
+			[
+				"destinat",
+				"destinationX"
+			],
+			[
+				"spr",
+				"sprites"
+			],
+			[
+				"ismo",
+				"isMoving"
+			],
+			[
+				"ismov",
+				"isMovingY"
+			],
+			[
+				"ism",
+				"isMoving"
+			],
+			[
+				"speedMod",
+				"speedModY"
+			],
+			[
+				"fire",
+				"fire"
+			],
+			[
+				"Obja",
+				"ObjBaseUnit"
+			],
+			[
+				"ac",
+				"ActiveObj"
+			],
+			[
+				"proce",
+				"processJumpThru"
+			],
+			[
+				"count",
+				"count"
+			],
+			[
+				"up",
+				"up"
+			],
+			[
+				"checks",
+				"checkSide"
+			],
+			[
+				"Health",
+				"health"
+			],
+			[
+				"value",
+				"value"
+			],
+			[
+				"startX",
+				"startX"
+			],
+			[
+				"addPr",
+				"addPredefRoom"
+			],
+			[
+				"lig",
+				"light"
+			],
+			[
+				"fx",
+				"fx"
+			],
+			[
+				"fo",
+				"forp\tfor k,v in pairs()"
+			],
+			[
+				"b",
+				"boundMovie"
+			],
+			[
+				"p",
+				"properties"
+			],
+			[
+				"x",
+				"x"
+			],
+			[
+				"platf",
+				"platformWidth"
+			],
+			[
+				"or",
+				"orange_building"
+			],
+			[
+				"exit",
+				"exit"
+			],
+			[
+				"plat",
+				"platformWidth"
+			],
+			[
+				"pla",
+				"platformWidth"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "objects/ObjSlope.lua",
+			"settings":
+			{
+				"buffer_size": 389,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 180.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/LuoLei Zhao/Reverie"
+	],
+	"file_history":
+	[
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjRoomManager.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModNPC.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModDialog.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjWorldManager.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjNPCReference.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModRoomChanger.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModPhysicsTD.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModPhysics.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjAttackHitbox.lua",
+		"/C/Users/LuoLei Zhao/Reverie/MGame.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModTDAI.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModToggleClip.lua",
+		"/C/Users/LuoLei Zhao/Reverie/hump/gamestate.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModDrawableTD.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModControllable.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModControllableTD.lua",
+		"/C/Users/LuoLei Zhao/Reverie/extra.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModDrawable.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjUnit.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjCharTD.lua",
+		"/C/Users/LuoLei Zhao/Desktop/FHWOFHW.PNG",
+		"/C/Program Files (x86)/Steam/steamapps/common/Dark Souls Prepare to Die Edition/MAP OF RIO.PNG",
+		"/C/Program Files (x86)/Steam/steamapps/common/Dark Souls Prepare to Die Edition/MAP OF RIO.MP3",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjFence.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModActive.lua",
+		"/C/Users/LuoLei Zhao/Reverie/xl/SpritePiece.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjGenericObj.lua",
+		"/C/Users/LuoLei Zhao/Reverie/assets/spr/scripts/PceBody.lua",
+		"/C/Users/LuoLei Zhao/Reverie/assets/spr/scripts/SprFence.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjCrate3D.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjTest.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjCrate.lua",
+		"/C/Users/LuoLei Zhao/Reverie/assets/spr/scripts/SprCrate3D.lua",
+		"/C/Users/LuoLei Zhao/Reverie/assets/spr/scripts/PceWheel.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjRepeating.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModTDObj.lua",
+		"/C/Users/LuoLei Zhao/Reverie/assets/spr/scripts/SprBox.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjChar.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModInventory.lua",
+		"/C/Users/LuoLei Zhao/Reverie/xl/Scene.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjBaseUnitTD.lua",
+		"/C/Users/LuoLei Zhao/Reverie/assets/rooms/testRoom.lua",
+		"/C/Users/LuoLei Zhao/Reverie/state/MainMenu.lua",
+		"/C/Users/LuoLei Zhao/Reverie/ObjBase.lua",
+		"/C/Users/LuoLei Zhao/Reverie/assets/spr/scripts/SprSmallBox.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjTest2.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModPartEmitter.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModEquippable.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModHitboxMaker.lua",
+		"/C/Users/LuoLei Zhao/Reverie/conf.lua",
+		"/C/Users/LuoLei Zhao/Reverie/xl/Lights.lua",
+		"/C/Users/LuoLei Zhao/Reverie/SettingManager.lua",
+		"/C/Users/LuoLei Zhao/Reverie/startup.lua",
+		"/C/Users/LuoLei Zhao/Reverie/util.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjBaseUnit.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModWooden.lua",
+		"/C/Users/LuoLei Zhao/Reverie/xl/Keymap.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjDebugCamera.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjTorch.lua",
+		"/C/Users/LuoLei Zhao/Reverie/assets/spr/scripts/SprTorchEqp.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjWeapon.lua",
+		"/C/Users/LuoLei Zhao/Reverie/libs/class.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModInteractive.lua",
+		"/C/Users/LuoLei Zhao/Reverie/libs/Global.lua",
+		"/C/Users/LuoLei Zhao/Reverie/ModBase.lua",
+		"/C/Users/LuoLei Zhao/Reverie/Error",
+		"/C/Users/LuoLei Zhao/Reverie/xl/Inventory.lua",
+		"/C/Users/LuoLei Zhao/Reverie/assets/spr/scripts/SprKnife.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModCheckView.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModEscapeFromHitstun.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ObjBox.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModDash.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModHasHUD.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModInventoryControl.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ModExperimental.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ModShield.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ModDash.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ModuleBase.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ModToggleClip.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ModuleTest.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/Drawable.lua",
+		"/C/Users/LuoLei Zhao/Reverie/libs/sti.lua",
+		"/C/Users/LuoLei Zhao/Reverie/state/DebugMenu.lua",
+		"/C/Users/LuoLei Zhao/Reverie/assets/spr/scripts/AneBody.lua",
+		"/C/Users/LuoLei Zhao/Reverie/assets/spr/scripts/AneWheel.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ModLight.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ModHitboxMaker.lua",
+		"/C/Users/LuoLei Zhao/Reverie/hump/camera.lua",
+		"/C/Users/LuoLei Zhao/Reverie/assets/rooms/initial_room.lua",
+		"/C/Users/LuoLei Zhao/Reverie/modules/ActiveObj.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/ActiveObj.lua",
+		"/C/Users/LuoLei Zhao/Reverie/objects/Drawable.lua"
+	],
+	"find":
+	{
+		"height": 50.0
+	},
+	"find_in_files":
+	{
+		"height": 138.0,
+		"where_history":
+		[
+			"",
+			"EqpHook",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"oncOllide",
+			"Level",
+			"loadRoom",
+			"ObjWorldManager",
+			"remove",
+			"maxYSpeed",
+			"maxXSpeed",
+			"DScreen.print",
+			"DScreen",
+			"distance",
+			"mCheckGround",
+			"moveToPoint",
+			"currentX",
+			"setAnimation",
+			"changeAnimation",
+			"ObjRepeating",
+			"ObjFence",
+			"ObjTest",
+			"move",
+			"ObjSlope",
+			"slopeDir",
+			"ObjStairs",
+			"ObjTest",
+			"spr",
+			"\n\t",
+			"setSprPos",
+			"TD",
+			"debug",
+			"lume.trace",
+			"\t-- lume.trace(inst.onPlayerInteract)\n",
+			"show_hitbox",
+			"depth",
+			"move",
+			"isMoving",
+			"ismoving",
+			"referenceVel",
+			"ObjBaseUnit",
+			"ModPhysics",
+			"debug room",
+			"* dt",
+			"dt",
+			"registerHit",
+			"60",
+			"maxJumpt",
+			"maxJumpTime",
+			"dt",
+			"fullscreen",
+			"setHealth",
+			"maxXSpeed",
+			"onDea",
+			"removable",
+			":new",
+			"startup",
+			"normalMove",
+			"setSpecialState",
+			"ObjWeapon",
+			"wrapNode",
+			"update",
+			"setHitState",
+			"objunit:specialstate",
+			"specialState",
+			"ObjUnit",
+			"oncollide",
+			"setHealth",
+			"v.count",
+			"specialState",
+			"addToInv",
+			"proccessInventory",
+			"passive",
+			"setSpecialState",
+			"useStand",
+			"addToInv",
+			"addSpritePiece",
+			"activateSpritepiece",
+			"addspritePiece",
+			"setPrimary",
+			"proccessInventory",
+			"setPrimary",
+			"primary",
+			"addToinv",
+			"proccessInventory",
+			"use",
+			"setPrimary",
+			"ObjTest",
+			"addToAttackList",
+			"checkRange",
+			"wrap",
+			"checkRange",
+			"velY",
+			"velX",
+			"attackList",
+			"destroyed",
+			"self.dir",
+			"xModifier",
+			"refr",
+			"refreshSpeed",
+			"yRange",
+			"xRange",
+			"mUseLight",
+			"refreshSpeed",
+			"ObjInteractive",
+			"checkRange",
+			"wrapCheckRange",
+			"ModEquippable",
+			"keymap",
+			"ObjInteractive",
+			"ObjAttackhitbox",
+			"ObjintHitbox",
+			"fxexplosion",
+			"FxExplosion",
+			"ObjEquippable",
+			"ObjInteractive",
+			"FXSparkle",
+			"destroy",
+			"setSprPos",
+			"addSpritePiece",
+			"setSprPos",
+			"changeAnimation",
+			"-",
+			"setOrigin",
+			"setSprPos",
+			"height",
+			"charHeight",
+			"- 8",
+			"self.height",
+			"charheight",
+			"self.x",
+			"+ 16"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Room",
+			"ObjRoomManager",
+			"maxSpeedY",
+			"maxSpeedX",
+			"ObjFence",
+			"ObjRepeating",
+			"ObjGenericObj",
+			"ObjRepeating",
+			"ObjSlope",
+			"ObjStairs",
+			"ObjBaseUnitTD",
+			"ModControllable",
+			"onHitConfirm",
+			"maxSpeed",
+			"ObjTorch",
+			"ModActive",
+			"ObjWeapon",
+			"ModCheckView",
+			"ModEquippable",
+			"ModInteractive",
+			"ObjBase",
+			"ModActive",
+			"ObjBox",
+			"ObjTest",
+			"SomeOtherObj",
+			"ModBase",
+			"ModInventoryControl",
+			"ModControllable",
+			"ModInventory",
+			"ModEscapeFromHitstun",
+			"ModControllable",
+			"ModuleBase",
+			"ModuleExperimental",
+			"ModuleBase",
+			"--self:control",
+			"ModActive",
+			"ModDash",
+			"ModShield",
+			"ModHitbox",
+			"ModLight",
+			"updateHealth",
+			"ModInventory",
+			"ModDrawable",
+			"ModPhysics",
+			"ModActive",
+			"BodyObj",
+			"ObjBaseUnit",
+			"speedModifier",
+			"Relationship",
+			"Memory",
+			"SSHangingLight",
+			"buyer",
+			"Shop",
+			"self.speaker",
+			"ObjDialogSequence",
+			"dark_building",
+			"orange_building",
+			"yellow_building",
+			"red_building",
+			"SSVending",
+			"EqpStaff",
+			"",
+			"}}}",
+			"self:useStand(player,frame",
+			"EqpBlade",
+			"EIWeapon",
+			"DialogActive",
+			"DialogOverlap",
+			"EqpThrowKnife",
+			".__package = \"eqp\"",
+			"eqp.",
+			"self",
+			"ObjVending",
+			"Hetairoi_SavePoint",
+			"HtSavePoint",
+			"centY",
+			"centX",
+			"StPredef",
+			"RoomGenPredef",
+			"self:setOverlay",
+			"self.isActive",
+			"ObjAnchor",
+			"EqpTest",
+			"EqpHealthLarge",
+			"EqpHealthSmall",
+			"",
+			"EqpGrenade",
+			"self.invSlot",
+			"self.isPrimary",
+			"ObjVending",
+			"ObjReal",
+			"SSChest",
+			"EILoS",
+			"self.isOpen",
+			"ObjOldChest",
+			"ObjCoinGold",
+			"ObjCoinSilver",
+			"CoinSilver",
+			"ObjCoin",
+			"setEquip(nil,false,true",
+			"EqpBottle",
+			"SSLightHanging",
+			"throw_r",
+			"player.currentTarget",
+			"self.currentTarget",
+			"SHDagger",
+			"EqpDagger",
+			"\"hit\"",
+			"EqpStaff",
+			"EnFade",
+			"EqpBottle",
+			"EqpHook",
+			"self.attachPositions",
+			"EqpMace",
+			"self.links",
+			"SpwnLeak",
+			"tick",
+			"EOFall",
+			"EOGrass",
+			"moveToPoint",
+			"dir",
+			"moveToPoint",
+			"RefreshTime",
+			"self.dir",
+			"EILoS",
+			"EILos",
+			"objects.eqp",
+			"objects."
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "objects/ObjSlope.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 389,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								34,
+								85
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 303.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Love",
+	"project": "Reverie.sublime-project",
+	"replace":
+	{
+		"height": 94.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"mod",
+				"modules\\ModDialog.lua"
+			],
+			[
+				"objattack",
+				"objects\\ObjAttackHitbox.lua"
+			],
+			[
+				"modphy",
+				"modules\\ModPhysics.lua"
+			],
+			[
+				"game",
+				"hump\\gamestate.lua"
+			],
+			[
+				"objworld",
+				"objects\\ObjWorldManager.lua"
+			],
+			[
+				"modph",
+				"modules\\ModPhysics.lua"
+			],
+			[
+				"extra",
+				"extra.lua"
+			],
+			[
+				"physc",
+				"modules\\ModPhysicsTD.lua"
+			],
+			[
+				"objun",
+				"objects\\ObjUnit.lua"
+			],
+			[
+				"modphysicstd",
+				"modules\\ModPhysicsTD.lua"
+			],
+			[
+				"modp",
+				"modules\\ModPhysics.lua"
+			],
+			[
+				"modcon",
+				"modules\\ModControllableTD.lua"
+			],
+			[
+				"modcr",
+				"modules\\ModControllable.lua"
+			],
+			[
+				"objchar",
+				"objects\\ObjCharTD.lua"
+			],
+			[
+				"mgam",
+				"MGame.lua"
+			],
+			[
+				"modphys",
+				"modules\\ModPhysicsTD.lua"
+			],
+			[
+				"modtda",
+				"modules\\ModTDAI.lua"
+			],
+			[
+				"modac",
+				"modules\\ModActive.lua"
+			],
+			[
+				"pcebod",
+				"assets\\spr\\scripts\\PceBody.lua"
+			],
+			[
+				"sprfence",
+				"assets\\spr\\scripts\\SprFence.lua"
+			],
+			[
+				"sprite",
+				"xl\\SpritePiece.lua"
+			],
+			[
+				"moddr",
+				"modules\\ModDrawable.lua"
+			],
+			[
+				"spritepiece",
+				"xl\\SpritePiece.lua"
+			],
+			[
+				"sprbod",
+				"assets\\spr\\scripts\\PceBody.lua"
+			],
+			[
+				"objr",
+				"objects\\ObjRepeating.lua"
+			],
+			[
+				"objgener",
+				"objects\\ObjGenericObj.lua"
+			],
+			[
+				"objtest",
+				"objects\\ObjTest.lua"
+			],
+			[
+				"objcrat",
+				"objects\\ObjCrate3D.lua"
+			],
+			[
+				"spr",
+				"assets\\spr\\scripts\\SprBox.lua"
+			],
+			[
+				"moddraw",
+				"modules\\ModDrawableTD.lua"
+			],
+			[
+				"crate",
+				"objects\\ObjCrate.lua"
+			],
+			[
+				"objrepeating",
+				"objects\\ObjRepeating.lua"
+			],
+			[
+				"modtdo",
+				"modules\\ModTDObj.lua"
+			],
+			[
+				"objcrate",
+				"objects\\ObjCrate3D.lua"
+			],
+			[
+				"objslope",
+				"objects\\ObjSlope.lua"
+			],
+			[
+				"modphysics",
+				"modules\\ModPhysicsTD.lua"
+			],
+			[
+				"modacti",
+				"modules\\ModActive.lua"
+			],
+			[
+				"modphysi",
+				"modules\\ModPhysicsTD.lua"
+			],
+			[
+				"modtdj",
+				"modules\\ModTDObj.lua"
+			],
+			[
+				"objcrate3d",
+				"objects\\ObjCrate3D.lua"
+			],
+			[
+				"moddrawabletd",
+				"modules\\ModDrawableTD.lua"
+			],
+			[
+				"pcewhe",
+				"assets\\spr\\scripts\\PceWheel.lua"
+			],
+			[
+				"ac",
+				"modules\\ModActive.lua"
+			],
+			[
+				"moddrawable",
+				"modules\\ModDrawableTD.lua"
+			],
+			[
+				"objc",
+				"objects\\ObjChar.lua"
+			],
+			[
+				"sprcrat",
+				"assets\\spr\\scripts\\SprCrate3D.lua"
+			],
+			[
+				"sprbox",
+				"assets\\spr\\scripts\\SprBox.lua"
+			],
+			[
+				"sprcrate",
+				"assets\\spr\\scripts\\SprCrate3D.lua"
+			],
+			[
+				"drawa",
+				"modules\\ModDrawableTD.lua"
+			],
+			[
+				"scen",
+				"xl\\Scene.lua"
+			],
+			[
+				"modcont",
+				"modules\\ModControllable.lua"
+			],
+			[
+				"objatta",
+				"objects\\ObjAttackHitbox.lua"
+			],
+			[
+				"attackhit",
+				"objects\\ObjAttackHitbox.lua"
+			],
+			[
+				"sprbo",
+				"assets\\spr\\scripts\\PceBody.lua"
+			],
+			[
+				"",
+				"modules\\ModControllable.lua"
+			],
+			[
+				"modactive",
+				"modules\\ModActive.lua"
+			],
+			[
+				"modcontrollabe",
+				"modules\\ModControllableTD.lua"
+			],
+			[
+				"objbaseunittd",
+				"objects\\ObjBaseUnitTD.lua"
+			],
+			[
+				"modphysicst",
+				"modules\\ModPhysicsTD.lua"
+			],
+			[
+				"modcontr",
+				"modules\\ModControllable.lua"
+			],
+			[
+				"objbaseun",
+				"objects\\ObjBaseUnit.lua"
+			],
+			[
+				"modcontrol",
+				"modules\\ModControllable.lua"
+			],
+			[
+				"testroom",
+				"assets\\rooms\\testRoom.lua"
+			],
+			[
+				"lights",
+				"xl\\Lights.lua"
+			],
+			[
+				"modact",
+				"modules\\ModActive.lua"
+			],
+			[
+				"obju",
+				"objects\\ObjUnit.lua"
+			],
+			[
+				"modparte",
+				"modules\\ModPartEmitter.lua"
+			],
+			[
+				"scene",
+				"xl\\Scene.lua"
+			],
+			[
+				"startup",
+				"startup.lua"
+			],
+			[
+				"settingmaa",
+				"SettingManager.lua"
+			],
+			[
+				"objbase",
+				"ObjBase.lua"
+			],
+			[
+				"objba",
+				"objects\\ObjBaseUnit.lua"
+			],
+			[
+				"mgame",
+				"MGame.lua"
+			],
+			[
+				"woo",
+				"modules\\ModWooden.lua"
+			],
+			[
+				"bomb",
+				"objects\\ObjDebugCamera.lua"
+			],
+			[
+				"keymap",
+				"xl\\Keymap.lua"
+			],
+			[
+				"setting",
+				"SettingManager.lua"
+			],
+			[
+				"modemit",
+				"modules\\ModPartEmitter.lua"
+			],
+			[
+				"parm",
+				"modules\\ModPartEmitter.lua"
+			],
+			[
+				"wood",
+				"modules\\ModWooden.lua"
+			],
+			[
+				"paremit",
+				"modules\\ModPartEmitter.lua"
+			],
+			[
+				"wooden",
+				"modules\\ModWooden.lua"
+			],
+			[
+				"partem",
+				"modules\\ModPartEmitter.lua"
+			],
+			[
+				"parte",
+				"modules\\ModPartEmitter.lua"
+			],
+			[
+				"part",
+				"modules\\ModPartEmitter.lua"
+			],
+			[
+				"sprtorcheq",
+				"assets\\spr\\scripts\\SprTorchEqp.lua"
+			],
+			[
+				"sprtor",
+				"assets\\spr\\scripts\\SprTorch.lua"
+			],
+			[
+				"objcahr",
+				"objects\\ObjChar.lua"
+			],
+			[
+				"modeq",
+				"modules\\ModEquippable.lua"
+			],
+			[
+				"sprknife",
+				"assets\\spr\\scripts\\SprKnife.lua"
+			],
+			[
+				"objweap",
+				"objects\\ObjWeapon.lua"
+			],
+			[
+				"objwea",
+				"objects\\ObjWeapon.lua"
+			],
+			[
+				"emit",
+				"modules\\ModPartEmitter.lua"
+			],
+			[
+				"modpartem",
+				"modules\\ModPartEmitter.lua"
+			],
+			[
+				"modwoo",
+				"modules\\ModWooden.lua"
+			],
+			[
+				"objweapon",
+				"objects\\ObjWeapon.lua"
+			],
+			[
+				"objunit",
+				"objects\\ObjUnit.lua"
+			],
+			[
+				"objweapo",
+				"objects\\ObjWeapon.lua"
+			],
+			[
+				"moda",
+				"modules\\ModActive.lua"
+			],
+			[
+				"modequip",
+				"modules\\ModEquippable.lua"
+			],
+			[
+				"hitboxm",
+				"modules\\ModHitboxMaker.lua"
+			],
+			[
+				"objwe",
+				"objects\\ObjWeapon.lua"
+			],
+			[
+				"objch",
+				"objects\\ObjChar.lua"
+			],
+			[
+				"objw",
+				"objects\\ObjWeapon.lua"
+			],
+			[
+				"hitbox",
+				"modules\\ModHitboxMaker.lua"
+			],
+			[
+				"modequi",
+				"modules\\ModEquippable.lua"
+			],
+			[
+				"objattackhit",
+				"objects\\ObjAttackHitbox.lua"
+			],
+			[
+				"objbaseunit",
+				"objects\\ObjBaseUnit.lua"
+			],
+			[
+				"modinter",
+				"modules\\ModInteractive.lua"
+			],
+			[
+				"modcontro",
+				"modules\\ModControllable.lua"
+			],
+			[
+				"global",
+				"libs\\Global.lua"
+			],
+			[
+				"modpartemi",
+				"modules\\ModPartEmitter.lua"
+			],
+			[
+				"modactiv",
+				"modules\\ModActive.lua"
+			],
+			[
+				"modwoodn",
+				"modules\\ModWooden.lua"
+			],
+			[
+				"modinventory",
+				"modules\\ModInventory.lua"
+			],
+			[
+				"pcewheel",
+				"assets\\spr\\scripts\\PceWheel.lua"
+			],
+			[
+				"modbase",
+				"ModBase.lua"
+			],
+			[
+				"pceweh",
+				"assets\\spr\\scripts\\PceWheel.lua"
+			],
+			[
+				"pcebody",
+				"assets\\spr\\scripts\\PceBody.lua"
+			],
+			[
+				"modintera",
+				"modules\\ModInteractive.lua"
+			],
+			[
+				"modequippable",
+				"modules\\ModEquippable.lua"
+			],
+			[
+				"modinv",
+				"modules\\ModInventory.lua"
+			],
+			[
+				"modeqi",
+				"modules\\ModEquippable.lua"
+			],
+			[
+				"drawable",
+				"modules\\ModDrawable.lua"
+			],
+			[
+				"inven",
+				"xl\\Inventory.lua"
+			],
+			[
+				"modhitboxmaker",
+				"modules\\ModHitboxMaker.lua"
+			],
+			[
+				"modhitb",
+				"modules\\ModHitboxMaker.lua"
+			],
+			[
+				"interactiv",
+				"modules\\ModInteractive.lua"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 225.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -98,18 +98,17 @@ end
 
 function ObjDialogSequence:processElement( element )
 	if type(element) == "string" then
-		lume.trace()
 		self.currentDialog = ClickText(element,nil,nil,true)
 		Game:add(self.currentDialog)
+		self.interactor:processDialog(element)
 	else
 		if element.cond then
-			lume.trace()
 			if not element.cond(self.speaker,self.interactor) then
 				return
 			elseif type(element[1]) == "string" then
-				lume.trace()
 				self.currentDialog = ClickText(element[1],nil,nil,true)
 				Game:add(self.currentDialog)
+				self.interactor:processDialog(element[1])
 				return
 			end
 		end
@@ -134,6 +133,7 @@ function ObjDialogSequence:processElement( element )
 			lume.trace()
 			self.currentDialog = DialogActive(element,self.speaker,self.interactor)
 			Game.scene:insert(self.currentDialog)
+			self.interactor:processDialog(element)
 		end
 	end
 	return true

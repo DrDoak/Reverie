@@ -130,8 +130,23 @@ function xl.switchState( state, ... )
 	Gamestate.switch( state, ... )
 end
 
+-- For path finding
 function xl.distance( x1,y1,x2,y2 )
 	return math.sqrt(math.pow(x2 - x1,2) + math.pow(y2 - y1,2 ) )
+end
+function xl.reconstructPath( lastNode )
+	local nodeList = {}
+	-- lume.trace("Reconstructing Path")
+	local cNode = lastNode
+	table.insert(nodeList,lastNode)
+	while (cNode.cameFrom) do
+		--util.print_table(cNode)
+		cNode = cNode.cameFrom
+		table.insert(nodeList,cNode)
+	end
+	nodeList = util.reverseTable(nodeList)
+	-- util.print_table(self.nodeList)
+	return nodeList
 end
 
 -- disable xl.SHOW_HITBOX
