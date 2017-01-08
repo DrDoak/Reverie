@@ -4,8 +4,8 @@ local ObjEnemy = Class.create("ObjEnemy", ObjBase)
 function ObjEnemy:create()
 	local active = require "modules.ModActive"
 	self:addModule(active)
-	local body = require "modules.ModPhysicsTD"
-	local body = require "modules.ModTDAI"
+	local body = require "modules.ModPhysics"
+	local body = require "modules.ModPathFinder"
 	self:addModule(body)
 	self:addModule(require "modules.ModCharacter")
 

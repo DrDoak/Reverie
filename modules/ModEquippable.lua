@@ -4,6 +4,7 @@ local ModEquippable = Class.create("ModEquippable", Entity)
 
 ModEquippable.dependencies = {"ModInteractive","ModPhysics","ModDrawable"}
 
+ModEquippable.trackFunctions = {"onEquipTick"}
 function ModEquippable:create()
 	-- physics initialization
 	self:createBody( "dynamic" ,true, true)
@@ -57,6 +58,7 @@ function ModEquippable:tick(dt)
 				self.inUse = false
 				self.isPrimaryActive = false 
 			end
+			self:onEquipTick(dt)
 		else
 			--lume.trace()
 		end
@@ -73,6 +75,10 @@ function ModEquippable:tick(dt)
 		if self.depth then Game.scene:move(self.sprite, self.depth) end
 	end
 	if self.toDestroy then Game:del(self) end
+end
+
+function ModEquippable:onEquipTick( dt )
+	-- body
 end
 
 function ModEquippable:onPlayerInteract(player,data)
@@ -121,7 +127,6 @@ end
 
 function ModEquippable:activateSpritePiece( user )
 	user = user or self.user
-	lume.trace()
 	if user then
 		user:addSpritePiece(self.spritePiece,self.depth)
 	end

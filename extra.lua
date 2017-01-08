@@ -149,6 +149,13 @@ function xl.reconstructPath( lastNode )
 	return nodeList
 end
 
+function xl.inRect( pos,quad )
+	if pos.x > quad[1] and pos.y > quad[2] and pos.x < quad[3] and pos.y < quad[4] then
+		return true
+	end
+	return false
+end
+
 -- disable xl.SHOW_HITBOX
 -- xl.SHOW_HITBOX = function () end
 

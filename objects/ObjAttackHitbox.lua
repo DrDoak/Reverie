@@ -164,7 +164,7 @@ function ObjAttackHitbox:onCollide(other, collision)
 					end
 				end
 				-- lume.trace(self.guardDamage)
-				local hitType = other:setHitState(self.stun,self.forceX,self.forceY,self.damage, self.element,self.faction,self.guardDamage,self.guardStun,self.isUnblockable)
+				local hitType = other:setHitState(self)
 				if hitType then
 					-- table.insert(self.objectsHit, other)
 					self.objectsHit[other] = 1

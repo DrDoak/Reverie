@@ -15,11 +15,11 @@ function ModActive:create()
 
 	self.state = 1 --Intend to Phase out and replace with "status" fully, but too many uses
 	self.status = "normal"
+	self.lastHitObj = nil
 
 	self.aggressive = false
 	self.isAlive = true
 	self.invincibleTime = 0
-	self.regainTime = 0
 
 	self.max_health = self.max_health or self.health or 20
 	self.health = self.health or self.max_health
@@ -27,14 +27,14 @@ function ModActive:create()
 	self.redHealthDelay = 0
 	self.killCount = 0
 
-	self:addEmitter("hitFX" , self.hitFX or "assets/spr/hit.png")
+	self:addEmitter("hitFX" , self.hitFX or "assets/spr/fx/hit.png")
 	self:setRandomDirection("hitFX" , 3 * 32)
 	self:setRandRotation("hitFX",2,0,1)
 	local hitFX = self.psystems["hitFX"]
 	hitFX:setParticleLifetime(1, 2);
 	self:setFade("hitFX")
 
-	self:addEmitter("heal" , "assets/spr/heal.png")
+	self:addEmitter("heal" , "assets/spr/fx/heal.png")
 	local heal = self.psystems["heal"]
 	heal:setDirection(((3*math.pi)/2))
 	heal:setSpeed(64)
@@ -118,7 +118,17 @@ function ModActive:setFaction( factionName )
 	self.faction = factionName
 end
 
-function ModActive:setHitState(stunTime, forceX, forceY, damage, element,faction,shieldDamage,blockStun,unblockable)
+function ModActive:setHitState(hitInfo)
+	local stunTime = hitInfo.stun
+	local forceX = hitInfo.forceX
+	local forceY = hitInfo.forceY
+	local damage = hitInfo.damage
+	local element = hitInfo.element
+	local faction = hitInfo.faction
+	local shieldDamage = hitInfo.guardDamage
+	local blockStun = hitInfo.guardStun
+	local unblockable = hitInfo.isUnblockable
+	self.lastHitObj = hitInfo.attacker
 	self.prepTime = 0
 	if faction and self.faction and faction == self.faction then
 		return false
@@ -154,7 +164,6 @@ function ModActive:setHitState(stunTime, forceX, forceY, damage, element,faction
 		if not self.superArmor then
 			self.body:setLinearVelocity(forceX * ratio,forceY * ratio)
 		end
-		self.regainTime = 240
 		self.invincibleTime = 0
 		return "hit"
 	else
@@ -196,6 +205,7 @@ function ModActive:hitState()
 				local function hit_ground( player, count )
 					player:changeAnimation("crouch")
 					if count >= 24 then
+						self.lastHitObj = nil
 						player.exit = true
 					end
 				end

@@ -1,5 +1,5 @@
 local ModTDObj = Class.create("Mod3DObj", Entity)
-ModTDObj.dependencies = {"ModDrawableTD","ModPhysicsTD"}
+ModTDObj.dependencies = {"ModDrawable","ModPhysics"}
 
 function ModTDObj:matchBodyToSpr(sprPiece)
 	self:addSpritePiece( sprPiece )

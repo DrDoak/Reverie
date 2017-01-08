@@ -12,8 +12,12 @@ function ObjWorldManager:create()
 	self.timeInRoom = 0
 	self.worldMapCreated = false
 	self.roomObjects = {}
-	self.map = {}
+	self.map = self.map or {}
 	self.spawnZones = {}
+	-- local permanentObjects = require("")
+	-- for i,v in ipairs(permanentObjects) do
+	-- 	print(i,v)
+	-- end
 end
 
 function ObjWorldManager:onRoomLoad( roomName, prevRoomName )
@@ -47,7 +51,7 @@ function ObjWorldManager:recreateAllChars()
 end
 
 function ObjWorldManager:recreateCharacter( character )
-	if not Game.entities[character] and not character:hasModule("ModControllableTD") then
+	if not Game.entities[character] and not character:hasModule("ModControllable") then
 		local class = require("objects." .. character.type)
 		local inst = class()
 		inst.name, inst.x, inst.y = character.name, character.x, character.y
@@ -205,7 +209,7 @@ end
 function ObjWorldManager:getNeighbors( curExit )
 	--local curExit = self:nearest(curRoom.exits,position)
 	local neighbors = {}
-	local nextExit = self.nearest(self.maps[curExit.nextRoom],curExit.nextPos)
+	local nextExit = self.nearest(self.map[curExit.nextRoom],curExit.nextPos)
 	nextExit.dist = 0
 	table.insert(neighbors,nextExit)
 	--lume.trace(#curExit.intConns)
@@ -249,8 +253,10 @@ function ObjWorldManager:moveCharacter( character, newRoom )
 	for k,v in pairs(self.roomObjects) do
 		print(k,v)
 	end
-
-	util.deleteFromTable(self.roomObjects[character.currentRoom],character)
+	character:respondToEvent("roomChange",{room=newRoom})
+	if self.roomObjects[character.currentRoom] then
+		util.deleteFromTable(self.roomObjects[character.currentRoom],character)
+	end
 	if character.currentRoom == self.currentRoom and character ~= Game.player then
 		self.offScreen = true
 		Game:del(character)
@@ -317,5 +323,9 @@ function ObjWorldManager:cancelEvent( timeKey,events )
 			end
 		end
 	end
+end
+
+function ObjWorldManager:getCharacters()
+	local entities = Game:findObjects()
 end
 return ObjWorldManager

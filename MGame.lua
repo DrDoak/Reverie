@@ -9,7 +9,6 @@
 local Scene  = require "xl.Scene"
 local STI    = require "libs.sti"
 local Camera = require "hump.camera"
-local Keymap = require "xl.Keymap"
 local Lights = require "xl.Lights"
 local Gamestate = require "hump.gamestate"
 local ObjWorldManager = require "objects.ObjWorldManager"
@@ -237,8 +236,8 @@ end
 
 function MGame:emitEvent( name, ... )
 	for _,entity in pairs(self.listeners[name]) do
-		lume.trace(name)
-		lume.trace(entity)
+		-- lume.trace(name)
+		-- lume.trace(entity)
 		entity[name](entity, ...)
 	end
 end
@@ -482,7 +481,7 @@ function MGame:i_loadRoom( name, loadData )
 	for _,layer in ipairs(self.map.layers) do
 		if layer.type == "tilelayer" then
 			if layer.properties.depth then
-				local depth = tonumber( layer.properties.depth )
+				local depth = (tonumber( layer.properties.depth )+ 1) * 32
 				setmetatable(layer, TileLayermt)
 				layer.z = depth
 				self.scene:insert( Scene.makeNode( layer ) )
@@ -568,6 +567,21 @@ function MGame:findObjects( ... )
 		for _,ty in pairs( args ) do
 			if Class.istype( entity, ty ) then
 				table.insert( results, entity )
+			end
+		end
+	end
+	return results
+end
+
+function MGame:findObjectsWithModule( ... )
+	local args = {...}
+	local results = {}
+	for _,entity in pairs( self.entities ) do
+		if Class.istype( entity, "ObjBase" ) then
+			for _,ty in pairs( args ) do
+				if entity:hasModule( ty ) then
+					table.insert( results, entity )
+				end
 			end
 		end
 	end

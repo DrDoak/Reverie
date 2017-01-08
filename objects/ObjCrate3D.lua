@@ -12,7 +12,7 @@ function ObjTest:create()
 	-- self.fixture = love.physics.newFixture(self.body, self.shape, 1)
 	-- self:setFixture(self.shape, 22.6)
 
-	self:addModule(require "modules.ModDrawableTD")
+	self:addModule(require "modules.ModDrawable")
 	self:matchBodyToSpr(require("assets.spr.scripts.SprCrate3D"))
 	self:setMaxHealth(100)
 	self.fixtureDRAW = xl.SHOW_HITBOX(self.fixture)

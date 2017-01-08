@@ -4,12 +4,18 @@ local Shop = require "mixin.Shop"
 local ObjDialogSequence = Class.create("ObjDialogSequence", Entity)
 
 
-function ObjDialogSequence:init( creator , interactor, sequence, parent)
+function ObjDialogSequence:init( creator , interactor, sequence, parent, onCloseAction,closeArgs)
+	if sequence == nil then
+		error("Attempting to run an empty sequence")
+	end
+	lume.trace(onCloseAction)
 	self.speaker = creator
 	self.interactor = interactor
 	self.sequence = sequence
-	lume.trace("init")
 	self.parent = parent
+
+	self.onCloseAction = onCloseAction
+	self.onCloseArgs = closeArgs
 end
 
 function ObjDialogSequence:create()
@@ -17,7 +23,7 @@ function ObjDialogSequence:create()
 	self.started = true
 	self:setStopWhenLeave(self.noLeave, self.radius)
 	self.speaker.dialogSequence = self
-	lume.trace("Dialog Sequence created")
+	-- lume.trace("Dialog Sequence created")
 end
 
 function ObjDialogSequence:addTextBox( text )
@@ -82,7 +88,11 @@ function ObjDialogSequence:processNextElement( sequence, index )
 	sequence = sequence or self.sequence
 	index = index or self.currentIndex
 	if self.currentIndex > table.getn(self.sequence) then
-		lume.trace()
+		-- lume.trace()
+		if self.onCloseAction then
+			lume.trace(self.onCloseArgs)
+			self.onCloseAction(unpack(self.onCloseArgs))
+		end
 		self.toClose = true
 	else
 		-- if self.currentDialog then
@@ -90,13 +100,13 @@ function ObjDialogSequence:processNextElement( sequence, index )
 		-- 	lume.trace(self.currentDialog.destroyed)
 		-- end
 		self.currentElement = sequence[index]
-		util.print_table(self.currentElement)
 		self:processElement(self.currentElement)
 		self.currentIndex = self.currentIndex + 1
 	end
 end
 
 function ObjDialogSequence:processElement( element )
+	-- util.print_table(element)
 	if type(element) == "string" then
 		self.currentDialog = ClickText(element,nil,nil,true)
 		Game:add(self.currentDialog)
@@ -112,7 +122,7 @@ function ObjDialogSequence:processElement( element )
 				return
 			end
 		end
-		if element[1].cond then
+		if element[1] and element[1].cond then
 			for i,v in ipairs(element) do
 				if element.cond(self.speaker,self.interactor) then
 					self:processElement(v)
@@ -127,10 +137,10 @@ function ObjDialogSequence:processElement( element )
 			return
 		end
 		if element.shop then
-			lume.trace()
+			-- lume.trace()
 			self.currentDialog = Shop.startShop(self.speaker,self.interactor,element,element.shop)
 		else
-			lume.trace()
+			-- lume.trace()
 			self.currentDialog = DialogActive(element,self.speaker,self.interactor)
 			Game.scene:insert(self.currentDialog)
 			self.interactor:processDialog(element)

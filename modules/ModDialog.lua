@@ -5,7 +5,22 @@ ModDialog.dependencies = {"ModInteractive"}
 local ObjDialogSequence = require "objects.ObjDialogSequence"
 
 function ModDialog:create()
-	self:setDialogOnInteract(true)
+	self.audience = {}
+	self:setDialogOnInteract(false)
+end
+
+function ModDialog:tick( dt )
+	for i,v in ipairs(self.audience) do
+		if not self:testProximity(v.x,v.y,64) then
+			self:removeAudience(v)
+		end
+	end
+	-- if self.setNewDialog and self.audience then
+	-- 	for i,v in ipairs(self.audience) do
+	-- 		self:startDialog(v)
+	-- 	end
+	-- 	-- self:startDialog(self.audience[1])
+	-- end
 end
 
 function ModDialog:onPlayerInteract( player,data )
@@ -20,10 +35,11 @@ function ModDialog:setDialogOnInteract( onInteract )
 end
 
 function ModDialog:startDialog(interChar)
-	self.interactingChar = interChar
+	self.interactingChar = interChar or self.audience[1]
 	if self.turnToPoint then
 		self:turnToPoint(interChar.x, interChar.y)
 	end
+	-- self.setNewDialog = false
 	self.dialogSequence = ObjDialogSequence( self, interChar, self.dialogItems)
 	Game:add(self.dialogSequence)
 end
@@ -33,8 +49,22 @@ function ModDialog:setOnlyOnce( onlyOnce )
 	self.dialogInteracted = false
 end
 
-function ModDialog:setDialogItems( items )
+function ModDialog:setDialogItems( items ,audience)
 	self.dialogItems = items
+	if audience then
+		self.setNewDialog = audience
+	end
+	-- self.setNewDialog = true
+end
+
+function ModDialog:addAudience( player )
+	if not util.hasValue(self.audience,player) then
+		table.insert(self.audience,player)
+	end
+end
+
+function ModDialog:removeAudience( player )
+	util.deleteFromTable(self.audience,player)
 end
 
 return ModDialog

@@ -1,6 +1,6 @@
 local Keymap = require "xl.Keymap"
 local Gamestate = require "hump.gamestate"
-local Dialog = require "state.Dialog"
+-- local Dialog = require "state.Dialog"
 
 local IST = {}
 
@@ -192,7 +192,7 @@ function IST:keypressed( key, isrepeat )
 				})
 			end
 			
-			Dialog.display(Items, self)
+			-- Dialog.display(Items, self)
 		elseif self.moveMode == true then
 			local i1, i2 = inv:get(self.selRow, self.selCol)
 			local j1, j2 = self.originInv:get(self.moveRow,self.moveCol)

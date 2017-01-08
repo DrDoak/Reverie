@@ -17,7 +17,7 @@ Optional Parameters:
 
 function ClickText:init(text, key, fadeSpeed, box)
 	self.text = text
-	self.key = key or "interact"
+	self.key = key or "menuEnter"
 	self.fs = fadeSpeed or 30
 	self.box = (box == true)
 	-- lume.trace(self.key)
@@ -69,7 +69,7 @@ function ClickText:tick(dt)
 	local exSize = math.max(math.min(10100-self.timer,32),1)
 	-- self.exclamation:setSize(exSize,exSize)
 	if Keymap.isPressed(self.key) then
-		lume.trace("Key Pressed")
+		-- lume.trace("Key Pressed")
 		self.timer = 0
 	end
 	if self.timer >= 0 then
@@ -106,7 +106,7 @@ function ClickText:destroy( )
 end
 
 function ClickText:endDialog()
-	lume.trace("ending dialog")
+	-- lume.trace("ending dialog")
 	self.timer = 0
 end
 

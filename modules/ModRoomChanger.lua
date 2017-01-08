@@ -1,5 +1,5 @@
 local ModRoomChanger = Class.create("ModRoomChanger", Entity)
-ModRoomChanger.dependencies = {"ModPhysicsTD"}
+ModRoomChanger.dependencies = {"ModPhysics"}
 function ModRoomChanger:setRoom( Room, x,y )
 	self.nextX = x
 	self.nextY = y
@@ -12,9 +12,7 @@ function ModRoomChanger:setOneTime( oneTime )
 end
 function ModRoomChanger:changeRoom( character ,room)
 	room = room or self.nextRoom
-	lume.trace(character:getTimeInRoom())
-	if character:getTimeInRoom() > 0.1 then
-		lume.trace()
+	-- if character:getTimeInRoom() > 0.1 then
 		local x,y = character.body:getPosition()
 		local nextX = x
 		if self.nextX then
@@ -30,14 +28,14 @@ function ModRoomChanger:changeRoom( character ,room)
 		lume.trace(nextX,nextY)
 		Game.worldManager:moveCharacter(character,name)
 
-		if character:hasModule("ModControllableTD") then
+		if character:hasModule("ModControllable") then
 			Game:loadRoom( name )
 		end
 
 		if self.RoomChangeTemp then
 			Game:del(self)
 		end
-	end
+	-- end
 end
 
 function ModRoomChanger:setRoomChangeOnCollide( roomChange )

@@ -108,6 +108,11 @@ end
 -- and will not print sub-tables.
 -- @param {table} table - The table to print
 ----
+function util.shallow_print( t )
+  for k,v in pairs(t) do
+    print("KEY:",k, " Value: ",v, "type:",v.type)
+  end
+end
 function util.print_table( t ) 
     local print_r_cache={}
     local function sub_print_r(t,indent)
@@ -169,6 +174,22 @@ function util.concat(t1,t2)
         t1[#t1+1] = t2[i]
     end
     return t1
+end
+
+function util.keyToIndex( keyTable )
+  local newTable = {}
+  for k,v in pairs(keyTable) do
+    table.insert(newTable,v)
+  end
+  return newTable
+end
+
+function util.sum( tableNum )
+  local sum = 0
+  for i,v in ipairs(tableNum) do
+    sum = sum + v
+  end
+  return sum
 end
 ----
 -- Changes the transient parts of an object. When called with no parameters

@@ -31,6 +31,11 @@ end
 function DialogActive:init( items , source, interactor, parent)
 	assert(type(items)=="table", "'items' must be a table")
 	self.items = items
+	self.numItems = 0
+	for k,v in pairs(items) do
+		self.numItems = self.numItems + 1
+	end
+
 	self.index = 1
 	--Gamestate.pop()
 	self.z = 9000
@@ -79,9 +84,9 @@ function DialogActive:_processOptions( items )
 	end
 
 	-- deal with the dialog body
-	local height = font:getHeight() * ( #items + 2 )
+	local height = font:getHeight() * ( self.numItems + 2 )
 	local width = 0
-	for k,v in ipairs(items) do
+	for k,v in pairs(items) do
 		local w = font:getWidth( v.text )
 		if w > width then
 			width = w
@@ -121,7 +126,7 @@ function DialogActive:draw( )
 	love.graphics.setFont( font )
 	local height = font:getHeight()
 	local midX = GAME_SIZE.w / 2
-	local y = GAME_SIZE.h / 2 - (height * #self.items / 2)
+	local y = GAME_SIZE.h / 2 - (height * self.numItems/ 2)
 
 	Game:nocamera( true )
 	love.graphics.push()
@@ -129,12 +134,13 @@ function DialogActive:draw( )
 	love.graphics.setColor(0,0,0,150)
 	TextBox.drawBackgroundData( self.boxData )
 	love.graphics.pop()
-
-	for k,v in ipairs(self.items) do
+	local i = 0
+	for k,v in pairs(self.items) do
 		local text = v.text
 		local width = font:getWidth( text )
 		local x = midX - (width / 2)
-		love.graphics.setColor( k == self.index and self.selcolor or self.fgcolor )
+		i = i + 1
+		love.graphics.setColor( i == self.index and self.selcolor or self.fgcolor )
 		love.graphics.printf( text, x, y, width, "center" )
 		y = y + height
 	end
@@ -144,11 +150,11 @@ end
 
 function DialogActive:keypressed()
 	if Keymap.isPressed( "menuUp" ) then
-		self.index = self.index > 1 and self.index - 1 or #self.items
+		self.index = self.index > 1 and self.index - 1 or self.numItems
 	end
 	if Keymap.isPressed( "menuDown" ) then
 		-- lume.trace()
-		self.index = self.index < #self.items and self.index + 1 or 1
+		self.index = self.index < self.numItems and self.index + 1 or 1
 	end
 	if Keymap.isPressed( "menuEnter" ) or Keymap.isPressed("interact") then
 		self:_tryUse( self.items[ self.index ] )
@@ -169,13 +175,18 @@ function DialogActive:_tryUse( item )
 		self.currentElement = (item.response or item.aside)
 		local ObjDialogSequence = require "objects.ObjDialogSequence"
 		if type(self.currentElement) == "string" then
-			self.currentElement = {self.currentElement} --ClickText(self.currentElement,nil,nil,true)
-			--Game:add(self.currentElement)
+			lume.trace(self.currentElement)
+			self.currentElement = {self.currentElement} 
+			-- ClickText(self.currentElement,nil,nil,true)
+			-- Game:add(self.currentElement)
+		elseif type(self.currentElement) == "function" then
+			self.currentElement(self.source, self.interactor,item)
+		elseif type(self.currentElement) == "table" then
+			-- lume.trace(item.text)
+			lume.trace(item.closeAction)
+			self.currentElement = ObjDialogSequence(self.source,self.interactor,self.currentElement,self,item.closeAction,item.closeArgs or EMPTY)
+			Game:add(self.currentElement)
 		end
-		--elseif type(self.currentElement) == "table" then
-		self.currentElement = ObjDialogSequence(self.source,self.interactor,self.currentElement,self)
-		Game:add(self.currentElement)
-		--end
 		if item.aside then
 			self.toSuspend = true
 		end
@@ -214,7 +225,7 @@ function DialogActive:suspendDialogue()
 end
 
 function DialogActive:continueDialogue( )
-	lume.trace("continueDialogue")
+	-- lume.trace("continueDialogue")
 	-- self:_processOptions( items )
 	if Game.DialogActive then
 		Game.DialogActive:endDialog()

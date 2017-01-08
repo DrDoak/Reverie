@@ -2,7 +2,7 @@ local ane = {}
 
 local pce = {
 	name = "main",
-	path = "assets/spr/crate3D.png",
+	path = "assets/spr/obj/crate3D.png",
 	width = 32,
 	height = 48,
 	vert = 32,

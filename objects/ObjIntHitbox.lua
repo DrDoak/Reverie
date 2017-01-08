@@ -49,7 +49,8 @@ end
 
 function ObjIntHitbox:onCollide(other, collision)
 	if other then
-		if Class.istype(other, "ObjBase") and other:hasModule("ModInteractive") then
+		if other ~= self.creator and Class.istype(other, "ObjBase") and other:hasModule("ModInteractive") then
+			self.creator:onInteractionWithObject(other)
 			other:onPlayerInteract(self.creator, self.data)
 		end
 	end

@@ -27,12 +27,14 @@ function SpritePiece:init(image, frameWidth, frameHeight, border, z,name)
 	self.attachF = 0
 	self.modDepth = 0
 	self.offAngle = 0
+	self.zDiff = 0
 
 	self.currentAnim = "default"
 	self.attachX = self.attachX or self.ox
 	self.attachY = self.attachY or self.oy
 	self.dir = 1
 	self.mDir = 1
+	self.currentDir = 1
 	self.hubbub = "SpritePiece"
 end
 
@@ -71,7 +73,6 @@ function SpritePiece:onUpdate( )
 		if value.attachMod[value.attachF] then
 			value.offX =  value.attachMod[value.attachF].x
 			value.offY =  value.attachMod[value.attachF].y
-
 			local angle = value.attachMod[value.attachF].angle or 0
 
 			if self.dir == -1 and angle ~= 0 then
@@ -80,9 +81,9 @@ function SpritePiece:onUpdate( )
 			angle = angle/180
 			angle = angle * math.pi
 			value.offAngle = angle
-			value.modDepth = self.z
+			value.modDepth = 0 
 			if value.attachMod[value.attachF].z then 
-				value.modDepth = self.z +  value.attachMod[value.attachF].z 
+				value.modDepth = value.attachMod[value.attachF].z
 			end
 		else
 			value.offX = 0
@@ -135,13 +136,17 @@ function SpritePiece:updatePos(px,py,depth)
 		if offX == 0 then
 			offX = self.rootSprite.attachPoints["default"].offX 
 		end
+
 		if self.rootSprite.dir == -1 then offX = offX - 1 end
 		local offY = self.rootSprite.attachPoints[self.rootPoint].offY
 		if offY == 0 then
-			offY =self.rootSprite.attachPoints["default"].offY
+			offY = self.rootSprite.attachPoints["default"].offY
 		end
-
-		local xOffset = ((self.rootSprite.attachPoints[self.rootPoint].x/2) + offX )*self.rootSprite.dir
+		local rootSprDir = 1
+		if self.rootSprite.dir == -1 or self.rootSprite.dir == 1 then
+			rootSprDir = self.rootSprite.dir
+		end
+		local xOffset = ((self.rootSprite.attachPoints[self.rootPoint].x/2) + offX )*rootSprDir
 		xOffset = xOffset - (((self.attachX)/2) *self.dir * self.mDir)--* self.dir)
 		local yOffset = (self.rootSprite.attachPoints[self.rootPoint].y/2) - offY - (self.attachY/2)
 		
@@ -155,8 +160,14 @@ function SpritePiece:updatePos(px,py,depth)
 		end 
 		newAngle = newAngle + offAngle
 		self:setAngle(newAngle)
-		local z =  self.rootSprite.attachPoints[self.rootPoint].modDepth or self.z
-		Game.scene:move(self,z)
+		local z =  self.rootSprite.attachPoints[self.rootPoint].modDepth or 0-- self.z
+		self.zDiff = z
+		-- if self.name == "head" then
+		-- 	lume.trace(self.zDiff)
+		-- end
+		
+		-- Game.scene:move(self,z)
+		-- lume.trace( self.rootSprite.attachPoints[self.rootPoint].modDepth ,self.zDiff)
 		--self:setDepth(self.modDepth)
 		for k,v in pairs(self.attachPoints) do
 			if v.offX and v.offY then

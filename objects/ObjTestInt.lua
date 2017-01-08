@@ -4,7 +4,7 @@ local ObjTestInt = Class.create("ObjTestInt", ObjBase)
 function ObjTestInt:create()
 	-- self:addModule(require "modules.ModActive")
 	self:addModule(require "modules.ModDialog")
-	self:addModule(require "modules.ModPhysicsTD")
+	self:addModule(require "modules.ModPhysics")
 
 	self:createBody( "kinematic" ,false, false)
 
@@ -12,7 +12,7 @@ function ObjTestInt:create()
 	self.fixture = love.physics.newFixture(self.body, self.shape, 1)
 	self:setFixture(self.shape, 22.6)
 
-	self:addModule(require "modules.ModDrawableTD")
+	self:addModule(require "modules.ModDrawable")
 	self:addSpritePiece(require("assets.spr.scripts.SprCrate3D"))
 	-- self:setMaxHealth(100)
 	local speech = {

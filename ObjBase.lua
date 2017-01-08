@@ -40,6 +40,10 @@ function ObjBase:addModule( newModule )
 			if not self:hasModule(v) then
 				-- lume.trace("module: ",v,"added through dependency to module: ", modName)
 				local dependencyPath = "modules." .. v
+				if string.sub(v,1,2) == "AI" then
+					dependencyPath = "ai." .. v
+				end
+				-- lume.trace(modName, dependencyPath)
 				self:addModule(require(dependencyPath))
 			end
 		end

@@ -214,7 +214,7 @@ end
 --Adds an ObjEquippable subclass to the player's inventory
 function ModInventory:addToInv(item, stackable, amount,overwrite, animate)
 	-- if animate then self:setActionState("crouch",1) end
-	lume.trace()
+	-- lume.trace()
 	if stackable then
 		for _,v in self.inventory:iter() do
 			if v.type == item.type then
@@ -241,7 +241,6 @@ function ModInventory:addToInv(item, stackable, amount,overwrite, animate)
 end
 
 function ModInventory:equipIfOpen(item, isPrimary)
-	lume.trace()
 	if isPrimary then
 		if not self.currentPrimary then
 			self.inventory:setEquip(item,self,"primary")

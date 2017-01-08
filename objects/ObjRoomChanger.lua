@@ -2,7 +2,7 @@ local ObjBase = require "ObjBase"
 local ObjRoomChanger = Class.create("ObjRoomChanger", ObjBase)
 	
 function ObjRoomChanger:create()
-	self:addModule(require "modules.ModPhysicsTD")
+	self:addModule(require "modules.ModPhysics")
 	self:addModule(require "modules.ModRoomChanger")
 
 	self:createBody( "kinematic" ,true, false)

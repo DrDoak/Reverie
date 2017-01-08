@@ -2,7 +2,7 @@ local ObjBase = require "ObjBase"
 local ObjFence = Class.create("ObjFence", ObjBase)
 	
 function ObjFence:create()
-	self:addModule(require "modules.ModDrawableTD")
+	self:addModule(require "modules.ModDrawable")
 	self.image = self.image or "assets.spr.scripts.SprFence"
 	self.y = self.y + self.height
 	self.x = self.x + 16
